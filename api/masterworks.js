@@ -1154,31 +1154,31 @@ export const lichtensteinMasterworks = {
   'lichtenstein-happytears': {
     name: '행복한 눈물',
     nameEn: 'Happy Tears',
-    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, VERY THICK bold black outlines, FLAT primary colors ONLY red blue yellow, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY red blue yellow, comic book halftone printing, NO gradients.',
     feature: '미소, 기쁨의 눈물'
   },
   'lichtenstein-drowninggirl': {
     name: '익사하는 소녀',
     nameEn: 'Drowning Girl',
-    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, VERY THICK bold black outlines, FLAT primary colors ONLY red blue yellow white, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY red blue yellow white, comic book halftone printing, NO gradients.',
     feature: '눈물, 클로즈업'
   },
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, VERY THICK bold black outlines, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, VERY THICK bold black outlines, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
     feature: '남자, 클로즈업'
   },
   'lichtenstein-girlwithhairribbon': {
     name: '리본머리 소녀',
     nameEn: 'Girl with Hair Ribbon',
-    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, VERY THICK bold black outlines, blonde hair blue eyes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, blonde hair blue eyes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
     feature: '리본, 정면'
   }
 };

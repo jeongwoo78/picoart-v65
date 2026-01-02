@@ -257,6 +257,9 @@ const MOVEMENT_DEFAULTS = {
 const ARTIST_NAME_MAPPING = {
   'leonardodavinci': 'leonardo',
   'davinci': 'leonardo',
+  '레오나르도': 'leonardo',
+  '다빈치': 'leonardo',
+  '레오나르도다빈치': 'leonardo',
   'vincentvangogh': 'vangogh',
   'vincent': 'vangogh',
   'gogh': 'vangogh',
@@ -264,12 +267,24 @@ const ARTIST_NAME_MAPPING = {
   '고흐': 'vangogh',
   '빈센트': 'vangogh',
   '빈센트반고흐': 'vangogh',
-  '반고흐': 'vangogh',
   'pierreaugusterenoir': 'renoir',
+  '르누아르': 'renoir',
+  '피에르오귀스트르누아르': 'renoir',
   'claudemonet': 'monet',
+  '모네': 'monet',
+  '클로드모네': 'monet',
   'edgardegas': 'degas',
+  '드가': 'degas',
+  '에드가드가': 'degas',
+  'gustavecaillebotte': 'caillebotte',
+  '카유보트': 'caillebotte',
+  '귀스타브카유보트': 'caillebotte',
   'paulcezanne': 'cezanne',
+  '세잔': 'cezanne',
+  '폴세잔': 'cezanne',
   'paulsignac': 'signac',
+  '시냑': 'signac',
+  '폴시냑': 'signac',
   'henrimatisse': 'matisse',
   '마티스': 'matisse',
   '앙리마티스': 'matisse',
@@ -288,11 +303,19 @@ const ARTIST_NAME_MAPPING = {
   '피카소': 'picasso',
   '파블로피카소': 'picasso',
   'renemagritte': 'magritte',
+  '마그리트': 'magritte',
+  '르네마그리트': 'magritte',
   'joanmiro': 'miro',
+  '미로': 'miro',
+  '호안미로': 'miro',
   'marcchagall': 'chagall',
   '샤갈': 'chagall',
+  '마르크샤갈': 'chagall',
   'roylichtenstein': 'lichtenstein',
+  '리히텐슈타인': 'lichtenstein',
+  '로이리히텐슈타인': 'lichtenstein',
   'keithharing': 'haring',
+  '해링': 'haring',
   '키스해링': 'haring',
   'gustavklimt': 'klimt',
   '클림트': 'klimt',
@@ -335,6 +358,7 @@ const ARTIST_NAME_MAPPING = {
   '라파엘로': 'raphael',
   'paulgauguin': 'gauguin',
   '고갱': 'gauguin',
+  '폴고갱': 'gauguin',
   'classicalsculpture': 'classical-sculpture',
   'sculpture': 'sculpture',
   'romanmosaic': 'roman-mosaic',
@@ -375,6 +399,9 @@ function getArtistConfig(artist, styleId, category) {
     return { control: 0.75, brush: null };
   } else if (category === 'modernism') {
     return { control: 0.50, brush: '30mm' };
+  } else if (category === 'masters') {
+    // 거장 모드: 화가별 설정이 없으면 중간값
+    return { control: 0.55, brush: '30mm' };
   }
   
   // 4. 최종 기본값

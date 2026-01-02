@@ -60,36 +60,45 @@ import {
 } from './artistStyles.js';
 
 // ========================================
-// v64: 리히텐슈타인 말풍선 텍스트 (상황별 50개)
+// v65: 리히텐슈타인 말풍선 텍스트 (50개)
+// 짧은 감탄사 + 대화체 + 독백체 + 긴 문장 혼합
 // ========================================
 const LICHTENSTEIN_SPEECH_BUBBLES = {
-  // 감탄 (10개) - 기본/남성/강한 표정
+  // 감탄/기쁨 (12개) - 그룹/밝은 분위기
   excited: [
-    "WOW!", "AMAZING!", "INCREDIBLE!", "FANTASTIC!", "AWESOME!",
-    "UNBELIEVABLE!", "SPECTACULAR!", "BRILLIANT!", "MAGNIFICENT!", "SUPERB!"
+    "WOW!", "AMAZING!", "INCREDIBLE!", "PERFECT!", "YES!",
+    "THIS IS THE BEST DAY EVER!", "I CAN'T BELIEVE THIS IS HAPPENING!",
+    "EVERYTHING IS GOING TO BE ALRIGHT!", "WE DID IT!", "THIS IS SO EXCITING!",
+    "I KNEW WE COULD DO IT!", "NOTHING CAN STOP US NOW!"
   ],
-  // 로맨틱 (10개) - 커플/여성
+  // 로맨틱 (10개) - 커플
   romantic: [
-    "I LOVE YOU!", "MY DARLING!", "KISS ME!", "MY HEART!", "FOREVER YOURS!",
-    "BE MINE!", "YOU'RE THE ONE!", "TRUE LOVE!", "SWEET DREAMS!", "MY EVERYTHING!"
+    "I LOVE YOU!", "KISS ME!", "MY DARLING!", "YOU'RE THE ONE!",
+    "I'VE BEEN WAITING FOR THIS MOMENT!", "MY HEART BEATS ONLY FOR YOU!",
+    "I NEVER WANT THIS TO END!", "YOU MAKE EVERYTHING BETTER!",
+    "STAY WITH ME FOREVER!", "THIS FEELS LIKE A DREAM!"
   ],
-  // 드라마틱 (10개) - 강렬한 표정/슬픔
+  // 드라마틱 (10개) - 강렬한 감정/여성
   dramatic: [
-    "I CAN'T BELIEVE IT!", "HOW COULD YOU!", "IT'S OVER!", "WHY ME?!", "NO WAY!",
-    "THIS CAN'T BE!", "WHAT HAVE I DONE?!", "I'M DROWNING!", "IT'S HOPELESS!", "GOODBYE FOREVER!"
+    "I CAN'T BELIEVE IT!", "HOW COULD THIS HAPPEN?!", "IT'S OVER!",
+    "I DON'T CARE ANYMORE!", "WHY DIDN'T ANYONE TELL ME?!",
+    "I SHOULD HAVE KNOWN!", "EVERYTHING HAS CHANGED NOW!",
+    "I NEVER THOUGHT IT WOULD END LIKE THIS!", "THIS CAN'T BE REAL!",
+    "I WON'T LET THIS STOP ME!"
   ],
-  // 기쁨 (10개) - 웃는 표정
-  happy: [
-    "SO HAPPY!", "PERFECT!", "YES!", "HOORAY!", "I DID IT!",
-    "WONDERFUL!", "BEST DAY EVER!", "DREAMS COME TRUE!", "LUCKY ME!", "FEELING GREAT!"
+  // 대화체/독백 (10개) - 원작 스타일
+  dialogue: [
+    "MAYBE HE'LL CALL ME TOMORROW...", "I WONDER WHAT HAPPENS NEXT...",
+    "THEY SAID IT COULDN'T BE DONE!", "SHE TOLD ME TO WAIT HERE!",
+    "HE PROMISED HE WOULD COME BACK!", "I THOUGHT I SAW SOMETHING!",
+    "SOMEONE HAS TO DO SOMETHING!", "THAT'S EXACTLY WHAT I NEEDED!",
+    "I KNEW SOMETHING WAS DIFFERENT TODAY!", "THIS CHANGES EVERYTHING!"
   ],
-  // 생각/궁금 (5개) - 중립 표정
-  thinking: [
-    "MAYBE...", "I WONDER...", "PERHAPS...", "COULD IT BE?", "WHAT IF..."
-  ],
-  // 놀람 (5개) - 놀란 표정
+  // 놀람/생각 (8개) - 중립
   surprised: [
-    "WHAT?!", "OH MY!", "REALLY?!", "NO WAY!", "SHOCKING!"
+    "WHAT?!", "OH MY!", "REALLY?!", "WAIT... WHAT?!",
+    "I NEVER EXPECTED THIS!", "COULD IT BE TRUE?!",
+    "SOMETHING DOESN'T FEEL RIGHT...", "WHAT JUST HAPPENED?!"
   ]
 };
 
@@ -101,21 +110,28 @@ function selectSpeechBubbleText(visionData) {
     const personCount = visionData.person_count || 1;
     const gender = visionData.gender;
     
-    // 커플이면 로맨틱
-    if (personCount >= 2) {
+    // 3명 이상 그룹이면 감탄
+    if (personCount >= 3) {
+      category = 'excited';
+    }
+    // 2명 커플이면 로맨틱
+    else if (personCount === 2) {
       category = 'romantic';
     }
-    // 여성 단독이면 드라마틱 또는 로맨틱 랜덤
+    // 여성 단독이면 드라마틱/대화체/로맨틱 랜덤
     else if (gender === 'female') {
-      category = Math.random() > 0.5 ? 'dramatic' : 'romantic';
+      const rand = Math.random();
+      if (rand < 0.4) category = 'dramatic';
+      else if (rand < 0.7) category = 'dialogue';
+      else category = 'romantic';
     }
-    // 남성 단독이면 감탄 또는 기쁨 랜덤
+    // 남성 단독이면 감탄/대화체 랜덤
     else if (gender === 'male') {
-      category = Math.random() > 0.5 ? 'excited' : 'happy';
+      category = Math.random() > 0.5 ? 'excited' : 'dialogue';
     }
     // 기본은 랜덤
     else {
-      const categories = ['excited', 'happy', 'surprised', 'thinking'];
+      const categories = ['excited', 'dialogue', 'surprised'];
       category = categories[Math.floor(Math.random() * categories.length)];
     }
   }

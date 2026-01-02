@@ -137,7 +137,7 @@ export const masterworkNameMapping = {
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
   'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage',
-  'drowning girl': 'lichtenstein-drowninggirl', 'whaam!': 'lichtenstein-whaam', 'hopeless': 'lichtenstein-hopeless',
+  'drowning girl': 'lichtenstein-drowninggirl', 'happy tears': 'lichtenstein-happytears', 'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'girl with hair ribbon': 'lichtenstein-girlwithhairribbon',
   'radiant baby': 'haring-radiantbaby', 'barking dog': 'haring-barkingdog', 'dancing figures': 'haring-dancing'
 };
 
@@ -1148,26 +1148,38 @@ export const chagallMasterworks = {
 };
 
 // ========================================
-// 43. 리히텐슈타인 (3개)
+// 43. 리히텐슈타인 (5개)
 // ========================================
 export const lichtensteinMasterworks = {
+  'lichtenstein-happytears': {
+    name: '행복한 눈물',
+    nameEn: 'Happy Tears',
+    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, VERY THICK bold black outlines, FLAT primary colors ONLY red blue yellow, comic book halftone printing, NO gradients.',
+    feature: '미소, 기쁨의 눈물'
+  },
   'lichtenstein-drowninggirl': {
     name: '익사하는 소녀',
     nameEn: 'Drowning Girl',
-    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, visible Ben-Day dots throughout, thick bold black outlines, primary red yellow blue white.',
+    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, VERY THICK bold black outlines, FLAT primary colors ONLY red blue yellow white, comic book halftone printing, NO gradients.',
     feature: '눈물, 클로즈업'
   },
-  'lichtenstein-whaam': {
-    name: '휩!',
-    nameEn: 'Whaam!',
-    prompt: 'Roy Lichtenstein "Whaam!" (1963), two-panel comic composition, fighter jet shooting missile left, dramatic explosion right, Ben-Day dots, primary colors.',
-    feature: '전투기, 폭발'
+  'lichtenstein-inthecar': {
+    name: '차 안에서',
+    nameEn: 'In the Car',
+    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, VERY THICK bold black outlines, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    feature: '커플, 리본머리'
   },
-  'lichtenstein-hopeless': {
-    name: '절망적',
-    nameEn: 'Hopeless',
-    prompt: 'Roy Lichtenstein "Hopeless" (1963), blonde woman crying hands near face, visible Ben-Day dots, thick bold black outlines, yellow hair blue eyes red lips.',
-    feature: '금발, 울음'
+  'lichtenstein-mmaybe': {
+    name: '아마도',
+    nameEn: 'M-Maybe',
+    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, VERY THICK bold black outlines, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    feature: '남자, 클로즈업'
+  },
+  'lichtenstein-girlwithhairribbon': {
+    name: '리본머리 소녀',
+    nameEn: 'Girl with Hair Ribbon',
+    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, VERY THICK bold black outlines, blonde hair blue eyes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    feature: '리본, 정면'
   }
 };
 
@@ -1300,7 +1312,7 @@ export function getArtistMasterworkList(artistKey) {
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
-    'lichtenstein': ['lichtenstein-drowninggirl', 'lichtenstein-whaam', 'lichtenstein-hopeless'],
+    'lichtenstein': ['lichtenstein-happytears', 'lichtenstein-drowninggirl', 'lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-girlwithhairribbon'],
     'haring': ['haring-radiantbaby', 'haring-barkingdog', 'haring-dancing']
   };
   

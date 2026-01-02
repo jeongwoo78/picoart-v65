@@ -60,6 +60,71 @@ import {
 } from './artistStyles.js';
 
 // ========================================
+// v64: 리히텐슈타인 말풍선 텍스트 (상황별 50개)
+// ========================================
+const LICHTENSTEIN_SPEECH_BUBBLES = {
+  // 감탄 (10개) - 기본/남성/강한 표정
+  excited: [
+    "WOW!", "AMAZING!", "INCREDIBLE!", "FANTASTIC!", "AWESOME!",
+    "UNBELIEVABLE!", "SPECTACULAR!", "BRILLIANT!", "MAGNIFICENT!", "SUPERB!"
+  ],
+  // 로맨틱 (10개) - 커플/여성
+  romantic: [
+    "I LOVE YOU!", "MY DARLING!", "KISS ME!", "MY HEART!", "FOREVER YOURS!",
+    "BE MINE!", "YOU'RE THE ONE!", "TRUE LOVE!", "SWEET DREAMS!", "MY EVERYTHING!"
+  ],
+  // 드라마틱 (10개) - 강렬한 표정/슬픔
+  dramatic: [
+    "I CAN'T BELIEVE IT!", "HOW COULD YOU!", "IT'S OVER!", "WHY ME?!", "NO WAY!",
+    "THIS CAN'T BE!", "WHAT HAVE I DONE?!", "I'M DROWNING!", "IT'S HOPELESS!", "GOODBYE FOREVER!"
+  ],
+  // 기쁨 (10개) - 웃는 표정
+  happy: [
+    "SO HAPPY!", "PERFECT!", "YES!", "HOORAY!", "I DID IT!",
+    "WONDERFUL!", "BEST DAY EVER!", "DREAMS COME TRUE!", "LUCKY ME!", "FEELING GREAT!"
+  ],
+  // 생각/궁금 (5개) - 중립 표정
+  thinking: [
+    "MAYBE...", "I WONDER...", "PERHAPS...", "COULD IT BE?", "WHAT IF..."
+  ],
+  // 놀람 (5개) - 놀란 표정
+  surprised: [
+    "WHAT?!", "OH MY!", "REALLY?!", "NO WAY!", "SHOCKING!"
+  ]
+};
+
+// 말풍선 텍스트 선택 함수
+function selectSpeechBubbleText(visionData) {
+  let category = 'excited'; // 기본값
+  
+  if (visionData) {
+    const personCount = visionData.person_count || 1;
+    const gender = visionData.gender;
+    
+    // 커플이면 로맨틱
+    if (personCount >= 2) {
+      category = 'romantic';
+    }
+    // 여성 단독이면 드라마틱 또는 로맨틱 랜덤
+    else if (gender === 'female') {
+      category = Math.random() > 0.5 ? 'dramatic' : 'romantic';
+    }
+    // 남성 단독이면 감탄 또는 기쁨 랜덤
+    else if (gender === 'male') {
+      category = Math.random() > 0.5 ? 'excited' : 'happy';
+    }
+    // 기본은 랜덤
+    else {
+      const categories = ['excited', 'happy', 'surprised', 'thinking'];
+      category = categories[Math.floor(Math.random() * categories.length)];
+    }
+  }
+  
+  const texts = LICHTENSTEIN_SPEECH_BUBBLES[category];
+  return texts[Math.floor(Math.random() * texts.length)];
+}
+
+// ========================================
 // v70: 화가별 설정 통합 관리
 // 🎯 수정 위치: 여기서 화가별 control_strength, 붓터치 크기 조정!
 // 
@@ -4336,6 +4401,21 @@ export default async function handler(req, res) {
             // console.log('✅ Enhanced Frida Kahlo Mexican symbolism added');
           } else {
             // console.log('ℹ️ Frida Kahlo style already in prompt (AI included it)');
+          }
+        }
+        
+        // 리히텐슈타인 선택시 팝아트 + 말풍선 강화 (거장 + 모더니즘 사조)
+        if (selectedArtist.toUpperCase().trim().includes('LICHTENSTEIN') || 
+            selectedArtist.includes('리히텐슈타인')) {
+          console.log('🎯 Lichtenstein detected - adding speech bubble...');
+          
+          // 말풍선 텍스트 선택 (사진 분석 결과 기반)
+          const speechText = selectSpeechBubbleText(aiResult?.visionData);
+          console.log(`💬 Speech bubble text: "${speechText}"`);
+          
+          // 프롬프트에 말풍선 추가
+          if (!finalPrompt.includes('speech bubble')) {
+            finalPrompt = finalPrompt + `, WHITE SPEECH BUBBLE with BLACK OUTLINE containing text "${speechText}" in BOLD COMIC FONT, Ben-Day dots halftone pattern`;
           }
         }
         

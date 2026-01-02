@@ -142,7 +142,7 @@ export const ARTIST_STYLES = {
   
   'chagall': 'by Marc Chagall, Chagall art style, dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality. NOT photograph, NOT digital.',
   
-  'lichtenstein': 'by Roy Lichtenstein, Lichtenstein Pop Art style, visible Ben-Day dots pattern, thick black outlines, primary colors, comic book aesthetic. NOT photograph, NOT digital.',
+  'lichtenstein': 'by Roy Lichtenstein, COMIC BOOK POP ART style, LARGE VISIBLE Ben-Day dots pattern covering entire surface, VERY THICK bold black outlines, FLAT primary colors ONLY (red blue yellow white black), halftone printing effect, NO gradients, NO realistic shading, NOT photograph, NOT soft.',
   
   'haring': 'by Keith Haring, Keith Haring art style, bold continuous black outlines, simplified dancing figures, radiant energy lines, flat bright colors. NOT photograph, NOT digital.',
 

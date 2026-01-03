@@ -27,7 +27,7 @@ export const masterworkNameMapping = {
   // 뭉크
   'the scream': 'munch-scream', '절규': 'munch-scream',
   'madonna': 'munch-madonna', '마돈나': 'munch-madonna',
-  'jealousy': 'munch-jealousy', '질투': 'munch-jealousy',
+  'anxiety': 'munch-anxiety', '불안': 'munch-anxiety',
   
   // 마티스
   'the dance': 'matisse-dance', '춤': 'matisse-dance',
@@ -955,7 +955,7 @@ export const munchMasterworks = {
   'munch-scream': {
     name: '절규',
     nameEn: 'The Scream',
-    prompt: 'Edvard Munch "The Scream" (1893), WAVY DISTORTED swirling LINES throughout, skull-like face hands on ears, BLOOD RED orange sky, bridge setting.',
+    prompt: 'Edvard Munch "The Scream" (1893), WAVY DISTORTED swirling LINES throughout, elongated oval face with hands on ears expressing TERROR, BLOOD RED orange sky, bridge setting, PRESERVE ORIGINAL FACIAL FEATURES while applying expressionist distortion.',
     feature: '불안',
     attractiveException: true,
     expressionRule: 'fear/anxiety allowed, NO bright, NO smiling'
@@ -967,11 +967,13 @@ export const munchMasterworks = {
     feature: '신비/관능',
     expressionRule: 'ecstatic/mysterious allowed, NO bright, NO smiling'
   },
-  'munch-jealousy': {
-    name: '질투',
-    nameEn: 'Jealousy',
-    prompt: 'Edvard Munch "Jealousy" (1895), PALE GREEN sickly face foreground, intense haunted stare, psychological tension, wavy distorted background, green/red/yellow contrast.',
-    feature: '심리'
+  'munch-anxiety': {
+    name: '불안',
+    nameEn: 'Anxiety',
+    prompt: 'Edvard Munch "Anxiety" (1894), GROUP of figures on bridge with PALE GHOSTLY faces showing COLLECTIVE DREAD, BLOOD RED orange sky pressing down, dark clothing, wavy distorted background, same bridge setting as The Scream but with MULTIPLE FIGURES, PRESERVE ORIGINAL FACIAL FEATURES.',
+    feature: '집단불안',
+    attractiveException: true,
+    expressionRule: 'anxiety/dread allowed, NO bright, NO smiling'
   }
 };
 
@@ -1318,7 +1320,7 @@ export function getArtistMasterworkList(artistKey) {
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
     'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife'],
-    'munch': ['munch-scream', 'munch-madonna', 'munch-jealousy'],
+    'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
     'picasso': ['picasso-guernica', 'picasso-oldguitarist', 'picasso-musicians', 'picasso-doramaar'],
@@ -1348,15 +1350,508 @@ export function getMasterworkGuideForAI(workKey) {
 
 /**
  * 사조별 대표작 가이드 (getMovementMasterworkGuide)
- * 특정 사조의 대표작들 프롬프트를 결합하여 반환
+ * 특정 사조의 모든 화가 MASTER_GUIDES를 조합하여 반환
  */
 export function getMovementMasterworkGuide(movementKey) {
-  const artistList = getArtistMasterworkList(movementKey);
-  if (!artistList || artistList.length === 0) return '';
+  // 사조별 화가 매핑
+  const movementArtists = {
+    // 고대/중세
+    'ancient': ['roman-mosaic'],
+    'medieval': ['gothic', 'byzantine', 'islamic-miniature'],
+    // 르네상스
+    'renaissance': ['botticelli', 'leonardo', 'titian', 'michelangelo', 'raphael'],
+    // 바로크
+    'baroque': ['caravaggio', 'rubens', 'rembrandt', 'velazquez'],
+    // 로코코
+    'rococo': ['watteau', 'boucher'],
+    // 신고전/낭만/사실
+    'neoclassicism-romanticism': ['david', 'ingres', 'turner', 'delacroix', 'courbet', 'manet'],
+    // 인상주의
+    'impressionism': ['renoir', 'monet', 'degas', 'caillebotte'],
+    // 후기인상주의
+    'post-impressionism': ['vangogh', 'gauguin', 'cezanne'],
+    // 점묘법
+    'pointillism': ['signac'],
+    // 야수파
+    'fauvism': ['matisse', 'derain', 'vlaminck'],
+    // 표현주의
+    'expressionism': ['munch', 'kirchner', 'kokoschka'],
+    // 모더니즘
+    'modernism': ['picasso', 'magritte', 'miro', 'chagall', 'lichtenstein', 'haring']
+  };
   
-  // 첫 번째 대표작의 프롬프트만 반환 (너무 길어지지 않게)
-  const firstWork = getMovementMasterwork(artistList[0]);
-  return firstWork ? (firstWork.prompt || '') : '';
+  const artists = movementArtists[movementKey];
+  if (!artists || artists.length === 0) return '';
+  
+  // 각 화가의 MASTER_GUIDES 조합
+  let guide = `\n📚 MASTERWORK SELECTION GUIDE:\n`;
+  artists.forEach(artist => {
+    if (MASTER_GUIDES[artist]) {
+      guide += `\n${MASTER_GUIDES[artist]}\n`;
+    }
+  });
+  
+  return guide;
+}
+
+/**
+ * 거장별 AI 선택 가이드 (상세 매칭 힌트 포함)
+ */
+const MASTER_GUIDES = {
+  // ========================================
+  // 고대/중세
+  // ========================================
+  'roman-mosaic': `
+ROMAN MOSAIC - SELECT ONE:
+1. "Alexander Mosaic" (알렉산더 모자이크) → battle, action, warriors, dramatic scene | Style: Pompeii battle scene, dramatic diagonal movement, warrior armor and horses, earth tones terracotta ochre
+2. "Cave Canem" (개조심) → animals, pets, dogs, simple subject | Style: guard dog in black and white, simple composition, warning motif
+3. "Dionysus Mosaic" (디오니소스) → celebration, party, mythology, portrait | Style: grape vines and wine imagery, banquet atmosphere, rich purple green gold
+4. "Oceanus and Tethys" (오케아노스와 테티스) → water, ocean, blue tones, portrait | Style: sea god portrait, dominant ocean blue and turquoise, flowing water with fish
+5. "Four Seasons Mosaic" (사계절) → portrait, face, seasonal, circular | Style: portrait bust in circular medallion, seasonal attributes, warm earth tones
+6. "Nile Mosaic" (나일) → landscape, nature, animals, panoramic | Style: panoramic landscape with river, exotic wildlife hippos crocodiles, ochre terracotta blue-green
+
+⚠️ For ANIMALS: Cave Canem or Nile Mosaic. For PORTRAITS: Four Seasons or Oceanus.`,
+
+  'gothic': `
+GOTHIC STAINED GLASS - SELECT ONE:
+1. "Blue Virgin of Chartres" (샤르트르 푸른 성모) → mother and child, religious, blue dominant | Style: dominant Chartres cobalt blue, Madonna and child, ruby red accents, jewel-tone translucent
+2. "Notre-Dame Rose Window" (노트르담 장미창) → circular, symmetrical, kaleidoscopic | Style: radial circular composition, kaleidoscopic symmetry, ruby sapphire emerald gold
+3. "Sainte-Chapelle" (생트샤펠) → tall vertical, red dominant, biblical | Style: tall vertical composition, dominant ruby red and deep blue, biblical scenes
+
+⚠️ ALL works: Bold black lead lines, luminous jewel-tones, light streaming through glass effect.`,
+
+  'byzantine': `
+BYZANTINE MOSAIC - SELECT ONE:
+1. "Emperor Justinian" (유스티니아누스 황제) → MALE portrait, authority, power, formal | Style: imperial court scene, shimmering gold leaf background, royal purple robes, circular golden halo
+2. "Empress Theodora" (테오도라 황후) → FEMALE portrait, royalty, elegant | Style: jeweled crown and pearl collar, shimmering gold background, luxurious purple and gold robes
+3. "Deesis" (데이시스) → religious, central figure, sacred | Style: Christ at center with golden halo, gold background, deep blue and burgundy robes
+4. "Christ Pantocrator" (판토크라토르) → intense, frontal, powerful | Style: monumental half-length figure, massive golden halo with cross, deep blue and gold, intense gaze
+
+⚠️ For MALE: Justinian or Pantocrator. For FEMALE: Theodora.`,
+
+  'islamic-miniature': `
+ISLAMIC MINIATURE - SELECT ONE:
+1. "Youth Holding a Flower" (꽃을 든 귀족) → single portrait, elegant, refined | Style: elegant S-curved posture, elaborate turban with feather, jewel tones ruby sapphire emerald gold
+2. "Miraj" (미라지/승천도) → fantasy, celestial, spiritual | Style: celestial ascension through swirling clouds and flames, angels with colorful wings, gold lapis blue
+3. "Simurgh" (시무르그) → animals, birds, mythical creatures | Style: magnificent giant bird with peacock-like plumage, iridescent colors, garden paradise
+4. "Lovers in a Garden" (정원의 연인들) → COUPLE (2 people), romantic, garden setting | Style: moonlit garden scene, cypress trees and flowering shrubs, soft jewel tones gold blue rose
+5. "Rustam Slaying the Dragon" (루스탐과 용) → action, battle, heroic | Style: epic battle warrior on rearing horse fighting dragon, dynamic diagonal, gold vermillion lapis
+
+⚠️ For COUPLE: Lovers in a Garden. For ANIMALS: Simurgh. For ACTION: Rustam.`,
+
+  // ========================================
+  // 르네상스
+  // ========================================
+  'botticelli': `
+SANDRO BOTTICELLI - SELECT ONE:
+1. "Primavera" (프리마베라) → spring, flowers, multiple figures, mythological | Style: ethereal pale figures, diaphanous flowing fabrics, orange grove background, graceful dance-like poses
+2. "Venus and Mars" (비너스와 마르스) → COUPLE, reclining, intimate | Style: reclining figures, soft flesh tones, playful satyrs, peaceful atmosphere
+
+⚠️ Botticelli style: Elegant flowing lines, ethereal pale skin, graceful diaphanous fabrics.`,
+
+  'leonardo': `
+LEONARDO DA VINCI - SELECT ONE:
+1. "Mona Lisa" (모나리자) → FEMALE portrait, mysterious, subtle smile | Style: extreme sfumato technique, mysterious smile, soft hazy atmospheric background, hands crossed
+2. "The Last Supper" (최후의 만찬) → GROUP (multiple people), dramatic, interior | Style: perspective converging to center, dramatic gestures, architectural interior
+3. "Virgin of the Rocks" (암굴의 성모) → religious, grotto, mystical | Style: dark grotto setting, pointing gestures, sfumato atmosphere, rocks and water
+
+⚠️ For FEMALE portrait: Mona Lisa. For GROUP: Last Supper. Leonardo style: sfumato hazy edges.`,
+
+  'titian': `
+TITIAN - SELECT ONE:
+1. "Bacchus and Ariadne" (바쿠스와 아리아드네) → dynamic, mythology, celebration | Style: dramatic leaping figure, vibrant Venetian colors, ultramarine blue sky, flowing robes
+2. "Assumption of the Virgin" (성모 승천) → ascending, religious, dramatic | Style: ascending figure with arms raised, golden light from above, dramatic upward movement
+
+⚠️ Titian style: Warm glowing golden flesh, rich luminous Venetian colors, bold loose brushwork.`,
+
+  'michelangelo': `
+MICHELANGELO - SELECT ONE:
+1. "Creation of Adam" (아담의 창조) → reaching, connection, iconic | Style: two reaching hands nearly touching, powerful muscular figure, Sistine Chapel fresco
+2. "The Last Judgment" (최후의 심판) → dramatic, crowded, judgment | Style: massive composition with many figures, muscular heroic bodies, dramatic movement
+
+⚠️ Michelangelo style: Powerful heroic muscular figures, dramatic foreshortening, monumental grandeur.`,
+
+  'raphael': `
+RAPHAEL - SELECT ONE:
+1. "School of Athens" (아테네 학당) → GROUP, intellectual, architectural | Style: grand architectural setting, philosophers gathered, perfect perspective, harmonious composition
+2. "Sistine Madonna" (시스틴 성모) → mother and child, religious, serene | Style: Madonna holding child, parted curtains, cherubs below, serene balanced composition
+3. "Triumph of Galatea" (갈라테아의 승리) → sea nymph, mythological, joyful | Style: sea nymph on shell, cherubs and sea creatures, swirling composition
+
+⚠️ Raphael style: Perfect harmonious beauty, serene balanced composition, gentle graceful expressions.`,
+
+  // ========================================
+  // 바로크
+  // ========================================
+  'caravaggio': `
+CARAVAGGIO - SELECT ONE:
+1. "Calling of Saint Matthew" (성 마태오의 소명) → dramatic light, pointing gesture, group | Style: extreme tenebrism, intense spotlight from darkness, dramatic gesture pointing
+2. "Supper at Emmaus" (엠마오의 저녁식사) → dining, revelation, dramatic | Style: moment of recognition, outstretched arms, dramatic chiaroscuro, still life on table
+
+⚠️ Caravaggio style: EXTREME tenebrism, intense spotlight from absolute black darkness, theatrical illumination.`,
+
+  'rubens': `
+PETER PAUL RUBENS - SELECT ONE:
+1. "Descent from the Cross" (십자가에서 내려지심) → dramatic, religious, multiple figures | Style: diagonal composition, muscular bodies, dramatic fabric, emotional intensity
+2. "The Garden of Love" (사랑의 정원) → romantic, COUPLE or GROUP, celebration | Style: lush garden setting, elegant couples, cherubs, warm golden light
+
+⚠️ Rubens style: Radiant luminous flesh, explosive swirling movement, rich passionate reds and golds.`,
+
+  'rembrandt': `
+REMBRANDT - SELECT ONE:
+1. "The Night Watch" (야경) → GROUP, dramatic, military | Style: dramatic spotlight on figures, dark background, elaborate costumes, dynamic composition
+2. "Self-Portrait" (자화상) → SINGLE portrait, introspective | Style: intense golden glow, deep mysterious shadows, thick impasto highlights on face
+3. "Return of the Prodigal Son" (탕아의 귀환) → emotional, reunion, religious | Style: tender embrace, warm golden light, deep emotional connection
+
+⚠️ For SINGLE portrait: Self-Portrait. For GROUP: Night Watch. Rembrandt style: Golden glow, deep shadows, thick impasto.`,
+
+  'velazquez': `
+DIEGO VELAZQUEZ - SELECT ONE:
+1. "Las Meninas" (시녀들) → GROUP, royal, complex composition | Style: complex spatial arrangement, mirror reflection, princess with attendants, refined court elegance
+2. "Portrait of Pope Innocent X" (교황 인노첸시오 10세) → MALE portrait, powerful, intense | Style: seated authority figure, brilliant red cape, piercing intense gaze
+3. "Surrender of Breda" (브레다의 항복) → historical, military, GROUP | Style: spears creating vertical rhythm, moment of dignity in defeat, landscape background
+
+⚠️ For MALE authority: Pope Innocent. For GROUP: Las Meninas. Velazquez style: Refined elegance, masterful loose brushwork, subtle silver-grey palette.`,
+
+  // ========================================
+  // 로코코
+  // ========================================
+  'watteau': `
+ANTOINE WATTEAU - SELECT ONE:
+1. "Pilgrimage to Cythera" (시테르섬의 순례) → COUPLE or GROUP, romantic, outdoor | Style: dreamy pastoral setting, elegant couples departing, soft golden light, melancholic atmosphere
+2. "Pierrot" (피에로) → SINGLE portrait, melancholic, theatrical | Style: white costume standing alone, wistful expression, commedia dell'arte character
+3. "Fête Galante" (귀족의 연회) → GROUP, celebration, garden party | Style: elegant aristocrats in garden, musical instruments, soft feathery brushwork
+
+⚠️ Watteau style: Delicate feathery brushwork, soft dreamy pastoral scenes, romantic melancholic atmosphere.`,
+
+  'boucher': `
+FRANÇOIS BOUCHER - SELECT ONE:
+1. "Madame de Pompadour" (퐁파두르 부인) → FEMALE portrait, elegant, aristocratic | Style: luxurious dress with ribbons and roses, books and artistic objects, soft rosy flesh tones
+2. "Le Déjeuner" (아침 식사) → interior, domestic, family scene | Style: intimate bourgeois interior, mother and children, warm pastel palette
+
+⚠️ Boucher style: Soft rosy flesh tones, light pastel palette, playful decorative elegance.`,
+
+  // ========================================
+  // 신고전/낭만/사실
+  // ========================================
+  'david': `
+JACQUES-LOUIS DAVID - SELECT ONE:
+1. "Death of Marat" (마라의 죽음) → dramatic, death scene, political | Style: stark dramatic lighting, figure in bath, sparse background, heroic martyrdom
+2. "Coronation of Napoleon" (나폴레옹 대관식) → GROUP, ceremony, grand | Style: massive ceremonial scene, elaborate costumes, golden imperial splendor
+3. "Oath of the Horatii" (호라티우스의 맹세) → GROUP, dramatic gesture, heroic | Style: three brothers with swords, dramatic arm gestures, crisp classical architecture
+
+⚠️ David style: Crisp clear outlines, heroic idealized figures, dramatic moral intensity.`,
+
+  'ingres': `
+JEAN-AUGUSTE-DOMINIQUE INGRES - SELECT ONE:
+1. "Princesse de Broglie" (드 브로이 공주) → FEMALE portrait, elegant, aristocratic | Style: luxurious blue satin dress, porcelain-smooth skin, refined aristocratic beauty
+2. "Napoleon on His Imperial Throne" (왕좌의 나폴레옹) → MALE portrait, authority, imperial | Style: frontal enthroned figure, elaborate imperial regalia, Byzantine-like symmetry
+
+⚠️ For FEMALE: Princesse de Broglie. For MALE: Napoleon. Ingres style: Smooth flowing contours, porcelain-smooth skin, elegant sinuous curves.`,
+
+  'turner': `
+J.M.W. TURNER - SELECT ONE:
+1. "Rain, Steam and Speed" (비, 증기, 속도) → train, motion, atmospheric | Style: locomotive emerging from mist, diagonal composition, golden atmospheric haze
+2. "The Fighting Temeraire" (전함 테메레르) → ship, sunset, nostalgic | Style: ghost-like ship towed by tugboat, blazing orange sunset, reflections on water
+3. "Slave Ship" (노예선) → dramatic, stormy sea, sunset | Style: turbulent waves, blood-red sunset, dramatic atmospheric chaos
+
+⚠️ Turner style: Atmospheric sublime light, swirling mist dissolving forms, luminous golden glow.`,
+
+  'delacroix': `
+EUGÈNE DELACROIX - SELECT ONE:
+1. "Liberty Leading the People" (민중을 이끄는 자유의 여신) → revolutionary, dramatic, GROUP | Style: allegorical female figure with flag, dramatic diagonal composition, smoke and battle
+2. "Death of Sardanapalus" (사르다나팔루스의 죽음) → dramatic, chaotic, intense | Style: swirling chaos of figures, rich jewel tones, violent passionate energy
+3. "Women of Algiers" (알제리의 여인들) → FEMALE GROUP, exotic, interior | Style: harem interior, rich fabrics and patterns, warm exotic colors
+
+⚠️ For FEMALE: Women of Algiers. Delacroix style: Passionate revolutionary energy, vivid intense colors, turbulent swirling movement.`,
+
+  'courbet': `
+GUSTAVE COURBET - SELECT ONE:
+1. "The Stone Breakers" (돌 깨는 사람들) → workers, labor, realistic | Style: two workers breaking stones, earthy browns, raw unidealized realism
+2. "A Burial at Ornans" (오르낭의 매장) → GROUP, funeral, somber | Style: life-size funeral procession, dark earthy tones, provincial mourners
+3. "Bonjour Monsieur Courbet" (쿠르베 씨 안녕하세요) → outdoor meeting, landscape | Style: artist meeting patron on country road, bright daylight, confident self-presentation
+
+⚠️ Courbet style: Raw unidealized realism, bold palette knife texture, dark earthy tones.`,
+
+  'manet': `
+ÉDOUARD MANET - SELECT ONE:
+1. "A Bar at the Folies-Bergère" (폴리베르제르의 바) → FEMALE portrait, interior, mirror | Style: barmaid facing viewer, mirror reflection behind, bottles and oranges, modern urban life
+2. "The Fifer" (피리 부는 소년) → MALE portrait, young, simple background | Style: young boy in military uniform playing fife, flat grey background, bold silhouette
+
+⚠️ For FEMALE: Bar at Folies-Bergère. For MALE: The Fifer. Manet style: Bold flat composition, striking light-dark contrast, loose confident brushwork.`,
+
+  // ========================================
+  // 인상주의
+  // ========================================
+  'renoir': `
+PIERRE-AUGUSTE RENOIR - SELECT ONE:
+1. "Luncheon of the Boating Party" (뱃놀이 파티) → GROUP, celebration, outdoor dining | Style: dappled sunlight on happy figures, striped awning, warm social atmosphere
+2. "Bal du moulin de la Galette" (물랭 드 라 갈레트) → GROUP, dancing, outdoor party | Style: couples dancing under trees, dappled light patterns, joyful festive atmosphere
+3. "The Swing" (그네) → outdoor, romantic, dappled light | Style: woman on swing with admirers, blue-shadowed sunlight filtering through leaves
+
+⚠️ For PORTRAITS: All work well. Renoir style: Warm luminous glow, soft feathery brushstrokes, rosy pink flesh tones, dappled sunlight.`,
+
+  'monet': `
+CLAUDE MONET - SELECT ONE:
+1. "Water Lilies" (수련) → water, garden, reflections | Style: floating lily pads, water reflections, soft purple pink green, no horizon line
+2. "Impression, Sunrise" (인상, 해돋이) → harbor, sunrise, atmospheric | Style: orange sun reflecting on misty water, boats silhouetted, broken color brushstrokes
+3. "Woman with a Parasol" (양산을 든 여인) → FEMALE portrait, outdoor, windy | Style: woman and child on hillside, billowing white dress, bright summer sky
+
+⚠️ For LANDSCAPE: Water Lilies or Impression. For FEMALE: Woman with Parasol. Monet style: Broken color brushstrokes, soft hazy atmospheric light.`,
+
+  'degas': `
+EDGAR DEGAS - SELECT ONE:
+1. "The Dance Class" (무용 수업) → GROUP, ballet, interior | Style: ballet dancers in rehearsal, unusual cropped angle, soft pastel colors
+2. "The Star" (별/무대 위의 무희) → FEMALE, dancer, spotlight | Style: ballerina on stage, dramatic stage lighting, tutus and movement
+3. "L'Absinthe" (압생트) → COUPLE, melancholic, cafe | Style: two figures at cafe table, isolated alienation, muted colors
+
+⚠️ For MOVEMENT/DANCE: Dance Class or The Star. Degas style: Unusual cropped angles, asymmetric composition, soft pastel chalky texture.`,
+
+  'caillebotte': `
+GUSTAVE CAILLEBOTTE - SELECT ONE:
+1. "Paris Street, Rainy Day" (파리 거리, 비오는 날) → urban, COUPLE, rainy | Style: dramatic perspective, wet cobblestones, bourgeois couple with umbrella
+2. "The Floor Scrapers" (마루를 긁는 사람들) → workers, interior, labor | Style: workers scraping floor, dramatic perspective, strong lighting from window
+3. "Man at the Window" (창가의 남자) → MALE portrait, interior, urban view | Style: man looking out at Haussmann boulevard, dramatic backlighting, modern urban life
+
+⚠️ For MALE: Man at Window. For URBAN: Paris Street. Caillebotte style: Dramatic converging perspective, muted grey-blue tones, wet pavement reflections.`,
+
+  // ========================================
+  // 후기인상주의
+  // ========================================
+  'vangogh': `
+VINCENT VAN GOGH - SELECT ONE:
+1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, evening | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
+2. "Café Terrace at Night" (밤의 카페 테라스) → outdoor evening, cafe, restaurant, street scene, city night | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, cobblestone street
+3. "Sunflowers" (해바라기) → flowers, still life, bouquet ONLY | Style: THICK IMPASTO, CHROME YELLOW dominates, expressive petal strokes
+4. "Self-Portrait with Grey Felt Hat" (회색 펠트 모자 자화상) → MALE portrait ONLY | Style: EXPLOSIVE RADIAL brushstrokes from face, intense blue swirling background, grey felt hat
+5. "Seascape" (생트마리 바다) → sea, beach, ocean, water, boats, FEMALE daytime portrait | Style: turbulent Mediterranean waves, white sailboats, deep blue green sea, bright daylight
+6. "Wheat Field with Cypresses" (사이프러스 밀밭) → field, meadow, outdoor daytime, FEMALE daytime portrait | Style: golden wheat, dark cypress tree, INTENSELY SWIRLING white clouds
+
+⚠️ For FEMALE portrait: Select "Seascape" or "Wheat Field" for DAYTIME photos, "Starry Night" or "Café Terrace" for NIGHT/EVENING photos.
+⚠️ For MALE portrait: Use "Self-Portrait with Grey Felt Hat" (stronger brushstrokes).`,
+
+  'gauguin': `
+PAUL GAUGUIN - SELECT ONE:
+1. "Tahitian Women" (타히티 여인들) → FEMALE, tropical, exotic | Style: two seated women, flat bold saturated colors, tropical setting, decorative patterns
+2. "Where Do We Come From?" (우리는 어디서 왔는가) → GROUP, philosophical, panoramic | Style: frieze-like composition, figures from birth to death, deep blue gold palette
+3. "Yellow Christ" (노란 그리스도) → religious, landscape, symbolic | Style: crucifixion in Breton landscape, bold yellow figure, flat areas of color
+
+⚠️ For FEMALE: Tahitian Women. Gauguin style: Bold black outlines, flat pure saturated colors, exotic tropical palette.`,
+
+  'cezanne': `
+PAUL CÉZANNE - SELECT ONE:
+1. "Basket of Apples" (사과 바구니) → still life, fruit, table | Style: tilted table perspective, apples and bottles, constructive brushstrokes building form
+2. "Mont Sainte-Victoire" (생트빅투아르 산) → landscape, mountain | Style: geometric mountain form, visible constructive brushstrokes, muted earth tones
+3. "The Card Players" (카드 놀이하는 사람들) → MALE GROUP, interior, concentration | Style: peasants playing cards, solid geometric figures, earthy browns and blues
+
+⚠️ For MALE: Card Players. For LANDSCAPE: Mont Sainte-Victoire. Cézanne style: Geometric structural forms, visible constructive brushstrokes, muted earthy palette.`,
+
+  // ========================================
+  // 점묘법
+  // ========================================
+  'signac': `
+PAUL SIGNAC - SELECT ONE:
+1. "Antibes, the Pink Cloud" (앙티브, 분홍 구름) → harbor, coastal, pink sky | Style: pointillist dots, Mediterranean harbor, pink clouds reflecting on water
+2. "The Papal Palace, Avignon" (아비뇽 교황청) → architecture, river, monumental | Style: pointillist dots, palace reflected in Rhône river, luminous colors
+3. "Capo di Noli" (카포 디 놀리) → coastal, cliffs, Mediterranean | Style: pointillist dots, rocky coastline, vibrant blue water and sky
+
+⚠️ ALL works: Pure color dots 8mm, vibrant optical color mixing, luminous Mediterranean light. NOT brushstrokes, NOT smooth blending.`,
+
+  // ========================================
+  // 야수파
+  // ========================================
+  'matisse': `
+HENRI MATISSE - SELECT ONE:
+1. "Woman in a Purple Coat" (보라 코트를 입은 여인) → FEMALE portrait (⭐PREFERRED DEFAULT for single female) | Style: RICH PURPLE COAT, BOLD BLACK OUTLINES around figure, decorative patterned background, mature elegant style, strong contour lines
+2. "The Green Stripe" (초록 줄무늬) → FEMALE portrait ONLY when experimental/avant-garde/artistic mood | Style: GREEN STRIPE down CENTER of face dividing it in half, LEFT side yellow-pink tones, RIGHT side green-purple tones, RADICAL FAUVIST COLOR directly on skin
+3. "The Dance" (춤) → GROUP of people (2+), movement, joy | Style: THREE-COLOR ONLY (RED figures + BLUE sky + GREEN ground), simplified flattened dancing bodies, primitive rhythmic energy
+4. "The Red Room" (붉은 방) → interior, still life, single person in room | Style: RED DOMINATES 80% of scene, blue arabesque vine patterns on red, flattened space where wall and table merge
+
+⚠️ For FEMALE: Purple Coat preferred. For GROUP: The Dance.`,
+
+  'derain': `
+ANDRÉ DERAIN - SELECT ONE:
+1. "Port of Collioure" (콜리우르 항구) → harbor, boats, coastal | Style: explosive vivid colors, bold rough brushstrokes, Mediterranean light
+2. "Charing Cross Bridge" (차링 크로스 다리) → urban, bridge, river | Style: vibrant unnatural colors, London Thames, fauvist interpretation of city
+3. "Portrait of Matisse" (마티스의 초상) → MALE portrait | Style: bold clashing colors on face, rough aggressive brushwork, fauvist distortion
+
+⚠️ For MALE portrait: Portrait of Matisse. Derain style: Explosive vivid colors, bold rough brushstrokes, raw fauvist energy.`,
+
+  'vlaminck': `
+MAURICE DE VLAMINCK - SELECT ONE:
+1. "Houses at Chatou" (샤투의 집들) → village, houses, landscape | Style: violent intense colors, thick aggressive brushwork, expressionist village scene
+2. "Red Trees" (붉은 나무들) → landscape, trees, nature | Style: fiery red and orange trees, wild untamed brushwork, intense color
+3. "Restaurant at Bougival" (부지발의 레스토랑) → building, outdoor | Style: bold color contrasts, aggressive brushstrokes, suburban scene
+
+⚠️ Vlaminck style: Violent intense colors, thick aggressive brushwork, wild untamed energy.`,
+
+  // ========================================
+  // 표현주의
+  // ========================================
+  'munch': `
+EDVARD MUNCH - SELECT ONE:
+1. "The Scream" (절규) → SINGLE person, emotional portrait, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
+2. "Madonna" (마돈나) → SINGLE FEMALE, mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
+3. "Anxiety" (불안) → GROUP (2+ people), collective dread, shared unease | Style: MULTIPLE FIGURES on bridge with PALE GHOSTLY faces, BLOOD RED orange sky, dark clothing, same setting as The Scream but COLLECTIVE fear
+
+⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.
+⚠️ For GROUP photos: Select "Anxiety". For SINGLE person: Select "The Scream" or "Madonna".`,
+
+  'kirchner': `
+ERNST LUDWIG KIRCHNER - SELECT ONE:
+1. "Berlin Street Scene" (베를린 거리 풍경) → urban, GROUP, city life | Style: angular jagged figures, garish clashing colors, elongated distorted forms, modern city tension
+2. "Self-Portrait as a Soldier" (군인으로서의 자화상) → MALE portrait, psychological | Style: severed hand motif, anxious expression, harsh angular forms, war trauma
+3. "Two Women in the Street" (거리의 두 여인) → FEMALE pair, urban | Style: elongated figures, mask-like faces, acidic green and pink, urban alienation
+
+⚠️ For MALE: Self-Portrait as Soldier. For FEMALE: Two Women. Kirchner style: Sharp angular jagged forms, extreme bold clashing colors, elongated mask-like faces.`,
+
+  'kokoschka': `
+OSKAR KOKOSCHKA - SELECT ONE:
+1. "Bride of the Wind" (바람의 신부) → COUPLE, dramatic, emotional | Style: two intertwined figures in swirling storm, turbulent slashing brushwork, intense emotional turmoil
+2. "The Degenerate Art" (퇴폐 미술) → portrait, psychological | Style: penetrating psychological intensity, harsh feverish colors, raw emotional exposure
+3. "Double Portrait" (이중 초상) → COUPLE portrait | Style: two figures with psychological tension, distorted features, emotional undercurrents
+
+⚠️ For COUPLE: Bride of the Wind. Kokoschka style: Violent turbulent slashing brushwork, harsh acidic feverish colors, deeply distorted psychological tension.`,
+
+  // ========================================
+  // 모더니즘/팝아트
+  // ========================================
+  'picasso': `
+PABLO PICASSO - SELECT ONE based on weighted percentages:
+1. "Guernica" (게르니카, 1937) [45%] ⭐PREFERRED | Style: Cubist masterpiece, ANGULAR GEOMETRIC face fragmentation, dramatic bold black outlines, powerful emotional impact, monochrome palette
+2. "The Old Guitarist" (늙은 기타리스트, 1903-04) [20%] | Style: BLUE PERIOD ALL BLUE tones, melancholic hunched figure, elongated limbs
+3. "Three Musicians" (세 명의 음악가, 1921) [20%] | Style: Synthetic Cubism FLAT GEOMETRIC SHAPES like paper cutouts collage, BOLD PRIMARY COLORS
+4. "Portrait of Dora Maar" (도라 마르의 초상, 1937) [15%] | Style: Cubist DOUBLE PROFILE, VIBRANT COLORS red yellow green blue
+
+⚠️ IMPORTANT: Follow the percentages! Guernica is 45% - use it for nearly HALF of all photos regardless of mood.`,
+
+  'magritte': `
+RENÉ MAGRITTE - SELECT ONE:
+1. "The Son of Man" (사람의 아들) → MALE portrait, mysterious, iconic | Style: man in bowler hat with GREEN APPLE obscuring face, grey overcoat, cloudy sky background
+2. "Golconda" (골콘다) → GROUP, surreal, floating | Style: identical men in bowler hats raining from sky, Belgian townhouses, repetition
+3. "Man in a Bowler Hat" (중산모를 쓴 남자) → MALE portrait, bird motif | Style: bowler hat man with WHITE DOVE obscuring face, mysterious concealment
+4. "The Human Condition" (인간의 조건) → landscape, window, meta | Style: painting on easel matching view through window, reality questioning
+5. "The Empire of Light" (빛의 제국) → landscape, paradox | Style: daytime sky above nighttime street, impossible lighting, Belgian house
+
+⚠️ For MALE: Son of Man or Man in Bowler Hat. Magritte style: Philosophical visual paradox, mysterious object obscuring face, dreamlike impossible scenarios.`,
+
+  'miro': `
+JOAN MIRÓ - SELECT ONE:
+1. "The Catalan Landscape" (카탈루냐 풍경) → landscape, playful, abstract | Style: biomorphic shapes floating, yellow ochre background, whimsical symbols
+2. "Constellation" (별자리) → abstract, cosmic, night | Style: starfield of symbols, interconnected lines, black background with colorful shapes
+3. "Blue Star" (푸른 별) → simple, iconic, blue | Style: large blue shape on light background, minimal childlike composition
+
+⚠️ Miró style: Playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines.`,
+
+  'chagall': `
+MARC CHAGALL - SELECT ONE:
+1. "Birthday" (생일) → COUPLE, floating, romantic | Style: floating figures kissing, domestic interior, dreamlike weightlessness, soft colors
+2. "Over the Town" (마을 위로) → COUPLE, flying, village | Style: two lovers floating above village rooftops, Russian village below, poetic fantasy
+3. "I and the Village" (나와 마을) → surreal, nostalgic, symbolic | Style: overlapping faces (man and animal), Russian village scenes, dreamlike juxtaposition
+
+⚠️ For COUPLE: Birthday or Over the Town. Chagall style: Dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality.`,
+
+  'lichtenstein': `
+ROY LICHTENSTEIN - SELECT ONE:
+1. "Happy Tears" (행복한 눈물) → happy, joyful, smiling expression | Style: blonde woman smiling with joyful tears, Ben-Day dots, thick black outlines, primary colors
+2. "Drowning Girl" (익사하는 소녀) → dramatic, emotional, crying, sad | Style: dramatic close-up face with tear, Ben-Day dots, thick black outlines, primary colors
+3. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
+4. "M-Maybe" (아마도) → MALE portrait, thinking, wondering | Style: handsome man close-up face looking up, Ben-Day dots, thick black outlines
+5. "Girl with Hair Ribbon" (리본머리 소녀) → FEMALE portrait, young, cute, front face | Style: young woman front face with hair ribbon, Ben-Day dots, blonde hair blue eyes
+
+⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`,
+
+  'haring': `
+KEITH HARING - SELECT ONE:
+1. "Radiant Baby" (빛나는 아기) → baby, crawling, iconic | Style: crawling baby figure with radiating lines, bold black outline, simple joyful energy
+2. "Barking Dog" (짖는 개) → dog, animal, simple | Style: angular dog figure barking, bold continuous outline, energetic movement lines
+3. "Dancing Figures" (춤추는 사람들) → GROUP, movement, celebration | Style: simplified dancing figures, interlocking bodies, radiant energy lines
+
+⚠️ Haring style: Bold continuous black outlines, simplified dancing figures, radiant energy lines, flat bright colors.`,
+
+  // ========================================
+  // 거장 (추가)
+  // ========================================
+  'klimt': `
+GUSTAV KLIMT - SELECT ONE:
+1. "The Kiss" (키스) → COUPLE embracing, romantic, intimate (NOT for single person, NOT for parent-child) | Style: GOLD LEAF patterns throughout, geometric rectangular patterns on male robe, circular patterns on female robe, Byzantine mosaic gold background, kneeling on flower meadow
+2. "Judith I" (유디트) → FEMALE portrait, powerful, confident, mysterious | Style: Wide GOLD CHOKER necklace, elegant confident expression, GOLD LEAF decorative patterns, rich jewel-tone colors, Art Nouveau elegance
+3. "The Tree of Life" (생명의 나무) → landscape, decorative, ANY subject | Style: SPIRAL BRANCHES swirling outward, gold and bronze decorative swirls, elaborate curving patterns, Stoclet Frieze style
+
+⚠️ For COUPLE: The Kiss. For FEMALE: Judith I. Klimt style: Ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures.`,
+
+  'frida': `
+FRIDA KAHLO - SELECT ONE:
+1. "Me and My Parrots" (나와 앵무새들) → person with birds/pets, colorful, tropical mood | Style: COLORFUL PARROTS on shoulders, LUSH GREEN TROPICAL FOLIAGE background, direct confident gaze, vibrant jewel-tone colors, traditional Mexican clothing
+2. "Self-Portrait with Thorn Necklace" (가시 목걸이 자화상) → portrait with nature/animals, symbolic | Style: THORNY VINE NECKLACE with dead hummingbird pendant, black cat and monkey companions, large tropical leaves background, intense direct gaze
+3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression
+
+⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`
+};
+
+/**
+ * 화가별 대표작 가이드 (getArtistMasterworkGuide)
+ * 특정 화가의 모든 대표작을 AI 선택 가이드 형태로 반환
+ * 거장 모드 및 미술사조 모두에서 사용
+ */
+export function getArtistMasterworkGuide(artistKey) {
+  const normalized = artistKey.toLowerCase().trim();
+  
+  // 상세 가이드가 있으면 사용
+  if (MASTER_GUIDES[normalized]) {
+    return MASTER_GUIDES[normalized];
+  }
+  
+  // 없으면 자동 생성
+  const workList = getArtistMasterworkList(normalized);
+  if (!workList || workList.length === 0) return '';
+  
+  // 화가명 매핑
+  const artistNames = {
+    'vangogh': 'VINCENT VAN GOGH',
+    'munch': 'EDVARD MUNCH',
+    'klimt': 'GUSTAV KLIMT',
+    'matisse': 'HENRI MATISSE',
+    'picasso': 'PABLO PICASSO',
+    'frida': 'FRIDA KAHLO',
+    'lichtenstein': 'ROY LICHTENSTEIN',
+    'renoir': 'PIERRE-AUGUSTE RENOIR',
+    'monet': 'CLAUDE MONET',
+    'degas': 'EDGAR DEGAS',
+    'caillebotte': 'GUSTAVE CAILLEBOTTE',
+    'cezanne': 'PAUL CÉZANNE',
+    'gauguin': 'PAUL GAUGUIN',
+    'signac': 'PAUL SIGNAC',
+    'botticelli': 'SANDRO BOTTICELLI',
+    'leonardo': 'LEONARDO DA VINCI',
+    'michelangelo': 'MICHELANGELO',
+    'raphael': 'RAPHAEL',
+    'caravaggio': 'CARAVAGGIO',
+    'rembrandt': 'REMBRANDT',
+    'vermeer': 'JOHANNES VERMEER',
+    'magritte': 'RENÉ MAGRITTE',
+    'chagall': 'MARC CHAGALL',
+    'miro': 'JOAN MIRÓ',
+    'haring': 'KEITH HARING',
+    'kirchner': 'ERNST LUDWIG KIRCHNER',
+    'kokoschka': 'OSKAR KOKOSCHKA',
+    'derain': 'ANDRÉ DERAIN',
+    'vlaminck': 'MAURICE DE VLAMINCK'
+  };
+  
+  const artistName = artistNames[normalized] || artistKey.toUpperCase();
+  
+  let guide = `${artistName} - SELECT ONE:\n`;
+  
+  workList.forEach((workKey, index) => {
+    const work = getMovementMasterwork(workKey);
+    if (work) {
+      const feature = work.feature || '';
+      const promptShort = work.prompt ? work.prompt.substring(0, 150) + '...' : '';
+      guide += `${index + 1}. "${work.nameEn}" (${work.name}) → ${feature} | Style: ${promptShort}\n`;
+    }
+  });
+  
+  return guide;
 }
 
 export default {
@@ -1365,5 +1860,6 @@ export default {
   getMovementMasterwork,
   getArtistMasterworkList,
   getMasterworkGuideForAI,
-  getMovementMasterworkGuide
+  getMovementMasterworkGuide,
+  getArtistMasterworkGuide
 };

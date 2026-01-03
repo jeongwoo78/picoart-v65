@@ -44,6 +44,7 @@ import {
   getMasterworkGuideForAI,
   getArtistMasterworkList,
   getMovementMasterworkGuide,
+  getArtistMasterworkGuide,
   allMovementMasterworks,
   masterworkNameMapping
 } from './masterworks.js';
@@ -2514,77 +2515,12 @@ async function selectArtistWithAI(imageBase64, selectedStyle, timeoutMs = 15000)
       // ========================================
       const masterId = selectedStyle.id.replace('-master', '');
       
-      // ========== 반 고흐/뭉크/클림트/마티스/피카소/프리다/리히텐슈타인: 대표작 선택 방식 ==========
-      if (masterId === 'vangogh' || masterId === 'munch' || masterId === 'klimt' || masterId === 'matisse' || masterId === 'picasso' || masterId === 'frida' || masterId === 'lichtenstein') {
-        // console.log('');
-        // console.log('🎨🎨🎨 [V66] 대표작 선택 모드 (7거장 전원 매칭) 🎨🎨🎨');
-        // console.log('   Master:', masterId);
-        // console.log('   AI가 사진 분석 후 최적 대표작 선택 예정');
-        // console.log('');
-        
-        // 대표작 DB (반 고흐 6개, 뭉크 3개)
-        const masterWorksDB = {
-          'vangogh': `
-VINCENT VAN GOGH - SELECT ONE:
-1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, evening | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
-2. "Café Terrace at Night" (밤의 카페 테라스) → outdoor evening, cafe, restaurant, street scene, city night | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, cobblestone street
-3. "Sunflowers" (해바라기) → flowers, still life, bouquet ONLY | Style: THICK IMPASTO, CHROME YELLOW dominates, expressive petal strokes
-4. "Self-Portrait with Grey Felt Hat" (회색 펠트 모자 자화상) → MALE portrait ONLY | Style: EXPLOSIVE RADIAL brushstrokes from face, intense blue swirling background, grey felt hat
-5. "Seascape" (생트마리 바다) → sea, beach, ocean, water, boats, FEMALE daytime portrait | Style: turbulent Mediterranean waves, white sailboats, deep blue green sea, bright daylight
-6. "Wheat Field with Cypresses" (사이프러스 밀밭) → field, meadow, outdoor daytime, FEMALE daytime portrait | Style: golden wheat, dark cypress tree, INTENSELY SWIRLING white clouds
-
-⚠️ For FEMALE portrait: Select "Seascape" or "Wheat Field" for DAYTIME photos, "Starry Night" or "Café Terrace" for NIGHT/EVENING photos.
-⚠️ For MALE portrait: Use "Self-Portrait with Grey Felt Hat" (stronger brushstrokes).`,
-
-          'munch': `
-EDVARD MUNCH - SELECT ONE:
-1. "The Scream" (절규) → emotional portrait, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, skull-like distorted face, bridge setting, extreme anxiety
-2. "Madonna" (마돈나) → mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
-3. "Jealousy" (질투) → psychological tension, torment | Style: PALE GREEN sickly face, intense haunted stare, emotional turmoil colors
-
-⚠️ AI selects based on photo mood and atmosphere.`,
-
-          'klimt': `
-GUSTAV KLIMT - SELECT ONE:
-1. "The Kiss" (키스) → COUPLE embracing, romantic, intimate (NOT for single person, NOT for parent-child) | Style: GOLD LEAF patterns throughout, geometric rectangular patterns on male robe, circular patterns on female robe, Byzantine mosaic gold background, kneeling on flower meadow
-2. "Judith I" (유디트) → FEMALE portrait, powerful, confident, mysterious | Style: Wide GOLD CHOKER necklace, elegant confident expression, GOLD LEAF decorative patterns, rich jewel-tone colors, Art Nouveau elegance
-3. "The Tree of Life" (생명의 나무) → landscape, decorative, ANY subject | Style: SPIRAL BRANCHES swirling outward, gold and bronze decorative swirls, elaborate curving patterns, Stoclet Frieze style`,
-
-          'matisse': `
-HENRI MATISSE - SELECT ONE:
-1. "Woman in a Purple Coat" (보라 코트를 입은 여인) → FEMALE portrait (⭐PREFERRED DEFAULT for single female) | Style: RICH PURPLE COAT, BOLD BLACK OUTLINES around figure, decorative patterned background, mature elegant style, strong contour lines
-2. "The Green Stripe" (초록 줄무늬) → FEMALE portrait ONLY when experimental/avant-garde/artistic mood | Style: GREEN STRIPE down CENTER of face dividing it in half, LEFT side yellow-pink tones, RIGHT side green-purple tones, RADICAL FAUVIST COLOR directly on skin
-3. "The Dance" (춤) → GROUP of people (2+), movement, joy | Style: THREE-COLOR ONLY (RED figures + BLUE sky + GREEN ground), simplified flattened dancing bodies, primitive rhythmic energy
-4. "The Red Room" (붉은 방) → interior, still life, single person in room | Style: RED DOMINATES 80% of scene, blue arabesque vine patterns on red, flattened space where wall and table merge`,
-
-          'picasso': `
-PABLO PICASSO - SELECT ONE based on weighted percentages:
-1. "Guernica" (게르니카, 1937) [45%] ⭐PREFERRED | Style: Cubist masterpiece, ANGULAR GEOMETRIC face fragmentation, dramatic bold black outlines, powerful emotional impact, monochrome palette
-2. "The Old Guitarist" (늙은 기타리스트, 1903-04) [20%] | Style: BLUE PERIOD ALL BLUE tones, melancholic hunched figure, elongated limbs
-3. "Three Musicians" (세 명의 음악가, 1921) [20%] | Style: Synthetic Cubism FLAT GEOMETRIC SHAPES like paper cutouts collage, BOLD PRIMARY COLORS
-4. "Portrait of Dora Maar" (도라 마르의 초상, 1937) [15%] | Style: Cubist DOUBLE PROFILE, VIBRANT COLORS red yellow green blue
-
-⚠️ IMPORTANT: Follow the percentages! Guernica is 45% - use it for nearly HALF of all photos regardless of mood.`,
-
-          'frida': `
-FRIDA KAHLO - SELECT ONE:
-1. "Me and My Parrots" (나와 앵무새들) → person with birds/pets, colorful, tropical mood | Style: COLORFUL PARROTS on shoulders, LUSH GREEN TROPICAL FOLIAGE background, direct confident gaze, vibrant jewel-tone colors, traditional Mexican clothing
-2. "Self-Portrait with Thorn Necklace" (가시 목걸이 자화상) → portrait with nature/animals, symbolic | Style: THORNY VINE NECKLACE with dead hummingbird pendant, black cat and monkey companions, large tropical leaves background, intense direct gaze
-3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression`,
-
-          'lichtenstein': `
-ROY LICHTENSTEIN - SELECT ONE:
-1. "Happy Tears" (행복한 눈물) → happy, joyful, smiling expression | Style: blonde woman smiling with joyful tears, Ben-Day dots, thick black outlines, primary colors
-2. "Drowning Girl" (익사하는 소녀) → dramatic, emotional, crying, sad | Style: dramatic close-up face with tear, Ben-Day dots, thick black outlines, primary colors
-3. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
-4. "M-Maybe" (아마도) → MALE portrait, thinking, wondering | Style: handsome man close-up face looking up, Ben-Day dots, thick black outlines
-5. "Girl with Hair Ribbon" (리본머리 소녀) → FEMALE portrait, young, cute, front face | Style: young woman front face with hair ribbon, Ben-Day dots, blonde hair blue eyes
-
-⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`
-        };
-
-        const masterWorks = masterWorksDB[masterId] || '';
-        
+      // ========== 모든 거장: 대표작 선택 방식 (masterworks.js 사용) ==========
+      // v68: 하드코딩 제거, getArtistMasterworkGuide 함수 사용
+      const masterWorks = getArtistMasterworkGuide(masterId);
+      
+      if (masterWorks) {
+        // 대표작 가이드가 있는 경우 - 대표작 선택 방식
         promptText = `You are selecting the BEST masterwork from ${categoryName}'s collection for this photo.
 
 AVAILABLE MASTERWORKS (YOU MUST SELECT FROM THIS LIST ONLY):
@@ -2632,8 +2568,8 @@ Return ONLY valid JSON (no markdown):
 }`;
         
       } else {
-        // ========== 나머지 5명: 화풍 프롬프트 방식 ==========
-        // v66: 거장 화풍 프롬프트 가져오기 (artistStyles.js)
+        // ========== 대표작 가이드가 없는 화가: 화풍 프롬프트 방식 ==========
+        // v68: masterworks.js에 가이드가 없으면 artistStyles.js 사용
         const masterStylePrompt = getArtistStyleByName(masterId);
         
         // AI에게는 단순 사진 분석만 요청
@@ -4696,7 +4632,7 @@ export default async function handler(req, res) {
     // ========================================
     const excludeAttractive = [
       'munch-scream',      // 절규 - 공포/불안 왜곡
-      'munch-anxiety',     // 불안 - 군중 불안
+      'munch-anxiety',     // 불안 - 집단 불안
       'picasso-guernica',  // 게르니카 - 전쟁 참상
       'picasso-weepingwoman', // 우는 여인 - 슬픔 왜곡
       'frida-brokencolumn' // 부러진 기둥 - 고통 시각화

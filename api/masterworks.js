@@ -14,8 +14,10 @@ export const masterworkNameMapping = {
   // 반 고흐
   'the starry night': 'vangogh-starrynight', '별이 빛나는 밤': 'vangogh-starrynight', 'starry night': 'vangogh-starrynight',
   'sunflowers': 'vangogh-sunflowers', '해바라기': 'vangogh-sunflowers',
-  'self-portrait': 'vangogh-selfportrait', '자화상': 'vangogh-selfportrait',
+  'self-portrait with grey felt hat': 'vangogh-selfportrait', '회색 펠트 모자 자화상': 'vangogh-selfportrait', 'grey felt hat': 'vangogh-selfportrait',
   'café terrace at night': 'vangogh-cafe', 'cafe terrace': 'vangogh-cafe', '밤의 카페 테라스': 'vangogh-cafe',
+  'seascape near les saintes-maries-de-la-mer': 'vangogh-seascape', '생트마리 바다': 'vangogh-seascape', 'seascape': 'vangogh-seascape',
+  'wheat field with cypresses': 'vangogh-wheatfield', '사이프러스 밀밭': 'vangogh-wheatfield', 'cypresses': 'vangogh-wheatfield',
   
   // 클림트
   'the kiss': 'klimt-kiss', '키스': 'klimt-kiss',
@@ -737,25 +739,37 @@ export const vangoghMasterworks = {
     name: '별이 빛나는 밤',
     nameEn: 'The Starry Night',
     prompt: 'Vincent van Gogh "The Starry Night" (1889), swirling spirals in night sky, cobalt blue chrome yellow contrast, vertical cypress, stars with concentric halos.',
-    feature: '감정/소용돌이'
-  },
-  'vangogh-selfportrait': {
-    name: '자화상',
-    nameEn: 'Self-Portrait',
-    prompt: 'Vincent van Gogh "Self-Portrait" (1889), swirling turquoise background, directional brushstrokes following face contours, intense frontal gaze, orange-red beard blue-green coat.',
-    feature: '초상'
-  },
-  'vangogh-sunflowers': {
-    name: '해바라기',
-    nameEn: 'Sunflowers',
-    prompt: 'Vincent van Gogh "Sunflowers" (1888), chrome yellow dominating 80% palette, sunflower petals in vase, ochre and orange accents.',
-    feature: '색채'
+    feature: '밤/소용돌이'
   },
   'vangogh-cafe': {
     name: '밤의 카페 테라스',
     nameEn: 'Café Terrace at Night',
     prompt: 'Vincent van Gogh "Café Terrace at Night" (1888), yellow gaslight against deep blue starry sky, cobblestone perspective, warm café glow, yellow-blue complementary.',
-    feature: '야경/인물'
+    feature: '밤/거리'
+  },
+  'vangogh-sunflowers': {
+    name: '해바라기',
+    nameEn: 'Sunflowers',
+    prompt: 'Vincent van Gogh "Sunflowers" (1888), chrome yellow dominating 80% palette, sunflower petals in vase, ochre and orange accents, thick impasto texture.',
+    feature: '정물/꽃'
+  },
+  'vangogh-selfportrait': {
+    name: '회색 펠트 모자 자화상',
+    nameEn: 'Self-Portrait with Grey Felt Hat',
+    prompt: 'Vincent van Gogh "Self-Portrait with Grey Felt Hat" (1887), EXPLOSIVE RADIAL brushstrokes emanating from face, intense blue swirling background, grey felt hat, strong directional strokes.',
+    feature: '남성/터치강렬'
+  },
+  'vangogh-seascape': {
+    name: '생트마리 바다',
+    nameEn: 'Seascape near Les Saintes-Maries-de-la-Mer',
+    prompt: 'Vincent van Gogh "Seascape near Les Saintes-Maries-de-la-Mer" (1888), turbulent Mediterranean waves, white sailboats, deep blue green sea, dynamic wave brushstrokes, bright daylight.',
+    feature: '바다/낮풍경'
+  },
+  'vangogh-wheatfield': {
+    name: '사이프러스 밀밭',
+    nameEn: 'Wheat Field with Cypresses',
+    prompt: 'Vincent van Gogh "Wheat Field with Cypresses" (1889), golden wheat field, dark towering cypress tree, INTENSELY SWIRLING white clouds, cobalt blue sky, dramatic turbulent atmosphere.',
+    feature: '들판/소용돌이'
   }
 };
 
@@ -1154,31 +1168,31 @@ export const lichtensteinMasterworks = {
   'lichtenstein-happytears': {
     name: '행복한 눈물',
     nameEn: 'Happy Tears',
-    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY red blue yellow, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY red blue yellow, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
     feature: '미소, 기쁨의 눈물'
   },
   'lichtenstein-drowninggirl': {
     name: '익사하는 소녀',
     nameEn: 'Drowning Girl',
-    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY red blue yellow white, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY red blue yellow white, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
     feature: '눈물, 클로즈업'
   },
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
     feature: '남자, 클로즈업'
   },
   'lichtenstein-girlwithhairribbon': {
     name: '리본머리 소녀',
     nameEn: 'Girl with Hair Ribbon',
-    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, EXTREMELY THICK BLACK OUTLINES 5mm+ surrounding ALL shapes, blonde hair blue eyes, FLAT primary colors ONLY, comic book halftone printing, NO gradients.',
+    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, blonde hair blue eyes, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
     feature: '리본, 정면'
   }
 };
@@ -1296,7 +1310,7 @@ export function getArtistMasterworkList(artistKey) {
     'degas': ['degas-danceclass', 'degas-star', 'degas-absinthe'],
     'monet': ['monet-waterlilies', 'monet-impression', 'monet-parasol'],
     'caillebotte': ['caillebotte-paris', 'caillebotte-floor', 'caillebotte-window'],
-    'vangogh': ['vangogh-starrynight', 'vangogh-selfportrait', 'vangogh-sunflowers', 'vangogh-cafe'],
+    'vangogh': ['vangogh-starrynight', 'vangogh-cafe', 'vangogh-sunflowers', 'vangogh-selfportrait', 'vangogh-seascape', 'vangogh-wheatfield'],
     'gauguin': ['gauguin-tahitian', 'gauguin-where', 'gauguin-christ'],
     'cezanne': ['cezanne-apples', 'cezanne-montagne', 'cezanne-cards'],
     'signac': ['signac-antibes', 'signac-avignon', 'signac-capo'],

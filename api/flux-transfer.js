@@ -2514,24 +2514,27 @@ async function selectArtistWithAI(imageBase64, selectedStyle, timeoutMs = 15000)
       // ========================================
       const masterId = selectedStyle.id.replace('-master', '');
       
-      // ========== 반 고흐/뭉크/클림트/마티스/피카소/프리다: 대표작 선택 방식 ==========
-      if (masterId === 'vangogh' || masterId === 'munch' || masterId === 'klimt' || masterId === 'matisse' || masterId === 'picasso' || masterId === 'frida') {
+      // ========== 반 고흐/뭉크/클림트/마티스/피카소/프리다/리히텐슈타인: 대표작 선택 방식 ==========
+      if (masterId === 'vangogh' || masterId === 'munch' || masterId === 'klimt' || masterId === 'matisse' || masterId === 'picasso' || masterId === 'frida' || masterId === 'lichtenstein') {
         // console.log('');
-        // console.log('🎨🎨🎨 [V66] 대표작 선택 모드 (6거장 전원 매칭) 🎨🎨🎨');
+        // console.log('🎨🎨🎨 [V66] 대표작 선택 모드 (7거장 전원 매칭) 🎨🎨🎨');
         // console.log('   Master:', masterId);
         // console.log('   AI가 사진 분석 후 최적 대표작 선택 예정');
         // console.log('');
         
-        // 대표작 DB (반 고흐 4개, 뭉크 4개)
+        // 대표작 DB (반 고흐 6개, 뭉크 3개)
         const masterWorksDB = {
           'vangogh': `
 VINCENT VAN GOGH - SELECT ONE:
-1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, landscape, evening, OR FEMALE portrait (50% chance) | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
-2. "Café Terrace at Night" (밤의 카페 테라스) → outdoor evening, cafe, restaurant, street scene, city night, OR FEMALE portrait (50% chance) | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, strong perspective depth, cobblestone street, warm inviting atmosphere
+1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, evening | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
+2. "Café Terrace at Night" (밤의 카페 테라스) → outdoor evening, cafe, restaurant, street scene, city night | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, cobblestone street
 3. "Sunflowers" (해바라기) → flowers, still life, bouquet ONLY | Style: THICK IMPASTO, CHROME YELLOW dominates, expressive petal strokes
-4. "Self-Portrait" (자화상, 1889 Saint-Rémy) → MALE portrait ONLY | Style: TURQUOISE SWIRLING BACKGROUND, intense gaze, directional brushstrokes, CRITICAL: PRESERVE SUBJECT GENDER - do NOT add Van Gogh's beard or male features
+4. "Self-Portrait with Grey Felt Hat" (회색 펠트 모자 자화상) → MALE portrait ONLY | Style: EXPLOSIVE RADIAL brushstrokes from face, intense blue swirling background, grey felt hat
+5. "Seascape" (생트마리 바다) → sea, beach, ocean, water, boats, FEMALE daytime portrait | Style: turbulent Mediterranean waves, white sailboats, deep blue green sea, bright daylight
+6. "Wheat Field with Cypresses" (사이프러스 밀밭) → field, meadow, outdoor daytime, FEMALE daytime portrait | Style: golden wheat, dark cypress tree, INTENSELY SWIRLING white clouds
 
-⚠️ For FEMALE portrait: RANDOMLY select between "The Starry Night" OR "Café Terrace at Night" with equal 50/50 probability. Do NOT always pick the same one.`,
+⚠️ For FEMALE portrait: Select "Seascape" or "Wheat Field" for DAYTIME photos, "Starry Night" or "Café Terrace" for NIGHT/EVENING photos.
+⚠️ For MALE portrait: Use "Self-Portrait with Grey Felt Hat" (stronger brushstrokes).`,
 
           'munch': `
 EDVARD MUNCH - SELECT ONE:
@@ -2567,7 +2570,17 @@ PABLO PICASSO - SELECT ONE based on weighted percentages:
 FRIDA KAHLO - SELECT ONE:
 1. "Me and My Parrots" (나와 앵무새들) → person with birds/pets, colorful, tropical mood | Style: COLORFUL PARROTS on shoulders, LUSH GREEN TROPICAL FOLIAGE background, direct confident gaze, vibrant jewel-tone colors, traditional Mexican clothing
 2. "Self-Portrait with Thorn Necklace" (가시 목걸이 자화상) → portrait with nature/animals, symbolic | Style: THORNY VINE NECKLACE with dead hummingbird pendant, black cat and monkey companions, large tropical leaves background, intense direct gaze
-3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression`
+3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression`,
+
+          'lichtenstein': `
+ROY LICHTENSTEIN - SELECT ONE:
+1. "Happy Tears" (행복한 눈물) → happy, joyful, smiling expression | Style: blonde woman smiling with joyful tears, Ben-Day dots, thick black outlines, primary colors
+2. "Drowning Girl" (익사하는 소녀) → dramatic, emotional, crying, sad | Style: dramatic close-up face with tear, Ben-Day dots, thick black outlines, primary colors
+3. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
+4. "M-Maybe" (아마도) → MALE portrait, thinking, wondering | Style: handsome man close-up face looking up, Ben-Day dots, thick black outlines
+5. "Girl with Hair Ribbon" (리본머리 소녀) → FEMALE portrait, young, cute, front face | Style: young woman front face with hair ribbon, Ben-Day dots, blonde hair blue eyes
+
+⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`
         };
 
         const masterWorks = masterWorksDB[masterId] || '';

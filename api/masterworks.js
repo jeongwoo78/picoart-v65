@@ -1169,31 +1169,31 @@ export const lichtensteinMasterworks = {
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, LARGE VISIBLE Ben-Day dots pattern covering skin, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    prompt: 'Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 클로즈업'
   },
   'lichtenstein-forgetit': {
     name: '날 잊어',
     nameEn: 'Forget It! Forget Me!',
-    prompt: 'Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    prompt: 'Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 드라마틱'
   },
   'lichtenstein-ohhhalright': {
     name: '오 알았어',
     nameEn: 'Ohhh...Alright...',
-    prompt: 'Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    prompt: 'Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 전화'
   },
   'lichtenstein-stilllife': {
     name: '정물화',
     nameEn: 'Still Life with Palette',
-    prompt: 'Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY yellow red blue, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    prompt: 'Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
     feature: '정물, 오브제'
   }
 };
@@ -1725,13 +1725,13 @@ MARC CHAGALL - SELECT ONE:
 
   'lichtenstein': `
 ROY LICHTENSTEIN - SELECT ONE:
-1. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
-2. "Forget It! Forget Me!" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman, Ben-Day dots
-3. "M-Maybe" (아마도) → FEMALE portrait, thoughtful | Style: blonde woman close-up face looking sideways, Ben-Day dots
-4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression, Ben-Day dots, blonde hair
-5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects, Ben-Day dots, bold outlines
+1. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile
+2. "Forget It! Forget Me!" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman
+3. "M-Maybe" (아마도) → FEMALE portrait, thoughtful | Style: blonde woman close-up face looking sideways
+4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
+5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects
 
-⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`,
+⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, NOT realistic, NOT thin lines.`,
 
   // ========================================
   // 거장 (추가)

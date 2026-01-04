@@ -233,7 +233,7 @@ const ARTIST_CONFIG = {
   'magritte':            { control: 0.55, brush: '75mm' },
   'miro':                { control: 0.55, brush: '75mm' },
   'chagall':             { control: 0.40, brush: '75mm' },
-  'lichtenstein':        { control: 0.55, brush: null },      // 벤데이 점
+  'lichtenstein':        { control: 0.40, brush: null },      // 벤데이 점, 스타일 강화
   
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
@@ -3753,9 +3753,9 @@ export default async function handler(req, res) {
           const speechText = selectSpeechBubbleText(visionAnalysis);
           console.log(`💬 Speech bubble text: "${speechText}"`);
           
-          // 프롬프트에 말풍선 추가
+          // 프롬프트에 말풍선 + 스타일 강화 추가
           if (!finalPrompt.includes('speech bubble')) {
-            finalPrompt = finalPrompt + `, WHITE SPEECH BUBBLE with BLACK OUTLINE containing text "${speechText}" in BOLD COMIC FONT, Ben-Day dots halftone pattern`;
+            finalPrompt = finalPrompt + `, WHITE SPEECH BUBBLE with THICK BLACK OUTLINE containing text "${speechText}" in BOLD COMIC FONT, EXTREMELY LARGE Ben-Day dots 15mm+ halftone pattern on ALL skin and surfaces, ULTRA THICK BLACK OUTLINES 20mm+, COMIC PANEL FRAME with THICK BLACK BORDER around entire image`;
           }
         }
         

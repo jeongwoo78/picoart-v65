@@ -844,28 +844,28 @@ const ARTIST_WEIGHTS = {
   // 후기인상주의 (4명)
   postImpressionism: {
     portrait: [
-      { name: 'VAN GOGH', weight: 50 },
-      { name: 'GAUGUIN', weight: 35 },
-      { name: 'SIGNAC', weight: 15 }
+      { name: 'VAN GOGH', weight: 45 },
+      { name: 'GAUGUIN', weight: 30 },
+      { name: 'SIGNAC', weight: 25 }
       // CÉZANNE 제외 - 정물/풍경 전문
     ],
     landscape: [
-      { name: 'VAN GOGH', weight: 35 },
-      { name: 'CÉZANNE', weight: 30 },
-      { name: 'GAUGUIN', weight: 20 },
-      { name: 'SIGNAC', weight: 15 }
+      { name: 'VAN GOGH', weight: 30 },
+      { name: 'SIGNAC', weight: 30 },
+      { name: 'CÉZANNE', weight: 25 },
+      { name: 'GAUGUIN', weight: 15 }
     ],
     stillLife: [
-      { name: 'CÉZANNE', weight: 60 },
+      { name: 'CÉZANNE', weight: 55 },
       { name: 'VAN GOGH', weight: 25 },
-      { name: 'GAUGUIN', weight: 10 },
-      { name: 'SIGNAC', weight: 5 }
+      { name: 'SIGNAC', weight: 10 },
+      { name: 'GAUGUIN', weight: 10 }
     ],
     default: [
-      { name: 'VAN GOGH', weight: 40 },
-      { name: 'GAUGUIN', weight: 30 },
-      { name: 'CÉZANNE', weight: 15 },
-      { name: 'SIGNAC', weight: 15 }
+      { name: 'VAN GOGH', weight: 35 },
+      { name: 'GAUGUIN', weight: 25 },
+      { name: 'SIGNAC', weight: 25 },
+      { name: 'CÉZANNE', weight: 15 }
     ]
   },
   

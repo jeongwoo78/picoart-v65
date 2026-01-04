@@ -108,6 +108,19 @@ const App = () => {
     setUploadedPhoto(null);
   };
 
+  // 다시 시도 성공 시 상태 업데이트 (갤러리 이동 후에도 유지)
+  const handleRetrySuccess = (result) => {
+    if (result.isFullTransform) {
+      // 원클릭 모드
+      setFullTransformResults(result.results);
+    } else {
+      // 단독 변환 모드
+      setResultImage(result.resultUrl);
+      setAiSelectedArtist(result.aiSelectedArtist || null);
+      setAiSelectedWork(result.selected_work || null);
+    }
+  };
+
   return (
     <div className="app">
       {/* 갤러리 화면 */}
@@ -161,6 +174,7 @@ const App = () => {
               fullTransformResults={fullTransformResults}
               onReset={handleReset}
               onGallery={() => setShowGallery(true)}
+              onRetrySuccess={handleRetrySuccess}
               masterChatData={masterChatData}
               onMasterChatDataChange={setMasterChatData}
               currentMasterIndex={currentMasterIndex}

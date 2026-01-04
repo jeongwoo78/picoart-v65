@@ -28,6 +28,7 @@ const ResultScreen = ({
   fullTransformResults,
   onReset,
   onGallery,
+  onRetrySuccess,
   masterChatData: appMasterChatData,
   onMasterChatDataChange,
   currentMasterIndex: appCurrentIndex,
@@ -285,6 +286,7 @@ const ResultScreen = ({
     // console.log(`🔄 다시 시도 시작: ${failedResults.length}개 실패한 변환`);
     
     let successCount = 0;
+    let updatedResults = [...results];  // 업데이트된 결과 추적용
     
     for (let i = 0; i < failedResults.length; i++) {
       const failed = failedResults[i];
@@ -302,17 +304,21 @@ const ResultScreen = ({
         
         if (result.success) {
           // 성공하면 해당 인덱스 결과 업데이트
+          const newResult = {
+            style: failed.style,
+            resultUrl: result.resultUrl,
+            aiSelectedArtist: result.aiSelectedArtist,
+            selected_work: result.selected_work,
+            success: true
+          };
+          
           setResults(prev => {
             const newResults = [...prev];
-            newResults[failedIndex] = {
-              style: failed.style,
-              resultUrl: result.resultUrl,
-              aiSelectedArtist: result.aiSelectedArtist,
-              selected_work: result.selected_work,
-              success: true
-            };
+            newResults[failedIndex] = newResult;
             return newResults;
           });
+          
+          updatedResults[failedIndex] = newResult;  // 로컬 추적용도 업데이트
           successCount++;
           // console.log(`✅ 다시 시도 성공: ${failed.style?.name}`);
           
@@ -338,6 +344,10 @@ const ResultScreen = ({
     setRetryProgress('');
     
     if (successCount > 0) {
+      // App.jsx 상태도 업데이트 (갤러리 이동 후에도 유지)
+      if (onRetrySuccess) {
+        onRetrySuccess({ isFullTransform: true, results: updatedResults });
+      }
       alert('다시 시도 성공!');
     }
     // 실패 시 alert 없이 자연스럽게 UI로 복귀
@@ -362,6 +372,11 @@ const ResultScreen = ({
       if (result.success) {
         // console.log(`✅ 단독변환 다시 시도 성공: ${selectedStyle.name}`);
         setSingleRetryResultState(result);
+        
+        // App.jsx 상태도 업데이트 (갤러리 이동 후에도 유지)
+        if (onRetrySuccess) {
+          onRetrySuccess(result);
+        }
         
         // 갤러리에 저장 - <카테고리> 세부정보 형식
         const category = selectedStyle.category;

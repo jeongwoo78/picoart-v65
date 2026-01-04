@@ -39,7 +39,6 @@ export const masterworkNameMapping = {
   // 피카소
   'guernica': 'picasso-guernica', '게르니카': 'picasso-guernica',
   'three musicians': 'picasso-musicians', '세 명의 음악가': 'picasso-musicians', '세명의 음악가': 'picasso-musicians',
-  'the old guitarist': 'picasso-oldguitarist', 'old guitarist': 'picasso-oldguitarist', '늙은 기타리스트': 'picasso-oldguitarist', '올드 기타리스트': 'picasso-oldguitarist',
   'portrait of dora maar': 'picasso-doramaar', 'dora maar': 'picasso-doramaar', '도라 마르': 'picasso-doramaar', '도라 마르의 초상': 'picasso-doramaar',
   
   // 프리다 칼로
@@ -140,7 +139,7 @@ export const masterworkNameMapping = {
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
   'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage',
-  'drowning girl': 'lichtenstein-drowninggirl', 'happy tears': 'lichtenstein-happytears', 'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'girl with hair ribbon': 'lichtenstein-girlwithhairribbon'
+  'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'ohhh alright': 'lichtenstein-ohhhalright', '오 알았어': 'lichtenstein-ohhhalright', 'still life': 'lichtenstein-stilllife', '정물화': 'lichtenstein-stilllife', 'forget it': 'lichtenstein-forgetit', '날 잊어': 'lichtenstein-forgetit'
 };
 
 // ========================================
@@ -1047,12 +1046,6 @@ export const picassoMasterworks = {
     prompt: 'Pablo Picasso "Three Musicians" (1921), Synthetic Cubism FLAT GEOMETRIC SHAPES like paper cutouts collage, BOLD PRIMARY COLORS red blue yellow brown black, angular masked figures, musical instruments guitar clarinet.',
     feature: '그룹, 콜라주'
   },
-  'picasso-oldguitarist': {
-    name: '늙은 기타리스트',
-    nameEn: 'The Old Guitarist',
-    prompt: 'Pablo Picasso "The Old Guitarist" (1903-04), BLUE PERIOD monochrome ALL BLUE tones only, melancholic hunched figure, elongated limbs, somber mood, thin emaciated body, guitar held close.',
-    feature: '블루, 우울'
-  },
   'picasso-doramaar': {
     name: '도라 마르의 초상',
     nameEn: 'Portrait of Dora Maar',
@@ -1173,18 +1166,6 @@ export const chagallMasterworks = {
 // 43. 리히텐슈타인 (5개)
 // ========================================
 export const lichtensteinMasterworks = {
-  'lichtenstein-happytears': {
-    name: '행복한 눈물',
-    nameEn: 'Happy Tears',
-    prompt: 'Roy Lichtenstein "Happy Tears" (1964), blonde woman smiling with joyful tears, LARGE VISIBLE Ben-Day dots pattern covering skin and background, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY red blue yellow, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
-    feature: '미소, 기쁨의 눈물'
-  },
-  'lichtenstein-drowninggirl': {
-    name: '익사하는 소녀',
-    nameEn: 'Drowning Girl',
-    prompt: 'Roy Lichtenstein "Drowning Girl" (1963), dramatic close-up face with tear, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY red blue yellow white, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
-    feature: '눈물, 클로즈업'
-  },
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
@@ -1194,14 +1175,26 @@ export const lichtensteinMasterworks = {
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'Roy Lichtenstein "M-Maybe" (1965), handsome man close-up face looking up, LARGE VISIBLE Ben-Day dots pattern covering skin, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
-    feature: '남자, 클로즈업'
+    prompt: 'Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, LARGE VISIBLE Ben-Day dots pattern covering skin, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    feature: '여성, 클로즈업'
   },
-  'lichtenstein-girlwithhairribbon': {
-    name: '리본머리 소녀',
-    nameEn: 'Girl with Hair Ribbon',
-    prompt: 'Roy Lichtenstein "Girl with Hair Ribbon" (1965), young woman front face with hair ribbon, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, blonde hair blue eyes, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
-    feature: '리본, 정면'
+  'lichtenstein-forgetit': {
+    name: '날 잊어',
+    nameEn: 'Forget It! Forget Me!',
+    prompt: 'Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    feature: '커플, 드라마틱'
+  },
+  'lichtenstein-ohhhalright': {
+    name: '오 알았어',
+    nameEn: 'Ohhh...Alright...',
+    prompt: 'Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    feature: '여성, 전화'
+  },
+  'lichtenstein-stilllife': {
+    name: '정물화',
+    nameEn: 'Still Life with Palette',
+    prompt: 'Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, LARGE VISIBLE Ben-Day dots pattern, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing, FLAT primary colors ONLY yellow red blue, THICK BLACK CONTOUR LINES on every edge, NO gradients, NOT thin lines.',
+    feature: '정물, 오브제'
   }
 };
 
@@ -1304,12 +1297,12 @@ export function getArtistMasterworkList(artistKey) {
     'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety', 'munch-danceoflife'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
-    'picasso': ['picasso-guernica', 'picasso-oldguitarist', 'picasso-musicians', 'picasso-doramaar'],
+    'picasso': ['picasso-guernica', 'picasso-musicians', 'picasso-doramaar'],
     'frida': ['frida-parrots', 'frida-thornnecklace', 'frida-monkeys'],
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
-    'lichtenstein': ['lichtenstein-happytears', 'lichtenstein-drowninggirl', 'lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-girlwithhairribbon']
+    'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife']
   };
   
   return artistMasterworks[normalized] || [];
@@ -1698,12 +1691,11 @@ OSKAR KOKOSCHKA - SELECT ONE:
   // ========================================
   'picasso': `
 PABLO PICASSO - SELECT ONE based on weighted percentages:
-1. "Guernica" (게르니카, 1937) [45%] ⭐PREFERRED | Style: Cubist masterpiece, ANGULAR GEOMETRIC face fragmentation, dramatic bold black outlines, powerful emotional impact, monochrome palette
-2. "The Old Guitarist" (늙은 기타리스트, 1903-04) [20%] | Style: BLUE PERIOD ALL BLUE tones, melancholic hunched figure, elongated limbs
-3. "Three Musicians" (세 명의 음악가, 1921) [20%] | Style: Synthetic Cubism FLAT GEOMETRIC SHAPES like paper cutouts collage, BOLD PRIMARY COLORS
-4. "Portrait of Dora Maar" (도라 마르의 초상, 1937) [15%] | Style: Cubist DOUBLE PROFILE, VIBRANT COLORS red yellow green blue
+1. "Guernica" (게르니카, 1937) [40%] → GROUP, dramatic scene | Style: Cubist masterpiece, ANGULAR GEOMETRIC face fragmentation, dramatic bold black outlines, powerful emotional impact, monochrome palette
+2. "Three Musicians" (세 명의 음악가, 1921) [30%] → GROUP 2+ people | Style: Synthetic Cubism FLAT GEOMETRIC SHAPES like paper cutouts collage, BOLD PRIMARY COLORS
+3. "Portrait of Dora Maar" (도라 마르의 초상, 1937) [30%] → SINGLE PERSON portrait | Style: Cubist DOUBLE PROFILE, VIBRANT COLORS red yellow green blue
 
-⚠️ IMPORTANT: Follow the percentages! Guernica is 45% - use it for nearly HALF of all photos regardless of mood.`,
+⚠️ IMPORTANT: Follow the percentages above.`,
 
   'magritte': `
 RENÉ MAGRITTE - SELECT ONE:
@@ -1733,11 +1725,11 @@ MARC CHAGALL - SELECT ONE:
 
   'lichtenstein': `
 ROY LICHTENSTEIN - SELECT ONE:
-1. "Happy Tears" (행복한 눈물) → happy, joyful, smiling expression | Style: blonde woman smiling with joyful tears, Ben-Day dots, thick black outlines, primary colors
-2. "Drowning Girl" (익사하는 소녀) → dramatic, emotional, crying, sad | Style: dramatic close-up face with tear, Ben-Day dots, thick black outlines, primary colors
-3. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
-4. "M-Maybe" (아마도) → MALE portrait, thinking, wondering | Style: handsome man close-up face looking up, Ben-Day dots, thick black outlines
-5. "Girl with Hair Ribbon" (리본머리 소녀) → FEMALE portrait, young, cute, front face | Style: young woman front face with hair ribbon, Ben-Day dots, blonde hair blue eyes
+1. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile, Ben-Day dots
+2. "Forget It! Forget Me!" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman, Ben-Day dots
+3. "M-Maybe" (아마도) → FEMALE portrait, thoughtful | Style: blonde woman close-up face looking sideways, Ben-Day dots
+4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression, Ben-Day dots, blonde hair
+5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects, Ben-Day dots, bold outlines
 
 ⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`,
 

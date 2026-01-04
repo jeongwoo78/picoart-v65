@@ -2969,21 +2969,21 @@ export default async function handler(req, res) {
               
               if (subjectType === 'person' && count) {
                 if (count === 1) {
-                  antiHallucinationRule += 'Original has EXACTLY 1 PERSON - DO NOT add extra people or faces in background. ';
+                  antiHallucinationRule += 'Original has EXACTLY 1 PERSON - NEVER add extra people or faces in background. ';
                 } else if (count === 2) {
-                  antiHallucinationRule += 'Original has EXACTLY 2 PEOPLE - DO NOT add extra people. ';
+                  antiHallucinationRule += 'Original has EXACTLY 2 PEOPLE - NEVER add extra people in background. ';
                 } else {
-                  antiHallucinationRule += `Original has EXACTLY ${count} PEOPLE - maintain same count. `;
+                  antiHallucinationRule += `Original has EXACTLY ${count} PEOPLE - NEVER add extra people in background. `;
                 }
               } else if (subjectType === 'landscape') {
-                antiHallucinationRule += 'This is LANDSCAPE - DO NOT add people or figures not in original. ';
+                antiHallucinationRule += 'This is LANDSCAPE - NEVER add people or figures in background. ';
               } else if (subjectType === 'animal') {
-                antiHallucinationRule += 'This is ANIMAL photo - DO NOT add humans or extra animals not in original. ';
+                antiHallucinationRule += 'This is ANIMAL photo - NEVER add humans in background. ';
               } else if (subjectType === 'object') {
-                antiHallucinationRule += 'This is OBJECT/STILL LIFE - DO NOT add people or extra objects not in original. ';
+                antiHallucinationRule += 'This is OBJECT/STILL LIFE - NEVER add people in background. ';
               }
               
-              antiHallucinationRule += 'Keep composition faithful to original photo. NO hallucinated elements.';
+              antiHallucinationRule += 'Keep composition faithful to original photo.';
             }
             
             finalPrompt = finalPrompt + antiHallucinationRule;

@@ -22,7 +22,6 @@ export const masterworkNameMapping = {
   // 클림트
   'the kiss': 'klimt-kiss', '키스': 'klimt-kiss',
   'the tree of life': 'klimt-treeoflife', '생명의 나무': 'klimt-treeoflife',
-  'music': 'klimt-music', '음악': 'klimt-music',
   'judith i': 'klimt-judith', 'judith': 'klimt-judith', '유디트': 'klimt-judith',
   
   // 뭉크
@@ -932,8 +931,7 @@ export const klimtMasterworks = {
     name: '키스',
     nameEn: 'The Kiss',
     prompt: 'Gustav Klimt "The Kiss" (1907-1908), two embracing wrapped gold leaf robes, geometric patterns rectangles male circles female, flower meadow cliff, Byzantine mosaic gold.',
-    feature: '연인/황금',
-    avoidFor: ['parent_child']
+    feature: '연인/황금'
   },
   'klimt-judith': {
     name: '유디트',
@@ -947,12 +945,6 @@ export const klimtMasterworks = {
     prompt: 'Gustav Klimt "The Tree of Life" (1905-1909), spiral branches swirling outward gold bronze decorative swirls, elaborate curving patterns, gold leaf texture.',
     feature: '장식/생명'
   },
-  'klimt-music': {
-    name: '음악',
-    nameEn: 'Music',
-    prompt: 'Gustav Klimt "Music" (1895), female figure with LYRE or musical instrument, GOLD LEAF decorative patterns, symbolic ancient Greek imagery, sphinx and siren motifs, rich dark background with gold accents, Art Nouveau flowing lines.',
-    feature: '여성/음악/상징'
-  }
 };
 
 // ========================================
@@ -1308,7 +1300,7 @@ export function getArtistMasterworkList(artistKey) {
     'matisse': ['matisse-greenstripe', 'matisse-purplecoat', 'matisse-dance', 'matisse-redroom'],
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
-    'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife', 'klimt-music'],
+    'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife'],
     'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety', 'munch-danceoflife'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
@@ -1757,9 +1749,8 @@ GUSTAV KLIMT - SELECT ONE:
 1. "The Kiss" (키스) → COUPLE embracing, romantic, intimate (NOT for single person, NOT for parent-child) | Style: GOLD LEAF patterns throughout, geometric rectangular patterns on male robe, circular patterns on female robe, Byzantine mosaic gold background, kneeling on flower meadow
 2. "Judith I" (유디트) → FEMALE portrait, powerful, confident, mysterious | Style: Wide GOLD CHOKER necklace, elegant confident expression, GOLD LEAF decorative patterns, rich jewel-tone colors, Art Nouveau elegance
 3. "The Tree of Life" (생명의 나무) → landscape, decorative, ANY subject | Style: SPIRAL BRANCHES swirling outward, gold and bronze decorative swirls, elaborate curving patterns, Stoclet Frieze style
-4. "Music" (음악) → FEMALE with instrument, artistic, symbolic | Style: LYRE or musical instrument, GOLD LEAF decorative patterns, ancient Greek imagery, sphinx and siren motifs, dark background with gold accents
 
-⚠️ For COUPLE: The Kiss. For FEMALE: Judith I or Music. Klimt style: Ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures.`,
+⚠️ For COUPLE: The Kiss. For FEMALE: Judith I. Klimt style: Ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures.`,
 
   'frida': `
 FRIDA KAHLO - SELECT ONE:

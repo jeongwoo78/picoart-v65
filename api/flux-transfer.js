@@ -1698,7 +1698,7 @@ const fallbackPrompts = {
   
   medieval: {
     name: '중세 미술',
-    prompt: 'Medieval sacred art with dynamic style selection, IF ANIMALS in photo ALWAYS use Islamic Miniature style, Persian Ottoman COURT MINIATURE painting with intricate delicate details, vibrant jewel colors ruby red sapphire blue emerald green gold, flat decorative composition, ornamental floral patterns, courtly elegant aesthetic, richly decorated background, animals depicted in garden or hunting scenes, luxurious manuscript illumination quality, NO religious Christian imagery for animals to avoid inappropriate context, IF PEOPLE in photo choose from BYZANTINE 35% with GOLDEN MOSAIC sacred backgrounds with shimmering gold leaf and CIRCULAR GOLDEN HALO behind head and flat hieratic frontal iconic figures and divine transcendent spiritual atmosphere, OR GOTHIC 35% with CATHEDRAL STAINED GLASS jewel tones with THICK BLACK LEAD LINES dividing colored segments and vertical elongated figures and DIVINE HOLY LIGHT streaming through Gothic arches and FLAT TWO-DIMENSIONAL medieval aesthetic NOT realistic smooth painting, OR ISLAMIC MINIATURE 30% Persian Ottoman COURT MINIATURE for people, IF NO PEOPLE AND NO ANIMALS landscape only Choose BYZANTINE or GOTHIC based on scene characteristics, ANIMALS equals ISLAMIC MINIATURE ALWAYS safe secular art, Medieval masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Medieval art style selection: 1) ANIMALS → ALWAYS ISLAMIC MINIATURE, 2) PEOPLE → ISLAMIC MINIATURE 50% OR BYZANTINE 50%, 3) STILL LIFE/OBJECTS → ISLAMIC MINIATURE, 4) LANDSCAPE/BUILDING only → GOTHIC STAINED GLASS. ISLAMIC MINIATURE: Persian Ottoman court painting, intricate delicate details, vibrant jewel colors ruby sapphire emerald gold, flat decorative composition, ornamental floral patterns, courtly elegant aesthetic, garden or hunting scenes. BYZANTINE: GOLDEN MOSAIC sacred background, shimmering gold leaf, CIRCULAR GOLDEN HALO behind head, flat hieratic frontal iconic figures, divine transcendent atmosphere. GOTHIC: CATHEDRAL STAINED GLASS jewel tones, THICK BLACK LEAD LINES dividing colored segments, vertical elongated figures, FLAT TWO-DIMENSIONAL medieval aesthetic. Medieval masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   renaissance: {
@@ -2231,11 +2231,10 @@ Return JSON only:
   "prompt": "Ancient Greek-Roman art in [chosen style], [style characteristics - for Sculpture mention material choice, for Mosaic mention tesserae tiles and selected masterwork style], depicting subject while preserving original facial features"
 }`;
         } else if (categoryType === 'medieval') {
-          // 중세 미술만 동물 체크 (Islamic Miniature)
-          // v67: 고딕 대표작 가이드 추가
+          // 중세 미술 - 동물/사람/정물/풍경 분기
           const medievalMasterworkGuide = getMovementMasterworkGuide('medieval') || '';
           
-          promptText = `Select the BEST ${categoryName} artist for this photo.
+          promptText = `Select the BEST ${categoryName} style for this photo.
 
 ${guidelines}
 
@@ -2244,29 +2243,23 @@ ${medievalMasterworkGuide}
 ${hints}
 
 Instructions:
-1. 🚨 FIRST CHECK: Does this photo have ANIMALS?
-   - If YES → MUST choose Islamic Miniature (ONLY safe option)
-   - NEVER Byzantine/Gothic/Romanesque for animals (religious context!)
-2. Analyze photo: people count, subject, mood, age
-3. Follow RECOMMENDATIONS (70-80% weight)
-4. Choose most DISTINCTIVE artist/style
-5. If GOTHIC selected, also choose the BEST MASTERWORK from the list above
-6. Preserve facial identity
-7. IMPORTANT: Include DETAILED style characteristics in your prompt
-   - For Islamic Miniature with animals: mention "Persian/Ottoman court painting, garden or hunting scenes with animals, vibrant jewel colors, ornamental floral patterns, secular courtly aesthetic"
-   - For Islamic Geometric: mention "CLEARLY VISIBLE geometric patterns, Islamic tessellation, star patterns, interlocking shapes, arabesque motifs, symmetrical geometric composition, decorative Islamic mosaic aesthetic" AND CRITICAL: "ABSOLUTELY NO HUMAN FIGURES OR FACES, pure geometric and floral patterns only, Islamic aniconism tradition"
-   - For Byzantine: mention "golden mosaic backgrounds with shimmering gold leaf, flat hieratic frontal figures, divine sacred atmosphere"
-   - For Gothic: mention "cathedral stained glass jewel tones, vertical elongated figures, divine holy light streaming through Gothic arches" AND "FLAT TWO-DIMENSIONAL medieval style NOT realistic smooth painting, angular linear forms with hard edges like stained glass panels"
-   - For Romanesque: mention "church fresco flat solid forms, biblical narrative simplicity, stone relief aesthetic" AND "FLAT MURAL FRESCO style NOT smooth realistic painting, solid block-like forms with heavy outlines like stone carvings"
-   - For other styles: include their signature techniques and visual characteristics
+1. 🚨 ANIMALS in photo? → MUST choose Islamic Miniature
+2. PEOPLE in photo? → Choose Islamic Miniature 50% OR Byzantine 50% (NEVER Gothic for people!)
+3. STILL LIFE/OBJECTS (food, items)? → Choose Islamic Miniature
+4. LANDSCAPE/BUILDING only? → Choose Gothic Stained Glass
+
+Style characteristics:
+- Islamic Miniature: "Persian Ottoman court painting, vibrant jewel colors ruby sapphire emerald gold, ornamental floral patterns, courtly elegant aesthetic"
+- Byzantine: "golden mosaic background with shimmering gold leaf, CIRCULAR GOLDEN HALO behind head, flat hieratic frontal figures"
+- Gothic: "cathedral stained glass jewel tones with THICK BLACK LEAD LINES, geometric patterns, FLAT TWO-DIMENSIONAL"
 
 Return JSON only:
 {
   "analysis": "brief (1 sentence)",
-  "selected_artist": "Artist Name or Style Name",
-  "selected_work": "If Gothic, select best masterwork from list above. Otherwise use null",
+  "selected_artist": "Islamic Miniature or Byzantine or Gothic",
+  "selected_work": null,
   "reason": "why (1 sentence)",
-  "prompt": "Medieval art in [style name], [DETAILED style characteristics including techniques and visual features], depicting subject while preserving original features"
+  "prompt": "Medieval art in [style name], [style characteristics], depicting subject while preserving original features"
 }`;
         } else {
           // 다른 사조들 (표현주의, 르네상스, 바로크 등)

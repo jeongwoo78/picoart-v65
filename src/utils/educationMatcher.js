@@ -236,9 +236,6 @@ const MOVEMENTS_ARTIST_MAP = {
   'Paul Cezanne': 'cezanne',
   'Gauguin': 'gauguin',
   'Paul Gauguin': 'gauguin',
-  'Signac': 'signac',
-  'Paul Signac': 'signac',
-  'Seurat': 'signac',  // Seurat도 점묘법이므로 signac으로 매핑
   
   // 야수파
   'Matisse': 'matisse',

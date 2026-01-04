@@ -1026,8 +1026,6 @@ const ResultScreen = ({
       'paul gauguin': { name: '폴 고갱', years: '1848~1903' },
       'cezanne': { name: '폴 세잔', years: '1839~1906' },
       'cézanne': { name: '폴 세잔', years: '1839~1906' },
-      'signac': { name: '폴 시냐크', years: '1863~1935' },
-      'paul signac': { name: '폴 시냐크', years: '1863~1935' },
       // 야수파
       'matisse': { name: '앙리 마티스', years: '1869~1954' },
       'henri matisse': { name: '앙리 마티스', years: '1869~1954' },
@@ -1274,7 +1272,6 @@ const ResultScreen = ({
         'cézanne': { movement: '후기인상주의', artist: '세잔' },
         'cezanne': { movement: '후기인상주의', artist: '세잔' },
         'seurat': { movement: '후기인상주의', artist: '쇠라' },
-        'signac': { movement: '후기인상주의', artist: '시냐크' },
         'gauguin': { movement: '후기인상주의', artist: '고갱' },
         'toulouse-lautrec': { movement: '후기인상주의', artist: '로트렉' },
         'van gogh': { movement: '후기인상주의', artist: '반 고흐' },
@@ -1688,8 +1685,6 @@ const ResultScreen = ({
       'paul gauguin': '폴 고갱(Paul Gauguin)',
       'seurat': '조르주 쇠라(Georges Seurat)',
       'georges seurat': '조르주 쇠라(Georges Seurat)',
-      'signac': '폴 시냐크(Paul Signac)',
-      'paul signac': '폴 시냐크(Paul Signac)',
       
       // 야수파
       'matisse': '앙리 마티스(Henri Matisse)',

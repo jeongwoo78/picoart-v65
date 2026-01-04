@@ -215,9 +215,6 @@ const ARTIST_CONFIG = {
   'gauguin':             { control: 0.60, brush: '75mm' },
   'cezanne':             { control: 0.65, brush: '75mm' },
   
-  // === 점묘법 ===
-  'signac':              { control: 0.55, brush: '25mm' },     // 점
-  
   // === 야수파 ===
   'matisse':             { control: 0.45, brush: '75mm' },
   'derain':              { control: 0.45, brush: '75mm' },
@@ -298,9 +295,6 @@ const ARTIST_NAME_MAPPING = {
   'paulcezanne': 'cezanne',
   '세잔': 'cezanne',
   '폴세잔': 'cezanne',
-  'paulsignac': 'signac',
-  '시냑': 'signac',
-  '폴시냑': 'signac',
   'henrimatisse': 'matisse',
   '마티스': 'matisse',
   '앙리마티스': 'matisse',
@@ -841,31 +835,27 @@ const ARTIST_WEIGHTS = {
     ]
   },
   
-  // 후기인상주의 (4명)
+  // 후기인상주의 (3명) - 시냐크 삭제
   postImpressionism: {
     portrait: [
-      { name: 'VAN GOGH', weight: 45 },
-      { name: 'GAUGUIN', weight: 30 },
-      { name: 'SIGNAC', weight: 25 }
+      { name: 'VAN GOGH', weight: 60 },
+      { name: 'GAUGUIN', weight: 40 }
       // CÉZANNE 제외 - 정물/풍경 전문
     ],
     landscape: [
-      { name: 'VAN GOGH', weight: 30 },
-      { name: 'SIGNAC', weight: 30 },
-      { name: 'CÉZANNE', weight: 25 },
-      { name: 'GAUGUIN', weight: 15 }
+      { name: 'VAN GOGH', weight: 40 },
+      { name: 'CÉZANNE', weight: 35 },
+      { name: 'GAUGUIN', weight: 25 }
     ],
     stillLife: [
-      { name: 'CÉZANNE', weight: 55 },
+      { name: 'CÉZANNE', weight: 60 },
       { name: 'VAN GOGH', weight: 25 },
-      { name: 'SIGNAC', weight: 10 },
-      { name: 'GAUGUIN', weight: 10 }
+      { name: 'GAUGUIN', weight: 15 }
     ],
     default: [
-      { name: 'VAN GOGH', weight: 35 },
-      { name: 'GAUGUIN', weight: 25 },
-      { name: 'SIGNAC', weight: 25 },
-      { name: 'CÉZANNE', weight: 15 }
+      { name: 'VAN GOGH', weight: 45 },
+      { name: 'GAUGUIN', weight: 30 },
+      { name: 'CÉZANNE', weight: 25 }
     ]
   },
   
@@ -1470,9 +1460,9 @@ function getPostImpressionismGuidelines() {
 🚫🚫🚫 CRITICAL RESTRICTION 🚫🚫🚫
 YOU MUST ONLY SELECT FROM THE ARTISTS LISTED BELOW!
 DO NOT select artists from other movements (Impressionism, Fauvism, Expressionism, etc.)
-ONLY Post-Impressionism artists: VAN GOGH, GAUGUIN, CÉZANNE, SIGNAC!
+ONLY Post-Impressionism artists: VAN GOGH, GAUGUIN, CÉZANNE!
 
-Available Post-Impressionism Artists (4명) + MASTERWORKS:
+Available Post-Impressionism Artists (3명) + MASTERWORKS:
 
 1. VAN GOGH (반 고흐) - Swirling impasto brushstrokes, intense emotional colors
    ⭐ BEST FOR: Portraits, emotional scenes, night scenes
@@ -1496,17 +1486,10 @@ Available Post-Impressionism Artists (4명) + MASTERWORKS:
    - "Still Life with Apples" (사과 정물) → still life | geometric forms, structured color patches
    - "Mont Sainte-Victoire" (생트빅투아르 산) → landscape | geometric mountain, analytical brushwork
    - "Card Players" (카드 놀이하는 사람들) → group activity | geometric figures, muted colors
-   
-4. SIGNAC (시냑) - POINTILLIST LARGE DOTS 8mm, bright Mediterranean sunlight
-   ⭐ BEST FOR: Seascapes, harbors, sunny outdoor scenes
-   📚 MASTERWORKS:
-   - "Port of Saint-Tropez" (생트로페 항구) → harbor, boats | pointillist dots, Mediterranean light
-   - "Portrait of Félix Fénéon" (펠릭스 페네옹 초상) → portrait | swirling pointillist background
-   - "Time of Harmony" (조화의 시대) → idyllic scene | vibrant pointillist colors
 
 🎯 CRITICAL MATCHING RULES:
 - PORTRAITS/PEOPLE → VAN GOGH or GAUGUIN (NEVER Cézanne!)
-- MALE portrait → Van Gogh Self-Portrait or Signac Fénéon
+- MALE portrait → Van Gogh Self-Portrait
 - FEMALE portrait → Van Gogh Starry Night or Gauguin Tahitian
 - STILL LIFE → CÉZANNE (Still Life with Apples)
 - NIGHT/EVENING → Van Gogh (Starry Night or Café Terrace)
@@ -1520,7 +1503,7 @@ function getPostImpressionismHints(photoAnalysis) {
   if (subject.includes('person') || subject.includes('portrait') || subject === 'person') {
     return `
 ⚠️ SAFETY RULE: Portrait detected - avoid CÉZANNE (still life/landscape specialist).
-Choose from: Van Gogh, Gauguin, or Signac instead.
+Choose from: Van Gogh or Gauguin instead.
 `;
   }
   
@@ -2482,11 +2465,10 @@ const MALE_SUITABLE_ARTISTS_BY_CATEGORY = {
     { name: 'DEGAS', weight: 20 }
   ],
   'postImpressionism': [
-    // 여성 편향 없음
-    { name: 'VAN GOGH', weight: 40 },
-    { name: 'CÉZANNE', weight: 25 },
-    { name: 'GAUGUIN', weight: 25 },
-    { name: 'SIGNAC', weight: 10 }
+    // 시냐크 삭제
+    { name: 'VAN GOGH', weight: 45 },
+    { name: 'CÉZANNE', weight: 30 },
+    { name: 'GAUGUIN', weight: 25 }
   ],
   'baroque': [
     { name: 'CARAVAGGIO', weight: 45 },
@@ -3181,7 +3163,6 @@ export default async function handler(req, res) {
             'van gogh': 'vangogh', 'vincent van gogh': 'vangogh', 'vangogh': 'vangogh',
             'gauguin': 'gauguin', 'paul gauguin': 'gauguin',
             'cézanne': 'cezanne', 'cezanne': 'cezanne', 'paul cézanne': 'cezanne',
-            'signac': 'signac', 'paul signac': 'signac',
             // 야수파
             'matisse': 'matisse', 'henri matisse': 'matisse',
             'derain': 'derain', 'andré derain': 'derain',
@@ -3452,18 +3433,6 @@ export default async function handler(req, res) {
             // console.log('✅ Enhanced Gauguin cloisonnism + primitivism (control_strength 0.60)');
           } else {
             // console.log('ℹ️ Gauguin style already in prompt (AI included it)');
-          }
-        }
-        
-        // 시냐크 선택시 점묘법 강화 (v48 추가)
-        if (selectedArtist.toUpperCase().trim().includes('SIGNAC') ||
-            selectedArtist.includes('시냐크')) {
-          // console.log('🎯 Signac detected');
-          if (!finalPrompt.includes('pointillist') && !finalPrompt.includes('dots')) {
-            finalPrompt = finalPrompt + ', painting by Paul Signac, POINTILLIST Neo-Impressionist style with LARGE VISIBLE DOTS 8mm each of pure unmixed color placed side by side, VISIBLE DOTS throughout entire image including sky water and all surfaces, The Port of Saint-Tropez and Portrait of Félix Fénéon style, vibrant luminous harbor and coastal scenes, brilliant Mediterranean sunlight effect, LARGE VISIBLE DOTS 8mm NOT tiles NOT mosaic, NO blended brushstrokes only separate dots, optical color mixing creates shimmering radiant atmosphere, SOFT PASTEL PALETTE pale pink light blue lavender mint green peach cream';
-            // console.log('✅ Enhanced Signac pointillism added (control_strength 0.55)');
-          } else {
-            // console.log('ℹ️ Signac pointillism already in prompt (AI included it)');
           }
         }
         
@@ -3949,8 +3918,7 @@ export default async function handler(req, res) {
                      finalPrompt.toLowerCase().includes('tesserae');
     
     // 점묘법은 점(dots)으로 만드는 것이므로 brushstrokes 완전 금지
-    const isPointillism = finalPrompt.toLowerCase().includes('signac') || 
-                          finalPrompt.toLowerCase().includes('pointillist') ||
+    const isPointillism = finalPrompt.toLowerCase().includes('pointillist') ||
                           finalPrompt.toLowerCase().includes('pointillism');
     
     // v68.2: 샌드위치 삭제 - 대전제와 화풍에서 NOT photograph 이미 커버
@@ -4059,7 +4027,7 @@ export default async function handler(req, res) {
     // v68: 붓터치 제외 조건 (skipBrushstrokeRules)
     // ========================================
     const isMosaicStyle = promptLower.includes('mosaic') || promptLower.includes('tesserae');
-    const isPointillismStyle = promptLower.includes('pointillist') || promptLower.includes('signac');
+    const isPointillismStyle = promptLower.includes('pointillist');
     const isSculpture = promptLower.includes('sculpture') || promptLower.includes('marble');
     const isByzantine = promptLower.includes('byzantine');
     const isGothicGlass = promptLower.includes('stained glass') || promptLower.includes('gothic');

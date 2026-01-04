@@ -110,8 +110,6 @@ export const ARTIST_STYLES = {
   'gauguin': 'by Paul Gauguin, Gauguin art style, bold black outlines, flat pure saturated colors, exotic tropical palette. NOT photograph, NOT digital.',
   
   'cezanne': 'by Paul Cézanne, Cézanne art style, geometric structural forms, visible constructive brushstrokes, muted earthy palette. NOT photograph, NOT digital.',
-  
-  'signac': 'by Paul Signac, Signac art style, pure color dots 8mm, vibrant optical color mixing, luminous Mediterranean light. NOT brushstrokes, NOT smooth, NOT photograph, NOT digital.',
 
   // ========================================
   // 🔥 야수파 
@@ -245,7 +243,6 @@ export function getArtistStyleByName(artistName) {
     'VAN GOGH': 'vangogh', 'GOGH': 'vangogh', '반 고흐': 'vangogh', '고흐': 'vangogh', '빈센트': 'vangogh', 'VINCENT VAN GOGH': 'vangogh',
     'GAUGUIN': 'gauguin', '고갱': 'gauguin', 'PAUL GAUGUIN': 'gauguin',
     'CÉZANNE': 'cezanne', 'CEZANNE': 'cezanne', '세잔': 'cezanne', 'PAUL CÉZANNE': 'cezanne', 'PAUL CEZANNE': 'cezanne',
-    'SIGNAC': 'signac', '시냐크': 'signac', 'PAUL SIGNAC': 'signac',
     
     // 야수파
     'MATISSE': 'matisse', '마티스': 'matisse', 'HENRI MATISSE': 'matisse',

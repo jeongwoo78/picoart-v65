@@ -119,8 +119,6 @@ export const masterworkNameMapping = {
   'where do we come from?': 'gauguin-where', 'yellow christ': 'gauguin-christ',
   'basket of apples': 'cezanne-apples', 'mont sainte-victoire': 'cezanne-montagne',
   'the card players': 'cezanne-cards',
-  'antibes the pink cloud': 'signac-antibes', 'the papal palace avignon': 'signac-avignon',
-  'capo di noli': 'signac-capo',
   
   // 야수파
   'port of collioure': 'derain-collioure', 'charing cross bridge': 'derain-charingcross',
@@ -821,30 +819,6 @@ export const cezanneMasterworks = {
 };
 
 // ========================================
-// 29. 시냐크 (3개)
-// ========================================
-export const signacMasterworks = {
-  'signac-antibes': {
-    name: '핑크 구름 앙티브',
-    nameEn: 'Antibes the Pink Cloud',
-    prompt: 'Paul Signac "Antibes the Pink Cloud" (1916), large visible Pointillist dots 8mm, soft pastel pale pink lavender peach cream light blue, pink cloud Mediterranean.',
-    feature: '하늘, 파스텔'
-  },
-  'signac-avignon': {
-    name: '아비뇽 교황청',
-    nameEn: 'The Papal Palace Avignon',
-    prompt: 'Paul Signac "The Papal Palace Avignon" (1909), large visible Pointillist dots 8mm, soft pastel sunset warm orange purple gold amber, Gothic palace water reflection.',
-    feature: '건축, 석양'
-  },
-  'signac-capo': {
-    name: '카포 디 놀리',
-    nameEn: 'Capo di Noli',
-    prompt: 'Paul Signac "Capo di Noli" (1898), large visible Pointillist dots 8mm, soft pastel Mediterranean turquoise blue seafoam green warm ochre lavender.',
-    feature: '해안, 절벽'
-  }
-};
-
-// ========================================
 // 30. 마티스 (4개)
 // ========================================
 export const matisseMasterworks = {
@@ -1230,7 +1204,6 @@ export const allMovementMasterworks = {
   ...vangoghMasterworks,
   ...gauguinMasterworks,
   ...cezanneMasterworks,
-  ...signacMasterworks,
   ...matisseMasterworks,
   ...derainMasterworks,
   ...vlaminckMasterworks,
@@ -1289,7 +1262,6 @@ export function getArtistMasterworkList(artistKey) {
     'vangogh': ['vangogh-starrynight', 'vangogh-cafe', 'vangogh-sunflowers', 'vangogh-selfportrait', 'vangogh-seascape', 'vangogh-wheatfield'],
     'gauguin': ['gauguin-tahitian', 'gauguin-where', 'gauguin-christ'],
     'cezanne': ['cezanne-apples', 'cezanne-montagne', 'cezanne-cards'],
-    'signac': ['signac-antibes', 'signac-avignon', 'signac-capo'],
     'matisse': ['matisse-greenstripe', 'matisse-purplecoat', 'matisse-dance', 'matisse-redroom'],
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
@@ -1343,8 +1315,6 @@ export function getMovementMasterworkGuide(movementKey) {
     'impressionism': ['renoir', 'monet', 'degas', 'caillebotte'],
     // 후기인상주의
     'post-impressionism': ['vangogh', 'gauguin', 'cezanne'],
-    // 점묘법
-    'pointillism': ['signac'],
     // 야수파
     'fauvism': ['matisse', 'derain', 'vlaminck'],
     // 표현주의
@@ -1592,14 +1562,14 @@ GUSTAVE CAILLEBOTTE - SELECT ONE:
   // ========================================
   'vangogh': `
 VINCENT VAN GOGH - SELECT ONE:
-1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, evening | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
-2. "Café Terrace at Night" (밤의 카페 테라스) → outdoor evening, cafe, restaurant, street scene, city night | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, cobblestone street
+1. "The Starry Night" (별이 빛나는 밤) → night scene, sky, evening, FEMALE night portrait | Style: SWIRLING SPIRAL brushstrokes, COBALT BLUE and YELLOW, cypress trees
+2. "Café Terrace at Night" (밤의 카페 테라스) → cafe, restaurant, street scene, city, urban, FEMALE urban portrait | Style: BRIGHT YELLOW gas lamp glow against DEEP COBALT BLUE night sky, cobblestone street
 3. "Sunflowers" (해바라기) → flowers, still life, bouquet ONLY | Style: THICK IMPASTO, CHROME YELLOW dominates, expressive petal strokes
 4. "Self-Portrait with Grey Felt Hat" (회색 펠트 모자 자화상) → MALE portrait ONLY | Style: EXPLOSIVE RADIAL brushstrokes from face, intense blue swirling background, grey felt hat
-5. "Seascape" (생트마리 바다) → sea, beach, ocean, water, boats, FEMALE daytime portrait | Style: turbulent Mediterranean waves, white sailboats, deep blue green sea, bright daylight
-6. "Wheat Field with Cypresses" (사이프러스 밀밭) → field, meadow, outdoor daytime, FEMALE daytime portrait | Style: golden wheat, dark cypress tree, INTENSELY SWIRLING white clouds
+5. "Seascape" (생트마리 바다) → sea, beach, ocean, water, boats | Style: turbulent Mediterranean waves, white sailboats, deep blue green sea, bright daylight
+6. "Wheat Field with Cypresses" (사이프러스 밀밭) → field, meadow, outdoor, nature, FEMALE nature portrait | Style: golden wheat, dark cypress tree, INTENSELY SWIRLING white clouds
 
-⚠️ For FEMALE portrait: Select "Seascape" or "Wheat Field" for DAYTIME photos, "Starry Night" or "Café Terrace" for NIGHT/EVENING photos.
+⚠️ For FEMALE portrait: Match by photo context - "Starry Night" (sky/night), "Café Terrace" (urban/street), "Wheat Field" (nature/outdoor).
 ⚠️ For MALE portrait: Use "Self-Portrait with Grey Felt Hat" (stronger brushstrokes).`,
 
   'gauguin': `
@@ -1617,17 +1587,6 @@ PAUL CÉZANNE - SELECT ONE:
 3. "The Card Players" (카드 놀이하는 사람들) → MALE GROUP, interior, concentration | Style: peasants playing cards, solid geometric figures, earthy browns and blues
 
 ⚠️ For MALE: Card Players. For LANDSCAPE: Mont Sainte-Victoire. Cézanne style: Geometric structural forms, visible constructive brushstrokes, muted earthy palette.`,
-
-  // ========================================
-  // 점묘법
-  // ========================================
-  'signac': `
-PAUL SIGNAC - SELECT ONE:
-1. "Antibes, the Pink Cloud" (앙티브, 분홍 구름) → harbor, coastal, pink sky | Style: pointillist dots, Mediterranean harbor, pink clouds reflecting on water
-2. "The Papal Palace, Avignon" (아비뇽 교황청) → architecture, river, monumental | Style: pointillist dots, palace reflected in Rhône river, luminous colors
-3. "Capo di Noli" (카포 디 놀리) → coastal, cliffs, Mediterranean | Style: pointillist dots, rocky coastline, vibrant blue water and sky
-
-⚠️ ALL works: Pure color dots 8mm, vibrant optical color mixing, luminous Mediterranean light. NOT brushstrokes, NOT smooth blending.`,
 
   // ========================================
   // 야수파
@@ -1785,7 +1744,6 @@ export function getArtistMasterworkGuide(artistKey) {
     'caillebotte': 'GUSTAVE CAILLEBOTTE',
     'cezanne': 'PAUL CÉZANNE',
     'gauguin': 'PAUL GAUGUIN',
-    'signac': 'PAUL SIGNAC',
     'botticelli': 'SANDRO BOTTICELLI',
     'leonardo': 'LEONARDO DA VINCI',
     'michelangelo': 'MICHELANGELO',

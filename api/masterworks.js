@@ -1169,31 +1169,31 @@ export const lichtensteinMasterworks = {
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 클로즈업'
   },
   'lichtenstein-forgetit': {
     name: '날 잊어',
     nameEn: 'Forget It! Forget Me!',
-    prompt: 'Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 드라마틱'
   },
   'lichtenstein-ohhhalright': {
     name: '오 알았어',
     nameEn: 'Ohhh...Alright...',
-    prompt: 'Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 전화'
   },
   'lichtenstein-stilllife': {
     name: '정물화',
     nameEn: 'Still Life with Palette',
-    prompt: 'Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, COMIC PANEL FRAME with THICK BLACK BORDER around entire image, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '정물, 오브제'
   }
 };

@@ -3750,7 +3750,7 @@ export default async function handler(req, res) {
           console.log('🎯 Lichtenstein detected - adding speech bubble...');
           
           // 말풍선 텍스트 선택 (사진 분석 결과 기반)
-          const speechText = selectSpeechBubbleText(aiResult?.visionData);
+          const speechText = selectSpeechBubbleText(visionAnalysis);
           console.log(`💬 Speech bubble text: "${speechText}"`);
           
           // 프롬프트에 말풍선 추가

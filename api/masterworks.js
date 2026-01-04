@@ -22,12 +22,14 @@ export const masterworkNameMapping = {
   // 클림트
   'the kiss': 'klimt-kiss', '키스': 'klimt-kiss',
   'the tree of life': 'klimt-treeoflife', '생명의 나무': 'klimt-treeoflife',
+  'music': 'klimt-music', '음악': 'klimt-music',
   'judith i': 'klimt-judith', 'judith': 'klimt-judith', '유디트': 'klimt-judith',
   
   // 뭉크
   'the scream': 'munch-scream', '절규': 'munch-scream',
   'madonna': 'munch-madonna', '마돈나': 'munch-madonna',
   'anxiety': 'munch-anxiety', '불안': 'munch-anxiety',
+  'the dance of life': 'munch-danceoflife', '생의 춤': 'munch-danceoflife',
   
   // 마티스
   'the dance': 'matisse-dance', '춤': 'matisse-dance',
@@ -139,8 +141,7 @@ export const masterworkNameMapping = {
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
   'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage',
-  'drowning girl': 'lichtenstein-drowninggirl', 'happy tears': 'lichtenstein-happytears', 'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'girl with hair ribbon': 'lichtenstein-girlwithhairribbon',
-  'radiant baby': 'haring-radiantbaby', 'barking dog': 'haring-barkingdog', 'dancing figures': 'haring-dancing'
+  'drowning girl': 'lichtenstein-drowninggirl', 'happy tears': 'lichtenstein-happytears', 'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'girl with hair ribbon': 'lichtenstein-girlwithhairribbon'
 };
 
 // ========================================
@@ -945,6 +946,12 @@ export const klimtMasterworks = {
     nameEn: 'The Tree of Life',
     prompt: 'Gustav Klimt "The Tree of Life" (1905-1909), spiral branches swirling outward gold bronze decorative swirls, elaborate curving patterns, gold leaf texture.',
     feature: '장식/생명'
+  },
+  'klimt-music': {
+    name: '음악',
+    nameEn: 'Music',
+    prompt: 'Gustav Klimt "Music" (1895), female figure with LYRE or musical instrument, GOLD LEAF decorative patterns, symbolic ancient Greek imagery, sphinx and siren motifs, rich dark background with gold accents, Art Nouveau flowing lines.',
+    feature: '여성/음악/상징'
   }
 };
 
@@ -974,6 +981,13 @@ export const munchMasterworks = {
     feature: '집단불안',
     attractiveException: true,
     expressionRule: 'anxiety/dread allowed, NO bright, NO smiling'
+  },
+  'munch-danceoflife': {
+    name: '생의 춤',
+    nameEn: 'The Dance of Life',
+    prompt: 'Edvard Munch "The Dance of Life" (1899-1900), COUPLES DANCING on moonlit shore, central couple in RED embracing, figures in WHITE and BLACK on sides symbolizing life stages, WAVY DISTORTED forms, moon reflection on water, emotional psychological depth, PRESERVE ORIGINAL FACIAL FEATURES.',
+    feature: 'GROUP/로맨틱',
+    expressionRule: 'romantic/melancholic allowed'
   }
 };
 
@@ -1200,30 +1214,6 @@ export const lichtensteinMasterworks = {
 };
 
 // ========================================
-// 44. 키스 해링 (3개)
-// ========================================
-export const haringMasterworks = {
-  'haring-radiantbaby': {
-    name: '빛나는 아기',
-    nameEn: 'Radiant Baby',
-    prompt: 'Keith Haring "Radiant Baby" (1982), crawling baby figure profile, bold thick black outline, radiant lines emanating from body, flat bright primary red or yellow.',
-    feature: '아기, 빛'
-  },
-  'haring-barkingdog': {
-    name: '짖는 개',
-    nameEn: 'Barking Dog',
-    prompt: 'Keith Haring "Barking Dog" (1982), simplified dog silhouette open barking mouth, bold thick black outline, radiant lines showing sound, flat bright primary background.',
-    feature: '개, 에너지'
-  },
-  'haring-dancing': {
-    name: '춤추는 사람들',
-    nameEn: 'Untitled (Dancing Figures)',
-    prompt: 'Keith Haring "Untitled (Dancing Figures)" (1982), multiple simplified humans dancing dynamic poses, bold continuous black outlines connecting, radiant energy lines, flat bright primaries.',
-    feature: '그룹, 춤'
-  }
-};
-
-// ========================================
 // 통합 대표작
 // ========================================
 export const allMovementMasterworks = {
@@ -1268,8 +1258,7 @@ export const allMovementMasterworks = {
   ...magritteMasterworks,
   ...miroMasterworks,
   ...chagallMasterworks,
-  ...lichtensteinMasterworks,
-  ...haringMasterworks
+  ...lichtensteinMasterworks
 };
 
 /**
@@ -1319,8 +1308,8 @@ export function getArtistMasterworkList(artistKey) {
     'matisse': ['matisse-greenstripe', 'matisse-purplecoat', 'matisse-dance', 'matisse-redroom'],
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
-    'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife'],
-    'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety'],
+    'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife', 'klimt-music'],
+    'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety', 'munch-danceoflife'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
     'picasso': ['picasso-guernica', 'picasso-oldguitarist', 'picasso-musicians', 'picasso-doramaar'],
@@ -1328,8 +1317,7 @@ export function getArtistMasterworkList(artistKey) {
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
-    'lichtenstein': ['lichtenstein-happytears', 'lichtenstein-drowninggirl', 'lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-girlwithhairribbon'],
-    'haring': ['haring-radiantbaby', 'haring-barkingdog', 'haring-dancing']
+    'lichtenstein': ['lichtenstein-happytears', 'lichtenstein-drowninggirl', 'lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-girlwithhairribbon']
   };
   
   return artistMasterworks[normalized] || [];
@@ -1377,7 +1365,7 @@ export function getMovementMasterworkGuide(movementKey) {
     // 표현주의
     'expressionism': ['munch', 'kirchner', 'kokoschka'],
     // 모더니즘
-    'modernism': ['picasso', 'magritte', 'miro', 'chagall', 'lichtenstein', 'haring']
+    'modernism': ['picasso', 'magritte', 'miro', 'chagall', 'lichtenstein']
   };
   
   const artists = movementArtists[movementKey];
@@ -1692,9 +1680,10 @@ EDVARD MUNCH - SELECT ONE:
 1. "The Scream" (절규) → SINGLE person, emotional portrait, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
 2. "Madonna" (마돈나) → SINGLE FEMALE, mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
 3. "Anxiety" (불안) → GROUP (2+ people), collective dread, shared unease | Style: MULTIPLE FIGURES on bridge with PALE GHOSTLY faces, BLOOD RED orange sky, dark clothing, same setting as The Scream but COLLECTIVE fear
+4. "The Dance of Life" (생의 춤) → GROUP/COUPLES, romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
 
 ⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.
-⚠️ For GROUP photos: Select "Anxiety". For SINGLE person: Select "The Scream" or "Madonna".`,
+⚠️ For GROUP photos: Select "Anxiety" (dark mood) or "The Dance of Life" (romantic mood). For SINGLE person: Select "The Scream" or "Madonna".`,
 
   'kirchner': `
 ERNST LUDWIG KIRCHNER - SELECT ONE:
@@ -1760,14 +1749,6 @@ ROY LICHTENSTEIN - SELECT ONE:
 
 ⚠️ ALL works include: BOLD HEAVY BLACK INK OUTLINES 8mm+, LARGE VISIBLE Ben-Day dots, FLAT primary colors, comic book style.`,
 
-  'haring': `
-KEITH HARING - SELECT ONE:
-1. "Radiant Baby" (빛나는 아기) → baby, crawling, iconic | Style: crawling baby figure with radiating lines, bold black outline, simple joyful energy
-2. "Barking Dog" (짖는 개) → dog, animal, simple | Style: angular dog figure barking, bold continuous outline, energetic movement lines
-3. "Dancing Figures" (춤추는 사람들) → GROUP, movement, celebration | Style: simplified dancing figures, interlocking bodies, radiant energy lines
-
-⚠️ Haring style: Bold continuous black outlines, simplified dancing figures, radiant energy lines, flat bright colors.`,
-
   // ========================================
   // 거장 (추가)
   // ========================================
@@ -1776,8 +1757,9 @@ GUSTAV KLIMT - SELECT ONE:
 1. "The Kiss" (키스) → COUPLE embracing, romantic, intimate (NOT for single person, NOT for parent-child) | Style: GOLD LEAF patterns throughout, geometric rectangular patterns on male robe, circular patterns on female robe, Byzantine mosaic gold background, kneeling on flower meadow
 2. "Judith I" (유디트) → FEMALE portrait, powerful, confident, mysterious | Style: Wide GOLD CHOKER necklace, elegant confident expression, GOLD LEAF decorative patterns, rich jewel-tone colors, Art Nouveau elegance
 3. "The Tree of Life" (생명의 나무) → landscape, decorative, ANY subject | Style: SPIRAL BRANCHES swirling outward, gold and bronze decorative swirls, elaborate curving patterns, Stoclet Frieze style
+4. "Music" (음악) → FEMALE with instrument, artistic, symbolic | Style: LYRE or musical instrument, GOLD LEAF decorative patterns, ancient Greek imagery, sphinx and siren motifs, dark background with gold accents
 
-⚠️ For COUPLE: The Kiss. For FEMALE: Judith I. Klimt style: Ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures.`,
+⚠️ For COUPLE: The Kiss. For FEMALE: Judith I or Music. Klimt style: Ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures.`,
 
   'frida': `
 FRIDA KAHLO - SELECT ONE:
@@ -1831,7 +1813,6 @@ export function getArtistMasterworkGuide(artistKey) {
     'magritte': 'RENÉ MAGRITTE',
     'chagall': 'MARC CHAGALL',
     'miro': 'JOAN MIRÓ',
-    'haring': 'KEITH HARING',
     'kirchner': 'ERNST LUDWIG KIRCHNER',
     'kokoschka': 'OSKAR KOKOSCHKA',
     'derain': 'ANDRÉ DERAIN',

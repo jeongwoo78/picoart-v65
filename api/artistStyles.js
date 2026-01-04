@@ -143,8 +143,6 @@ export const ARTIST_STYLES = {
   'chagall': 'by Marc Chagall, Chagall art style, dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality. NOT photograph, NOT digital.',
   
   'lichtenstein': 'by Roy Lichtenstein, COMIC BOOK POP ART style, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing surrounding ALL shapes faces and figures, FLAT primary colors ONLY (red blue yellow white black), halftone printing effect, THICK BLACK CONTOUR LINES on every edge, NO gradients, NO realistic shading, NOT photograph, NOT soft, NOT thin lines.',
-  
-  'haring': 'by Keith Haring, Keith Haring art style, bold continuous black outlines, simplified dancing figures, radiant energy lines, flat bright colors. NOT photograph, NOT digital.',
 
   // ========================================
   // ⭐ 거장 전용 
@@ -265,7 +263,6 @@ export function getArtistStyleByName(artistName) {
     'MIRÓ': 'miro', 'MIRO': 'miro', '미로': 'miro', 'JOAN MIRÓ': 'miro', 'JOAN MIRO': 'miro',
     'CHAGALL': 'chagall', '샤갈': 'chagall', 'MARC CHAGALL': 'chagall',
     'LICHTENSTEIN': 'lichtenstein', '리히텐슈타인': 'lichtenstein', 'ROY LICHTENSTEIN': 'lichtenstein',
-    'HARING': 'haring', 'KEITH HARING': 'haring', '해링': 'haring', '키스 해링': 'haring',
     
     // 거장 전용
     'KLIMT': 'klimt', '클림트': 'klimt', 'GUSTAV KLIMT': 'klimt',

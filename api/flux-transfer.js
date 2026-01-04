@@ -173,72 +173,71 @@ const ARTIST_CONFIG = {
   // === 고대/중세 ===
   'classical-sculpture': { control: 0.55, brush: null },      // 조각
   'sculpture':           { control: 0.55, brush: null },
-  'roman-mosaic':        { control: 0.60, brush: '50mm' },    // 모자이크 타일
-  'mosaic':              { control: 0.60, brush: '50mm' },
-  'byzantine':           { control: 0.60, brush: '20mm' },
+  'roman-mosaic':        { control: 0.60, brush: '75mm' },    // 모자이크 타일
+  'mosaic':              { control: 0.60, brush: '75mm' },
+  'byzantine':           { control: 0.60, brush: null },      // 모자이크/아이콘
   'gothic':              { control: 0.50, brush: null },      // 스테인드글라스
-  'islamic-miniature':   { control: 0.80, brush: '15mm' },
+  'islamic-miniature':   { control: 0.80, brush: '25mm' },    // 세밀화
   
   // === 르네상스 ===
-  'botticelli':          { control: 0.70, brush: '50mm' },
-  'leonardo':            { control: 0.50, brush: '50mm' },
-  'titian':              { control: 0.70, brush: '50mm' },
-  'michelangelo':        { control: 0.70, brush: '50mm' },
-  'raphael':             { control: 0.70, brush: '50mm' },
+  'botticelli':          { control: 0.70, brush: '75mm' },
+  'leonardo':            { control: 0.50, brush: '75mm' },
+  'titian':              { control: 0.70, brush: '75mm' },
+  'michelangelo':        { control: 0.70, brush: '75mm' },
+  'raphael':             { control: 0.70, brush: '75mm' },
   
   // === 바로크 ===
-  'caravaggio':          { control: 0.50, brush: '50mm' },
-  'rubens':              { control: 0.50, brush: '50mm' },
-  'rembrandt':           { control: 0.50, brush: '55mm' },
-  'velazquez':           { control: 0.50, brush: '50mm' },
+  'caravaggio':          { control: 0.50, brush: '75mm' },
+  'rubens':              { control: 0.50, brush: '75mm' },
+  'rembrandt':           { control: 0.50, brush: '75mm' },
+  'velazquez':           { control: 0.50, brush: '75mm' },
   
   // === 로코코 ===
-  'watteau':             { control: 0.45, brush: '50mm' },
-  'boucher':             { control: 0.45, brush: '50mm' },
+  'watteau':             { control: 0.45, brush: '75mm' },
+  'boucher':             { control: 0.45, brush: '75mm' },
   
   // === 신고전/낭만/사실 ===
-  'david':               { control: 0.50, brush: '50mm' },
-  'ingres':              { control: 0.45, brush: '50mm' },
-  'turner':              { control: 0.45, brush: '50mm' },
-  'delacroix':           { control: 0.50, brush: '50mm' },
-  'courbet':             { control: 0.50, brush: '50mm' },
-  'manet':               { control: 0.50, brush: '50mm' },
+  'david':               { control: 0.50, brush: '75mm' },
+  'ingres':              { control: 0.45, brush: '75mm' },
+  'turner':              { control: 0.45, brush: '75mm' },
+  'delacroix':           { control: 0.50, brush: '75mm' },
+  'courbet':             { control: 0.50, brush: '75mm' },
+  'manet':               { control: 0.50, brush: '75mm' },
   
   // === 인상주의 ===
-  'renoir':              { control: 0.30, brush: '60mm' },
-  'monet':               { control: 0.30, brush: '60mm' },
-  'degas':               { control: 0.50, brush: '60mm' },
-  'caillebotte':         { control: 0.50, brush: '60mm' },
+  'renoir':              { control: 0.30, brush: '75mm' },
+  'monet':               { control: 0.30, brush: '75mm' },
+  'degas':               { control: 0.50, brush: '75mm' },
+  'caillebotte':         { control: 0.50, brush: '75mm' },
   
   // === 후기인상주의 ===
   'vangogh':             { control: 0.45, brush: '75mm' },
-  'gauguin':             { control: 0.60, brush: '70mm' },
-  'cezanne':             { control: 0.65, brush: '70mm' },
+  'gauguin':             { control: 0.60, brush: '75mm' },
+  'cezanne':             { control: 0.65, brush: '75mm' },
   
   // === 점묘법 ===
-  'signac':              { control: 0.55, brush: '20mm' },     // 점
+  'signac':              { control: 0.55, brush: '25mm' },     // 점
   
   // === 야수파 ===
-  'matisse':             { control: 0.45, brush: '60mm' },
-  'derain':              { control: 0.45, brush: '60mm' },
-  'vlaminck':            { control: 0.45, brush: '60mm' },
+  'matisse':             { control: 0.45, brush: '75mm' },
+  'derain':              { control: 0.45, brush: '75mm' },
+  'vlaminck':            { control: 0.45, brush: '75mm' },
   
   // === 표현주의 ===
-  'munch':               { control: 0.60, brush: '60mm' },
-  'kirchner':            { control: 0.45, brush: '60mm' },
-  'kokoschka':           { control: 0.45, brush: '60mm' },
+  'munch':               { control: 0.60, brush: '75mm' },
+  'kirchner':            { control: 0.45, brush: '75mm' },
+  'kokoschka':           { control: 0.45, brush: '75mm' },
   
   // === 모더니즘/팝아트 ===
-  'picasso':             { control: 0.10, brush: '50mm' },
-  'magritte':            { control: 0.55, brush: '50mm' },
-  'miro':                { control: 0.55, brush: '50mm' },
-  'chagall':             { control: 0.40, brush: '50mm' },
+  'picasso':             { control: 0.10, brush: '75mm' },
+  'magritte':            { control: 0.55, brush: '75mm' },
+  'miro':                { control: 0.55, brush: '75mm' },
+  'chagall':             { control: 0.40, brush: '75mm' },
   'lichtenstein':        { control: 0.55, brush: null },      // 벤데이 점
-  'haring':              { control: 0.40, brush: '30mm' },
   
   // === 거장 ===
-  'klimt':               { control: 0.65, brush: '25mm' },
-  'frida':               { control: 0.80, brush: '25mm' },
+  'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
+  'frida':               { control: 0.80, brush: '25mm' },    // 세밀 상징
   
   // === 동양화 ===
   'korean':              { control: 0.75, brush: null },      // 먹선 별도
@@ -249,22 +248,22 @@ const ARTIST_CONFIG = {
 // 사조별 기본값 (화가 매칭 안 될 때 fallback)
 const MOVEMENT_DEFAULTS = {
   'ancient-greek-sculpture':              { control: 0.55, brush: null },
-  'roman-mosaic':                         { control: 0.60, brush: '50mm' },
-  'byzantine':                            { control: 0.55, brush: '20mm' },
-  'islamic-miniature':                    { control: 0.80, brush: '15mm' },
+  'roman-mosaic':                         { control: 0.60, brush: '75mm' },
+  'byzantine':                            { control: 0.55, brush: null },      // 모자이크/아이콘
+  'islamic-miniature':                    { control: 0.80, brush: '25mm' },    // 세밀화
   'gothic':                               { control: 0.50, brush: null },
-  'renaissance':                          { control: 0.80, brush: '20mm' },
-  'baroque':                              { control: 0.70, brush: '20mm' },
-  'rococo':                               { control: 0.70, brush: '20mm' },
-  'neoclassicism':                        { control: 0.80, brush: '25mm' },
-  'neoclassicism_vs_romanticism_vs_realism': { control: 0.80, brush: '25mm' },
-  'romanticism':                          { control: 0.80, brush: '25mm' },
-  'impressionism':                        { control: 0.60, brush: '30mm' },
-  'post-impressionism':                   { control: 0.55, brush: '30mm' },
-  'pointillism':                          { control: 0.55, brush: '8mm' },
-  'fauvism':                              { control: 0.45, brush: '35mm' },
-  'expressionism':                        { control: 0.45, brush: '35mm' },
-  'modernism':                            { control: 0.50, brush: '30mm' },
+  'renaissance':                          { control: 0.80, brush: '75mm' },
+  'baroque':                              { control: 0.70, brush: '75mm' },
+  'rococo':                               { control: 0.70, brush: '75mm' },
+  'neoclassicism':                        { control: 0.80, brush: '75mm' },
+  'neoclassicism_vs_romanticism_vs_realism': { control: 0.80, brush: '75mm' },
+  'romanticism':                          { control: 0.80, brush: '75mm' },
+  'impressionism':                        { control: 0.60, brush: '75mm' },
+  'post-impressionism':                   { control: 0.55, brush: '75mm' },
+  'pointillism':                          { control: 0.55, brush: '25mm' },    // 점
+  'fauvism':                              { control: 0.45, brush: '75mm' },
+  'expressionism':                        { control: 0.45, brush: '75mm' },
+  'modernism':                            { control: 0.50, brush: '75mm' },
   'korean':                               { control: 0.75, brush: null },
   'chinese':                              { control: 0.75, brush: null },
   'japanese':                             { control: 0.75, brush: null },
@@ -331,9 +330,6 @@ const ARTIST_NAME_MAPPING = {
   'roylichtenstein': 'lichtenstein',
   '리히텐슈타인': 'lichtenstein',
   '로이리히텐슈타인': 'lichtenstein',
-  'keithharing': 'haring',
-  '해링': 'haring',
-  '키스해링': 'haring',
   'gustavklimt': 'klimt',
   '클림트': 'klimt',
   '구스타프클림트': 'klimt',
@@ -415,14 +411,14 @@ function getArtistConfig(artist, styleId, category) {
   if (category === 'oriental') {
     return { control: 0.75, brush: null };
   } else if (category === 'modernism') {
-    return { control: 0.50, brush: '30mm' };
+    return { control: 0.50, brush: '75mm' };
   } else if (category === 'masters') {
     // 거장 모드: 화가별 설정이 없으면 중간값
-    return { control: 0.55, brush: '30mm' };
+    return { control: 0.55, brush: '75mm' };
   }
   
   // 4. 최종 기본값
-  return { control: 0.80, brush: '30mm' };
+  return { control: 0.80, brush: '75mm' };
 }
 
 // control_strength 결정 함수
@@ -489,16 +485,9 @@ function getAlternativeWork(artistName, avoidedWork) {
   return null;
 }
 //
-// v64: 20세기 모더니즘 6명으로 축소 (워홀 제거, 리히텐슈타인 강화)
-//      - 6명: 피카소, 마그리트, 미로, 샤갈, 리히텐슈타인, 키스해링
-//      - 제외: 브라크(피카소 중복), 달리(완전 삭제), 워홀(품질 이슈)
-//      - 사진 유형별 비중 (리히텐슈타인이 워홀 비중 흡수):
-//        🧑 단독 인물: 피카소35%, 리히텐슈타인30%, 마그리트25%, 해링10%
-//        💑 커플: 피카소30%, 리히텐슈타인25%, 샤갈25%, 마그리트20%
-//        👥 그룹3+: 피카소30%, 해링30%, 리히텐슈타인25%, 샤갈15%
-//        🏞️ 풍경: 피카소30%, 마그리트30%, 샤갈20%, 미로20%
-//        🍎 정물: 피카소35%, 마그리트25%, 리히텐슈타인20%, 미로20%
-//      - 미로: 풍경/정물 전용 (인물 제외)
+// v64: 20세기 모더니즘 5명으로 축소 (워홀, 해링 제거)
+//      - 5명: 피카소, 마그리트, 미로, 샤갈, 리히텐슈타인
+//      - 제외: 브라크(피카소 중복), 달리(완전 삭제), 워홀(품질 이슈), 해링(실루엣화로 얼굴 보존 안됨)
 //
 // v58: 20세기 모더니즘 가이드라인 단순화 (네가티브 원칙)
 //      - 거장 7명 강화 프롬프트 한글 감지 추가
@@ -507,7 +496,7 @@ function getAlternativeWork(artistName, avoidedWork) {
 // v51: 20세기 모더니즘 추가 (11번째 사조)
 //      - 입체주의: 피카소
 //      - 초현실주의: 마그리트, 미로, 샤갈
-//      - 팝아트: 리히텐슈타인, 키스해링
+//      - 팝아트: 리히텐슈타인
 //      ⛔ 제외: 만 레이(사진작가), 프리다(마스터 전용), 뒤샹(개념미술), 폴록/로스코(완전추상), 달리(삭제), 브라크(중복), 워홀(품질이슈)
 //
 // v57: 중세 미술 회화 느낌 방지 강화
@@ -559,7 +548,7 @@ function getAlternativeWork(artistName, avoidedWork) {
 //  11. 20세기 모더니즘 (1907~1970) - 6명 화가 선택 ⭐ v64 업데이트
 //      → 입체주의: 피카소
 //      → 초현실주의: 마그리트, 미로(풍경/정물전용), 샤갈
-//      → 팝아트: 리히텐슈타인, 키스해링
+//      → 팝아트: 리히텐슈타인
 //      ⛔ 제외: 브라크(피카소중복), 달리(삭제), 만 레이(사진작가), 워홀(품질이슈)
 //
 // 거장 7명 (시간순 + 생사연도):
@@ -2182,8 +2171,6 @@ Available 20th Century Modernism Artists (6명):
 === POP ART 팝아트 ===
 5. LICHTENSTEIN (리히텐슈타인) - Ben-Day dots, comic book style
    - Masterworks: "Drowning Girl", "Whaam!", "Hopeless" ← SELECT ONE ONLY!
-6. KEITH HARING (키스 해링) - Bold black outlines, dancing figures
-   - Masterworks: "Radiant Baby", "Barking Dog", "Dancing Figures" ← SELECT ONE ONLY!
 
 ⚠️ CRITICAL: You MUST select a masterwork from the exact list above! Do NOT invent new titles!
 
@@ -2192,29 +2179,29 @@ Available 20th Century Modernism Artists (6명):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🧑 SINGLE PORTRAIT (단독 인물):
-   PICASSO 40%, MAGRITTE 30%, LICHTENSTEIN 20%, HARING 10%
+   PICASSO 30%, MAGRITTE 35%, LICHTENSTEIN 35%
    ❌ CHAGALL, MIRÓ 제외
 
 💑 COUPLE (커플 2인):
-   PICASSO 35%, CHAGALL 30%, MAGRITTE 20%, LICHTENSTEIN 15%
-   ❌ HARING, MIRÓ 제외
+   PICASSO 25%, CHAGALL 30%, MAGRITTE 20%, LICHTENSTEIN 25%
+   ❌ MIRÓ 제외
 
 👥 GROUP 3+ (단체 3명 이상):
-   PICASSO 35%, HARING 35%, CHAGALL 15%, LICHTENSTEIN 15%
+   PICASSO 30%, CHAGALL 35%, LICHTENSTEIN 35%
    ❌ MAGRITTE, MIRÓ 제외
 
 🏞️ LANDSCAPE (풍경):
-   PICASSO 30%, MAGRITTE 30%, CHAGALL 20%, MIRÓ 20%
-   ❌ LICHTENSTEIN, HARING 제외
+   PICASSO 25%, MAGRITTE 30%, CHAGALL 20%, MIRÓ 25%
+   ❌ LICHTENSTEIN 제외
 
 🍎 STILL LIFE (정물):
-   PICASSO 40%, MAGRITTE 30%, MIRÓ 30%
-   ❌ CHAGALL, LICHTENSTEIN, HARING 제외
+   PICASSO 30%, MAGRITTE 35%, MIRÓ 35%
+   ❌ CHAGALL, LICHTENSTEIN 제외
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-⚠️ FINAL REMINDER: ONLY these 6 artists are valid:
-PICASSO, MAGRITTE, MIRÓ, CHAGALL, LICHTENSTEIN, KEITH HARING
+⚠️ FINAL REMINDER: ONLY these 5 artists are valid:
+PICASSO, MAGRITTE, MIRÓ, CHAGALL, LICHTENSTEIN
 `;
 }
 
@@ -2348,37 +2335,37 @@ const fallbackPrompts = {
   
   renaissance: {
     name: 'Leonardo da Vinci',
-    prompt: 'Renaissance painting by Leonardo da Vinci, Leonardo art style, EXTREME sfumato technique, PRESERVE original person face and features exactly, apply Mona Lisa PAINTING TECHNIQUE ONLY sfumato haze, do NOT transform face into Mona Lisa apply Leonardo STYLE not LIKENESS, apply very strong soft atmospheric haze throughout, all edges must be completely blurred, no sharp outlines anywhere in entire painting, mysterious smoky depth with sfumato technique, every boundary softly dissolved into atmosphere, warm golden Renaissance colors, harmonious balanced composition, unified composition all figures together NOT separated, preserve facial identity, Renaissance masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Renaissance painting by Leonardo da Vinci, Leonardo art style, EXTREME sfumato technique, PRESERVE original person face and features exactly, apply Mona Lisa PAINTING TECHNIQUE ONLY sfumato haze, do NOT transform face into Mona Lisa apply Leonardo STYLE not LIKENESS, apply very strong soft atmospheric haze throughout, all edges must be completely blurred, no sharp outlines anywhere in entire painting, mysterious smoky depth with sfumato technique, every boundary softly dissolved into atmosphere, warm golden Renaissance colors, harmonious balanced composition, unified composition all figures together NOT separated, preserve facial identity, Renaissance masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   baroque: {
     name: 'Caravaggio',
-    prompt: 'Baroque painting by Caravaggio, Caravaggio art style, DRAMATIC chiaroscuro lighting with extreme light-dark contrast, theatrical spotlight effect, deep black shadows, tenebrism technique, rich deep colors, dynamic diagonal composition, theatrical emotional atmosphere, single unified composition with all figures together in one cohesive continuous scene NOT separated into multiple groups, Baroque masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Baroque painting by Caravaggio, Caravaggio art style, DRAMATIC chiaroscuro lighting with extreme light-dark contrast, theatrical spotlight effect, deep black shadows, tenebrism technique, rich deep colors, dynamic diagonal composition, theatrical emotional atmosphere, single unified composition with all figures together in one cohesive continuous scene NOT separated into multiple groups, Baroque masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   rococo: {
     name: 'Antoine Watteau',
-    prompt: 'Rococo oil painting by Watteau, Watteau art style, VISIBLE BRUSHSTROKES with oil paint texture throughout, light pastel colors, playful ornate decoration, soft delicate brushwork, romantic elegant atmosphere, graceful curved lines, whimsical charm, single unified composition with all figures together in one cohesive scene NOT separated into multiple groups, painted on canvas with VISIBLE PAINT TEXTURE, Rococo masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Rococo oil painting by Watteau, Watteau art style, VISIBLE BRUSHSTROKES with oil paint texture throughout, light pastel colors, playful ornate decoration, soft delicate brushwork, romantic elegant atmosphere, graceful curved lines, whimsical charm, single unified composition with all figures together in one cohesive scene NOT separated into multiple groups, painted on canvas with VISIBLE PAINT TEXTURE, Rococo masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   neoclassicism_vs_romanticism_vs_realism: {
     name: '신고전 vs 낭만 vs 사실주의',
-    prompt: 'Choose best style based on photo: if static balanced formal use Neoclassical style by Jacques-Louis David, David art style, with cold perfection and clear lines, if dynamic emotional landscape use Romantic style by J.M.W. Turner, Turner art style, with atmospheric sublime effects, if rural peaceful use Realist style by Gustave Courbet, Courbet art style, with honest rural reality, if urban modern use Realist style by Édouard Manet, Manet art style, with sophisticated Paris realism, masterpiece quality with single unified composition NOT separated, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Choose best style based on photo: if static balanced formal use Neoclassical style by Jacques-Louis David, David art style, with cold perfection and clear lines, if dynamic emotional landscape use Romantic style by J.M.W. Turner, Turner art style, with atmospheric sublime effects, if rural peaceful use Realist style by Gustave Courbet, Courbet art style, with honest rural reality, if urban modern use Realist style by Édouard Manet, Manet art style, with sophisticated Paris realism, masterpiece quality with single unified composition NOT separated, NOT photograph, NOT 3D, NOT digital'
   },
   
   impressionism: {
     name: 'Claude Monet',
-    prompt: 'Impressionist painting by Claude Monet, Monet art style, ROUGH VISIBLE BROKEN brushstrokes, SOFT HAZY atmospheric effects like morning mist, colors BLENDED and DISSOLVED into each other, NO sharp edges, dreamy blurred boundaries, dappled light filtering through atmosphere, Woman with a Parasol style atmospheric haze, everything slightly out of focus and impressionistic, NOT photographic clarity, Impressionist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Impressionist painting by Claude Monet, Monet art style, ROUGH VISIBLE BROKEN brushstrokes, SOFT HAZY atmospheric effects like morning mist, colors BLENDED and DISSOLVED into each other, NO sharp edges, dreamy blurred boundaries, dappled light filtering through atmosphere, Woman with a Parasol style atmospheric haze, everything slightly out of focus and impressionistic, NOT photographic clarity, Impressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   postImpressionism: {
     name: 'Vincent van Gogh',
-    prompt: 'Post-Impressionist painting, Post-Impressionist art style, bold expressive colors, personal artistic vision, emotional depth and symbolic meaning, visible distinctive brushwork, Post-Impressionist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Post-Impressionist painting, Post-Impressionist art style, bold expressive colors, personal artistic vision, emotional depth and symbolic meaning, visible distinctive brushwork, Post-Impressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   fauvism: {
     name: 'Henri Matisse',
-    prompt: 'Fauvist painting by Henri Matisse, Matisse Fauvist art style, pure bold unmixed colors, flat decorative patterns, intense color contrasts, liberation of color from reality, simplified forms, joyful energetic atmosphere, The Dance-like pure color harmony, Fauvist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Fauvist painting by Henri Matisse, Matisse Fauvist art style, pure bold unmixed colors, flat decorative patterns, intense color contrasts, liberation of color from reality, simplified forms, joyful energetic atmosphere, The Dance-like pure color harmony, Fauvist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   expressionism: {
@@ -2404,7 +2391,7 @@ const fallbackPrompts = {
     artist: 'Vincent van Gogh (1853-1890)',
     movement: '후기인상주의 (Post-Impressionism)',
     defaultWork: 'The Starry Night',
-    prompt: 'painting by Vincent van Gogh, Van Gogh art style, THICK SWIRLING IMPASTO brushstrokes visible throughout, VIBRANT INTENSE emotional colors, cobalt blue, chrome yellow, emerald green, dynamic energetic turbulent sky and background, Starry Night style spiraling movement, passionate expressive emotional power, preserve subject identity, Van Gogh masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Vincent van Gogh, Van Gogh art style, THICK SWIRLING IMPASTO brushstrokes visible throughout, VIBRANT INTENSE emotional colors, cobalt blue, chrome yellow, emerald green, dynamic energetic turbulent sky and background, Starry Night style spiraling movement, passionate expressive emotional power, preserve subject identity, Van Gogh masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   klimt: {
@@ -2412,7 +2399,7 @@ const fallbackPrompts = {
     artist: 'Gustav Klimt (1862-1918)',
     movement: '아르누보 (Art Nouveau)',
     defaultWork: 'The Kiss',
-    prompt: 'painting by Gustav Klimt, Klimt Golden Phase art style, GOLD LEAF decorative patterns throughout background, Byzantine mosaic geometric ornaments, The Kiss style intimate sensuous atmosphere, MYSTERIOUS ALLURING EXPRESSION, femme fatale for women, homme fatale for men, jewel-like rich colors, gold, bronze, deep reds, flowing organic Art Nouveau lines, symbolic decorative elements, golden glow on skin, preserve subject identity, Klimt masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Gustav Klimt, Klimt Golden Phase art style, GOLD LEAF decorative patterns throughout background, Byzantine mosaic geometric ornaments, The Kiss style intimate sensuous atmosphere, MYSTERIOUS ALLURING EXPRESSION, femme fatale for women, homme fatale for men, jewel-like rich colors, gold, bronze, deep reds, flowing organic Art Nouveau lines, symbolic decorative elements, golden glow on skin, preserve subject identity, Klimt masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   munch: {
@@ -2420,7 +2407,7 @@ const fallbackPrompts = {
     artist: 'Edvard Munch (1863-1944)',
     movement: '표현주의 (Expressionism)',
     defaultWork: 'The Scream',
-    prompt: 'painting by Edvard Munch, Munch Expressionist art style, INTENSE PSYCHOLOGICAL emotional depth, The Scream style existential anxiety atmosphere, WAVY DISTORTED flowing lines throughout background AND on figure, haunting symbolic colors, blood red orange sky, sickly yellows, deep blues, ANXIOUS ANGUISHED EXPRESSION on face NOT happy NOT smiling, raw emotional vulnerability exposed, visible brushwork, preserve subject identity, Munch Expressionist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Edvard Munch, Munch Expressionist art style, INTENSE PSYCHOLOGICAL emotional depth, The Scream style existential anxiety atmosphere, WAVY DISTORTED flowing lines throughout background AND on figure, haunting symbolic colors, blood red orange sky, sickly yellows, deep blues, ANXIOUS ANGUISHED EXPRESSION on face NOT happy NOT smiling, raw emotional vulnerability exposed, visible brushwork, preserve subject identity, Munch Expressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   matisse: {
@@ -2428,7 +2415,7 @@ const fallbackPrompts = {
     artist: 'Henri Matisse (1869-1954)',
     movement: '야수파 (Fauvism)',
     defaultWork: 'The Dance',
-    prompt: 'painting by Henri Matisse, Matisse Fauvist art style, PURE BOLD UNMIXED COLORS in flat decorative areas, The Dance style simplified joyful forms, complete liberation of color from reality, saturated intense primary colors, red, blue, green, APPLY UNREALISTIC COLORS TO FACE AND SKIN, green purple red on face OK, simplified facial features, rhythmic flowing harmonious lines, ROUGH FAUVIST BRUSHSTROKES clearly visible throughout including on skin NOT smooth NOT blended, life-affirming energetic atmosphere, preserve subject identity, Matisse Fauvist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Henri Matisse, Matisse Fauvist art style, PURE BOLD UNMIXED COLORS in flat decorative areas, The Dance style simplified joyful forms, complete liberation of color from reality, saturated intense primary colors, red, blue, green, APPLY UNREALISTIC COLORS TO FACE AND SKIN, green purple red on face OK, simplified facial features, rhythmic flowing harmonious lines, ROUGH FAUVIST BRUSHSTROKES clearly visible throughout including on skin NOT smooth NOT blended, life-affirming energetic atmosphere, preserve subject identity, Matisse Fauvist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   picasso: {
@@ -2436,7 +2423,7 @@ const fallbackPrompts = {
     artist: 'Pablo Picasso (1881-1973)',
     movement: '입체주의 (Cubism)',
     defaultWork: 'Les Demoiselles d\'Avignon',
-    prompt: 'Cubist painting by Pablo Picasso, Picasso Cubism art style, MOST IMPORTANT THE FACE MUST BE CUBIST DECONSTRUCTED NOT REALISTIC, REQUIRED DISTORTIONS: show PROFILE NOSE side view while BOTH EYES face FORWARD on same face, FRAGMENT face into FLAT ANGULAR GEOMETRIC PLANES, break JAW FOREHEAD CHEEKS into separate angular shapes like shattered glass, Les Demoiselles d Avignon African mask angular style, Earth tones, ochre, brown, olive, grey, If the face looks normal or realistic YOU ARE DOING IT WRONG faces must look abstracted and geometrically impossible, Picasso Cubist masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Cubist painting by Pablo Picasso, Picasso Cubism art style, MOST IMPORTANT THE FACE MUST BE CUBIST DECONSTRUCTED NOT REALISTIC, REQUIRED DISTORTIONS: show PROFILE NOSE side view while BOTH EYES face FORWARD on same face, FRAGMENT face into FLAT ANGULAR GEOMETRIC PLANES, break JAW FOREHEAD CHEEKS into separate angular shapes like shattered glass, Les Demoiselles d Avignon African mask angular style, Earth tones, ochre, brown, olive, grey, If the face looks normal or realistic YOU ARE DOING IT WRONG faces must look abstracted and geometrically impossible, Picasso Cubist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   frida: {
@@ -2444,7 +2431,7 @@ const fallbackPrompts = {
     artist: 'Frida Kahlo (1907-1954)',
     movement: '멕시코 초현실주의 (Mexican Surrealism)',
     defaultWork: 'Me and My Parrots',
-    prompt: 'painting by Frida Kahlo, Frida Kahlo art style, INTENSE DIRECT GAZE portrait style, vibrant Mexican folk art colors, symbolic personal imagery, flowers, animals, vines, hearts, emotional raw vulnerability, Mexican traditional dress and floral headpiece, lush tropical green foliage background, autobiographical symbolic elements, rich saturated colors, detailed oil painting brushwork visible, preserve subject identity, Frida Kahlo masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Frida Kahlo, Frida Kahlo art style, INTENSE DIRECT GAZE portrait style, vibrant Mexican folk art colors, symbolic personal imagery, flowers, animals, vines, hearts, emotional raw vulnerability, Mexican traditional dress and floral headpiece, lush tropical green foliage background, autobiographical symbolic elements, rich saturated colors, detailed oil painting brushwork visible, preserve subject identity, Frida Kahlo masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   // ========================================
@@ -2468,7 +2455,7 @@ const fallbackPrompts = {
   
   masters: {
     name: '거장 화풍',
-    prompt: 'Master artist painting, master artist art style, exceptional technical skill, distinctive artistic vision, profound emotional depth, timeless masterpiece quality, VISIBLE THICK BRUSHSTROKES 30mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Master artist painting, master artist art style, exceptional technical skill, distinctive artistic vision, profound emotional depth, timeless masterpiece quality, NOT photograph, NOT 3D, NOT digital'
   },
   
   oriental: {
@@ -3847,8 +3834,7 @@ export default async function handler(req, res) {
             'magritte': 'magritte', 'rené magritte': 'magritte', 'rene magritte': 'magritte',
             'miro': 'miro', 'miró': 'miro', 'joan miro': 'miro', 'joan miró': 'miro',
             'chagall': 'chagall', 'marc chagall': 'chagall',
-            'lichtenstein': 'lichtenstein', 'roy lichtenstein': 'lichtenstein',
-            'haring': 'haring', 'keith haring': 'haring', 'keith-haring': 'haring'
+            'lichtenstein': 'lichtenstein', 'roy lichtenstein': 'lichtenstein'
           };
           
           const artistLower = selectedArtist.toLowerCase().trim();
@@ -4448,20 +4434,6 @@ export default async function handler(req, res) {
           }
         }
         
-        // 키스 해링 선택시 그래피티 아트 스타일 강화 (모더니즘)
-        if (selectedArtist.toUpperCase().trim().includes('KEITH') || 
-            selectedArtist.toUpperCase().trim().includes('HARING') ||
-            selectedArtist.includes('키스') ||
-            selectedArtist.includes('해링')) {
-          // console.log('🎯 Keith Haring detected');
-          if (!finalPrompt.includes('radiant')) {
-            finalPrompt = finalPrompt + ', Transform like Keith Haring street art - CRITICAL: BOLD THICK BLACK OUTLINES around all figures, figures MAXIMALLY SIMPLIFIED into iconic dancing silhouettes, REDUCED TO ESSENTIAL SHAPES ONLY, bright PRIMARY COLORS filling shapes (red, yellow, blue, green, orange, pink), RADIANT LINES emanating from bodies showing energy and movement, FLAT GRAPHIC shapes NO gradients NO shading NO fine details, flat graphic subway graffiti style, NOT photorealistic NOT detailed, figures in DYNAMIC DANCING POSES with movement lines, barking dogs and crawling babies as motifs, joyful energetic street art aesthetic';
-            // console.log('✅ Enhanced Keith Haring with bold outlines and radiant lines (control_strength 0.40)');
-          } else {
-            // console.log('ℹ️ Keith Haring style already in prompt (AI included it)');
-          }
-        }
-        
         // 리히텐슈타인 선택시 벤데이 도트/만화 강화 (모더니즘)
         if (selectedArtist.toUpperCase().trim().includes('LICHTENSTEIN') || 
             selectedArtist.toUpperCase().trim().includes('ROY') ||
@@ -4646,8 +4618,44 @@ export default async function handler(req, res) {
     const shouldApplyAttractive = !hasAttractiveException;
     
     // ========================================
+    // v71: 붓터치 크기 적용 (화풍 바로 다음, 대전제 앞)
+    // 순서: [화풍 + 대표작] + [붓터치] + [대전제] + [성별] + [매력]
+    // ========================================
+    const brushSize = getBrushstrokeSize(selectedArtist, selectedStyle.id, categoryType);
+    if (brushSize) {
+      // 기존 붓터치 명령어 모두 제거 후 새로 추가
+      finalPrompt = finalPrompt
+        .replace(/,?\s*VISIBLE THICK BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE THICK OIL PAINT BRUSHSTROKES \(\d+mm\+?[^)]*\)?/gi, '')
+        .replace(/,?\s*VISIBLE BRUSH TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE INK BRUSH TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*THICK BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*CHUNKY WIDE BRUSH MARKS \(\d+mm\+?[^)]*\)?/gi, '')
+        .replace(/,?\s*TURBULENT VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*LARGE VISIBLE DOTS \d+mm[^,]*/gi, '')
+        .replace(/,?\s*VISIBLE WOODBLOCK PRINT TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*ROUGH THICK OIL PAINT TEXTURE,?\s*/gi, '');
+      finalPrompt = finalPrompt + `, ROUGH THICK OIL PAINT TEXTURE, VISIBLE THICK BRUSHSTROKES ${brushSize}+`;
+      logData.prompt.applied.brushwork = true;
+    } else {
+      // brush가 null인 경우 (동양화, 팝아트 등) - 기존 붓터치 명령어만 제거
+      finalPrompt = finalPrompt
+        .replace(/,?\s*VISIBLE THICK BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE THICK OIL PAINT BRUSHSTROKES \(\d+mm\+?[^)]*\)?/gi, '')
+        .replace(/,?\s*VISIBLE BRUSH TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE INK BRUSH TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*THICK BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*CHUNKY WIDE BRUSH MARKS \(\d+mm\+?[^)]*\)?/gi, '')
+        .replace(/,?\s*TURBULENT VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
+        .replace(/,?\s*VISIBLE WOODBLOCK PRINT TEXTURE \d+mm\+?/gi, '')
+        .replace(/,?\s*ROUGH THICK OIL PAINT TEXTURE,?\s*/gi, '');
+    }
+
+    // ========================================
     // v68: 대전제 + 성별 추가 (화풍+대표작 뒤에)
-    // 순서: [화풍 + 대표작] + [대전제] + [성별] + [매력]
+    // 순서: [화풍 + 대표작] + [붓터치] + [대전제] + [성별] + [매력]
     // ========================================
     finalPrompt = finalPrompt + ' ' + coreRulesPrefix;
     logData.prompt.applied.coreRules = true;
@@ -4711,38 +4719,6 @@ export default async function handler(req, res) {
     // v70: 최종 control_strength 설정 (모든 분기 완료 후)
     controlStrength = getControlStrength(selectedArtist, selectedStyle.id, categoryType);
     // console.log(`📊 Final control_strength: ${controlStrength} (artist: ${selectedArtist})`);
-    
-    // v70: 붓터치 크기 적용
-    const brushSize = getBrushstrokeSize(selectedArtist, selectedStyle.id, categoryType);
-    if (brushSize) {
-      // 기존 붓터치 명령어 모두 제거 후 새로 추가
-      finalPrompt = finalPrompt
-        .replace(/,?\s*VISIBLE THICK BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE THICK OIL PAINT BRUSHSTROKES \(\d+mm\+?[^)]*\)?/gi, '')
-        .replace(/,?\s*VISIBLE BRUSH TEXTURE \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE INK BRUSH TEXTURE \d+mm\+?/gi, '')
-        .replace(/,?\s*THICK BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*CHUNKY WIDE BRUSH MARKS \(\d+mm\+?[^)]*\)?/gi, '')
-        .replace(/,?\s*TURBULENT VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*LARGE VISIBLE DOTS \d+mm[^,]*/gi, '')  // 점묘법
-        .replace(/,?\s*VISIBLE WOODBLOCK PRINT TEXTURE \d+mm\+?/gi, '');
-      finalPrompt = finalPrompt + `, VISIBLE THICK BRUSHSTROKES ${brushSize}+`;
-      // console.log(`🖌️ Brushstroke: ${brushSize} (artist: ${selectedArtist})`);
-    } else {
-      // brush가 null인 경우 (동양화, 팝아트 등) - 기존 붓터치 명령어만 제거
-      finalPrompt = finalPrompt
-        .replace(/,?\s*VISIBLE THICK BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE THICK OIL PAINT BRUSHSTROKES \(\d+mm\+?[^)]*\)?/gi, '')
-        .replace(/,?\s*VISIBLE BRUSH TEXTURE \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE INK BRUSH TEXTURE \d+mm\+?/gi, '')
-        .replace(/,?\s*THICK BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*CHUNKY WIDE BRUSH MARKS \(\d+mm\+?[^)]*\)?/gi, '')
-        .replace(/,?\s*TURBULENT VISIBLE BRUSHSTROKES \d+mm\+?/gi, '')
-        .replace(/,?\s*VISIBLE WOODBLOCK PRINT TEXTURE \d+mm\+?/gi, '');
-      // console.log(`🖌️ Brushstroke: none (artist: ${selectedArtist})`);
-    }
     
     // 풍경/정물일 때 boost 적용 (이미 landscapeStrengthBoost가 true면)
     if (landscapeStrengthBoost) {

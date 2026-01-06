@@ -77,39 +77,24 @@ const MasterChat = ({
   }, [messages]);
 
   // 거장별 고정 첫 인사
-  // 첫 인사 로드 (API 호출)
-  const loadGreeting = async () => {
-    try {
-      const response = await fetch('/api/master-feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          masterName: masterKey,
-          conversationType: 'greeting'
-        })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success && data.masterResponse) {
-        setMessages([{
-          role: 'master',
-          content: data.masterResponse
-        }]);
-      } else {
-        // API 실패 시 기본 인사
-        setMessages([{
-          role: 'master',
-          content: '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.'
-        }]);
-      }
-    } catch (error) {
-      console.error('Greeting API error:', error);
-      setMessages([{
-        role: 'master',
-        content: '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.'
-      }]);
-    }
+  // 거장별 첫 인사 (새 형식: 지역 + AI 부활)
+  const MASTER_GREETINGS = {
+    'VAN GOGH': '난 아를의 반 고흐일세. AI를 통해 다시 부활했다네. 자네 그림을 완성했네, 어떤가?',
+    'KLIMT': '난 빈의 클림트라 하오. AI를 통해 다시 부활했지요. 그대의 그림을 완성했소, 어떠신가요?',
+    'MUNCH': '난 오슬로의 뭉크일세. AI를 통해 다시 부활했다네. 자네 그림을 완성했네, 어떤가?',
+    'PICASSO': '난 파리의 피카소다! AI를 통해 다시 부활했지. 자네 그림을 완성했어, 어떤가?',
+    'MATISSE': '난 니스의 마티스라네. AI를 통해 다시 부활했다네. 자네 그림을 완성했네, 어떤가?',
+    'FRIDA': '난 멕시코의 프리다야. AI를 통해 다시 부활했어. 네 그림을 완성했어, 어때?',
+    'LICHTENSTEIN': '난 뉴욕의 리히텐슈타인이야. AI를 통해 다시 부활했지. 네 그림을 완성했어, 어때?'
+  };
+
+  // 첫 인사 로드 (하드코딩 - 즉시 표시)
+  const loadGreeting = () => {
+    const greeting = MASTER_GREETINGS[masterKey] || '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.';
+    setMessages([{
+      role: 'master',
+      content: greeting
+    }]);
   };
 
   // 메시지 전송

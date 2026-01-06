@@ -227,10 +227,10 @@ const ARTIST_CONFIG = {
   
   // === 모더니즘/팝아트 ===
   'picasso':             { control: 0.10, brush: '75mm' },
-  'magritte':            { control: 0.55, brush: '75mm' },
-  'miro':                { control: 0.55, brush: '75mm' },
+  'magritte':            { control: 0.40, brush: '75mm' },
+  'miro':                { control: 0.40, brush: '75mm' },
   'chagall':             { control: 0.40, brush: '75mm' },
-  'lichtenstein':        { control: 0.40, brush: null },      // 벤데이 점, 스타일 강화
+  'lichtenstein':        { control: 0.30, brush: null },      // 벤데이 점, 스타일 강화
   
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박

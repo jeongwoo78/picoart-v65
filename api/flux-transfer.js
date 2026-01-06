@@ -3184,8 +3184,8 @@ export default async function handler(req, res) {
           if (workKey) {
             const artistKey = workKey.split('-')[0];
             
-            // v66: 고흐/뭉크/클림트/마티스/피카소/프리다는 masterworks에서 가져오기
-            if (['vangogh', 'munch', 'klimt', 'matisse', 'picasso', 'frida'].includes(artistKey)) {
+            // v70: 거장 7명 모두 masterworks에서 가져오기
+            if (['vangogh', 'munch', 'klimt', 'matisse', 'picasso', 'frida', 'lichtenstein'].includes(artistKey)) {
               const movementMasterwork = getMovementMasterwork(workKey);
               if (movementMasterwork) {
                 console.log('');

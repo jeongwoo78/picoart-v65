@@ -27,7 +27,6 @@ export const masterworkNameMapping = {
   // 뭉크
   'the scream': 'munch-scream', '절규': 'munch-scream',
   'madonna': 'munch-madonna', '마돈나': 'munch-madonna',
-  'the dance of life': 'munch-danceoflife', '생의 춤': 'munch-danceoflife',
   
   // 마티스
   'the dance': 'matisse-dance', '춤': 'matisse-dance',
@@ -937,13 +936,6 @@ export const munchMasterworks = {
     prompt: 'Edvard Munch "Madonna" (1894-1895), flowing dark hair spreading like HALO around head, RED AURA glowing, pale luminous skin, mysterious seductive, wavy lines.',
     feature: '신비/관능',
     expressionRule: 'ecstatic/mysterious allowed, NO bright, NO smiling'
-  },
-  'munch-danceoflife': {
-    name: '생의 춤',
-    nameEn: 'The Dance of Life',
-    prompt: 'Edvard Munch "The Dance of Life" (1899-1900), COUPLES DANCING on moonlit shore, central couple in RED embracing, figures in WHITE and BLACK on sides symbolizing life stages, WAVY DISTORTED forms, moon reflection on water, emotional psychological depth, PRESERVE ORIGINAL FACIAL FEATURES.',
-    feature: 'GROUP/로맨틱',
-    expressionRule: 'romantic/melancholic allowed'
   }
 };
 
@@ -1257,7 +1249,7 @@ export function getArtistMasterworkList(artistKey) {
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
     'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife'],
-    'munch': ['munch-scream', 'munch-madonna', 'munch-danceoflife'],
+    'munch': ['munch-scream', 'munch-madonna'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
     'picasso': ['picasso-guernica', 'picasso-musicians', 'picasso-doramaar'],
@@ -1613,8 +1605,7 @@ MAURICE DE VLAMINCK - SELECT ONE:
   'munch': `
 EDVARD MUNCH - SELECT ONE:
 1. "The Scream" (절규) → emotional, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
-2. "Madonna" (마돈나) → mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
-3. "The Dance of Life" (생의 춤) → romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
+2. "Madonna" (마돈나) → FEMALE, mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
 
 ⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.`,
 

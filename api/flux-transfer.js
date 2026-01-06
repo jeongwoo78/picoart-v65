@@ -2695,9 +2695,12 @@ export default async function handler(req, res) {
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log('');
       
+      // 클라이언트가 기대하는 형식으로 응답 (1차 변환과 동일)
       return res.status(200).json({
-        success: true,
-        resultUrl: data.output,
+        status: 'succeeded',
+        output: data.output,
+        selected_artist: '재변환',
+        selected_work: correctionPrompt,
         isRetransform: true
       });
     }

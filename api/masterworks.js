@@ -942,7 +942,7 @@ export const munchMasterworks = {
   'munch-anxiety': {
     name: '불안',
     nameEn: 'Anxiety',
-    prompt: 'Edvard Munch "Anxiety" (1894), GROUP of figures on bridge with PALE GHOSTLY faces showing COLLECTIVE DREAD, BLOOD RED orange sky pressing down, dark clothing, wavy distorted background, same bridge setting as The Scream but with MULTIPLE FIGURES, PRESERVE ORIGINAL FACIAL FEATURES.',
+    prompt: 'Edvard Munch "Anxiety" (1894), GROUP of figures on bridge with worried tense expressions, BLOOD RED orange sky pressing down, dark clothing, wavy distorted background, same bridge setting as The Scream but with MULTIPLE FIGURES, PRESERVE ORIGINAL FACIAL FEATURES.',
     feature: '집단불안',
     attractiveException: true,
     expressionRule: 'anxiety/dread allowed, NO bright, NO smiling'

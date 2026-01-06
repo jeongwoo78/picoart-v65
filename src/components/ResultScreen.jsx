@@ -180,11 +180,23 @@ const ResultScreen = ({
       
       // v69: 점진적 수정 - 원본이 아닌 현재 결과물 기반으로 재변환
       // 이미 재변환한 결과가 있으면 그것을, 없으면 1차 결과를 사용
-      const imageToModify = masterResultImages[masterKey] || displayImage;
+      const currentImageUrl = masterResultImages[masterKey] || displayImage;
+      
+      // URL을 Blob으로 변환 (processStyleTransfer는 File/Blob을 기대)
+      let imageToModify;
+      if (currentImageUrl && typeof currentImageUrl === 'string' && currentImageUrl.startsWith('http')) {
+        // URL인 경우 fetch해서 Blob으로 변환
+        const response = await fetch(currentImageUrl);
+        const blob = await response.blob();
+        imageToModify = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+      } else {
+        // 이미 File/Blob인 경우 그대로 사용
+        imageToModify = currentImageUrl || originalPhoto;
+      }
       
       // 기존 FLUX API 호출 (보정 프롬프트 추가)
       const result = await processStyleTransfer(
-        imageToModify,  // 원본 대신 현재 결과물 사용
+        imageToModify,
         styleToUse,
         correctionPrompt  // 보정 프롬프트 전달
       );

@@ -178,9 +178,13 @@ const ResultScreen = ({
       // 원클릭 모드: currentResult의 style 사용, 단독: selectedStyle 사용
       const styleToUse = isFullTransform ? currentResult?.style : selectedStyle;
       
+      // v69: 점진적 수정 - 원본이 아닌 현재 결과물 기반으로 재변환
+      // 이미 재변환한 결과가 있으면 그것을, 없으면 1차 결과를 사용
+      const imageToModify = masterResultImages[masterKey] || displayImage;
+      
       // 기존 FLUX API 호출 (보정 프롬프트 추가)
       const result = await processStyleTransfer(
-        originalPhoto,
+        imageToModify,  // 원본 대신 현재 결과물 사용
         styleToUse,
         correctionPrompt  // 보정 프롬프트 전달
       );

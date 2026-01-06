@@ -1,4 +1,9 @@
-// PicoArt v64 - FLUX 프롬프트 효율화 (자연어 + 키워드 하이브리드)
+// PicoArt v70 - 거장 AI 재변환 명령어 개선
+// v70: 재변환 시 artistStyles.js 화풍 연동
+//      - MODIFY → PRESERVE → 금지 순서 (샌드위치)
+//      - 거장별 화풍 프롬프트 자동 적용
+//      - 스타일 보존력 강화
+//
 // v64: 자연어 문장형 프롬프트 적용
 //      - 대전제, 샌드위치, paintingEnforcement 자연어 문장형으로 변환
 //      - "by [Artist], [Artist] art style" 패턴 적용
@@ -2639,20 +2644,52 @@ export default async function handler(req, res) {
     const categoryType = selectedStyle.category; // categoryType 변수 추가
     
     // ========================================
-    // v69: 재변환 모드 (correctionPrompt 있으면)
-    // Vision 분석 없이 correctionPrompt만 사용
+    // v70: 재변환 모드 (correctionPrompt 있으면)
+    // artistStyles.js 화풍 연동 + MODIFY 먼저 순서
     // ========================================
     if (correctionPrompt) {
       console.log('');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('🔄 재변환 모드 (FLUX Kontext Pro)');
+      console.log('🔄 재변환 모드 (FLUX Kontext Pro) v70');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`📝 수정 요청: ${correctionPrompt}`);
-      console.log('');
       
-      // FLUX Kontext 프롬프트: 수정 요청 + 스타일 유지
-      const kontextPrompt = correctionPrompt + ', while keeping the same artistic style and composition';
-      console.log(`🎨 Kontext 프롬프트: ${kontextPrompt}`);
+      // v70: 거장 키 → artistStyles 키 매핑
+      const MASTER_TO_ARTIST_KEY = {
+        'VAN GOGH': 'vangogh',
+        'KLIMT': 'klimt',
+        'MUNCH': 'munch',
+        'PICASSO': 'picasso',
+        'MATISSE': 'matisse',
+        'FRIDA': 'frida',
+        'LICHTENSTEIN': 'lichtenstein'
+      };
+      
+      // 거장 키 추출 (selectedStyle.id 또는 name에서)
+      const masterKey = selectedStyle.id?.toUpperCase() || selectedStyle.name?.toUpperCase() || '';
+      const artistKey = MASTER_TO_ARTIST_KEY[masterKey];
+      
+      let kontextPrompt;
+      
+      if (artistKey && ARTIST_STYLES[artistKey]) {
+        // v70: artistStyles.js에서 화풍 가져오기
+        const fullStyle = ARTIST_STYLES[artistKey];
+        // "NOT photograph" 이전까지만 추출 (핵심 화풍 특징)
+        const styleFeatures = fullStyle.split('. NOT')[0];
+        
+        // v70: MODIFY ONLY → PRESERVE → 금지 순서 (샌드위치)
+        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. PRESERVE: ${styleFeatures}. Keep face likeness, body pose unchanged. NOT photorealistic, must look PAINTED.`;
+        
+        console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
+        console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
+      } else {
+        // 거장 매칭 안 되면 기본 프롬프트
+        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. Keep same artistic style, face likeness, body pose. NOT photorealistic, must look PAINTED.`;
+        console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
+      }
+      
+      console.log('');
+      console.log(`📜 Kontext 프롬프트: ${kontextPrompt.substring(0, 150)}...`);
       
       // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정)
       const response = await fetch(

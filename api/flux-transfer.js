@@ -1867,10 +1867,7 @@ ${masterWorks}
 ⚠️ CRITICAL: You MUST select ONLY from the works listed above. Do NOT select any other works not in this list. If you select a work not listed above, the system will fail.
 
 CRITICAL MATCHING RULES:
-- If MALE subject → AVOID works with "Woman/여인/Madonna" in title, choose neutral or male-themed works
-- If FEMALE subject → CAN select any work, female-themed preferred
-- If SINGLE person (1) → NEVER select "Anxiety" (requires group), NEVER select "The Kiss" (requires couple)
-- If GROUP (2+ people) → prefer "Anxiety" for Munch
+- If SINGLE person (1) → NEVER select "The Kiss" (requires couple)
 - If PARENT with CHILD (adult + child/baby together) → NEVER select "The Kiss" (romantic couple only, NOT for family)
 
 STYLE APPLICATION RULE:
@@ -3934,7 +3931,6 @@ export default async function handler(req, res) {
     // ========================================
     const excludeAttractive = [
       'munch-scream',      // 절규 - 공포/불안 왜곡
-      'munch-anxiety',     // 불안 - 집단 불안
       'picasso-guernica',  // 게르니카 - 전쟁 참상
       'picasso-weepingwoman', // 우는 여인 - 슬픔 왜곡
       'frida-brokencolumn' // 부러진 기둥 - 고통 시각화

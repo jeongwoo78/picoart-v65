@@ -27,7 +27,6 @@ export const masterworkNameMapping = {
   // 뭉크
   'the scream': 'munch-scream', '절규': 'munch-scream',
   'madonna': 'munch-madonna', '마돈나': 'munch-madonna',
-  'anxiety': 'munch-anxiety', '불안': 'munch-anxiety',
   'the dance of life': 'munch-danceoflife', '생의 춤': 'munch-danceoflife',
   
   // 마티스
@@ -939,14 +938,6 @@ export const munchMasterworks = {
     feature: '신비/관능',
     expressionRule: 'ecstatic/mysterious allowed, NO bright, NO smiling'
   },
-  'munch-anxiety': {
-    name: '불안',
-    nameEn: 'Anxiety',
-    prompt: 'Edvard Munch "Anxiety" (1894), GROUP of figures on bridge with worried tense expressions, BLOOD RED orange sky pressing down, dark clothing, wavy distorted background, same bridge setting as The Scream but with MULTIPLE FIGURES, PRESERVE ORIGINAL FACIAL FEATURES.',
-    feature: '집단불안',
-    attractiveException: true,
-    expressionRule: 'anxiety/dread allowed, NO bright, NO smiling'
-  },
   'munch-danceoflife': {
     name: '생의 춤',
     nameEn: 'The Dance of Life',
@@ -1266,7 +1257,7 @@ export function getArtistMasterworkList(artistKey) {
     'derain': ['derain-collioure', 'derain-charingcross', 'derain-matisse'],
     'vlaminck': ['vlaminck-chatou', 'vlaminck-redtrees', 'vlaminck-bougival'],
     'klimt': ['klimt-kiss', 'klimt-judith', 'klimt-treeoflife'],
-    'munch': ['munch-scream', 'munch-madonna', 'munch-anxiety', 'munch-danceoflife'],
+    'munch': ['munch-scream', 'munch-madonna', 'munch-danceoflife'],
     'kokoschka': ['kokoschka-bride', 'kokoschka-degenerate', 'kokoschka-double'],
     'kirchner': ['kirchner-berlin', 'kirchner-soldier', 'kirchner-oldwomen'],
     'picasso': ['picasso-guernica', 'picasso-musicians', 'picasso-doramaar'],
@@ -1621,13 +1612,11 @@ MAURICE DE VLAMINCK - SELECT ONE:
   // ========================================
   'munch': `
 EDVARD MUNCH - SELECT ONE:
-1. "The Scream" (절규) → SINGLE person, emotional portrait, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
-2. "Madonna" (마돈나) → SINGLE FEMALE, mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
-3. "Anxiety" (불안) → GROUP (2+ people), collective dread, shared unease | Style: MULTIPLE FIGURES on bridge with PALE GHOSTLY faces, BLOOD RED orange sky, dark clothing, same setting as The Scream but COLLECTIVE fear
-4. "The Dance of Life" (생의 춤) → GROUP/COUPLES, romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
+1. "The Scream" (절규) → emotional, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
+2. "Madonna" (마돈나) → mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
+3. "The Dance of Life" (생의 춤) → romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
 
-⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.
-⚠️ For GROUP photos: Select "Anxiety" (dark mood) or "The Dance of Life" (romantic mood). For SINGLE person: Select "The Scream" or "Madonna".`,
+⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.`,
 
   'kirchner': `
 ERNST LUDWIG KIRCHNER - SELECT ONE:

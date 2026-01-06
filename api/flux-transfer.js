@@ -2645,17 +2645,18 @@ export default async function handler(req, res) {
     if (correctionPrompt) {
       console.log('');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('🔄 재변환 모드 (Vision 스킵)');
+      console.log('🔄 재변환 모드 (FLUX Kontext Pro)');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`📝 수정 요청: ${correctionPrompt}`);
       console.log('');
       
-      // 재변환 프롬프트: 기존 그림 수정
-      finalPrompt = 'Modify this existing artwork: ' + correctionPrompt;
+      // FLUX Kontext 프롬프트: 수정 요청 + 스타일 유지
+      const kontextPrompt = correctionPrompt + ', while keeping the same artistic style and composition';
+      console.log(`🎨 Kontext 프롬프트: ${kontextPrompt}`);
       
-      // FLUX API 호출
+      // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정)
       const response = await fetch(
-        'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
+        'https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions',
         {
           method: 'POST',
           headers: {
@@ -2665,13 +2666,8 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({
             input: {
-              control_image: image,
-              prompt: finalPrompt,
-              num_inference_steps: 24,
-              guidance: 12,
-              control_strength: 0.80,  // 재변환은 구조 유지 강하게
-              output_format: 'jpg',
-              output_quality: 90
+              input_image: image,
+              prompt: kontextPrompt
             }
           })
         }
@@ -2679,9 +2675,9 @@ export default async function handler(req, res) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('FLUX Depth error (retransform):', response.status, errorText);
+        console.error('FLUX Kontext error (retransform):', response.status, errorText);
         return res.status(response.status).json({ 
-          error: `FLUX API error: ${response.status}`,
+          error: `FLUX Kontext API error: ${response.status}`,
           details: errorText
         });
       }

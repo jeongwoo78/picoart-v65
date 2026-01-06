@@ -2638,6 +2638,74 @@ export default async function handler(req, res) {
     let controlStrength = 0.80; // 기본값 (getControlStrength에서 덮어씀)
     const categoryType = selectedStyle.category; // categoryType 변수 추가
     
+    // ========================================
+    // v69: 재변환 모드 (correctionPrompt 있으면)
+    // Vision 분석 없이 correctionPrompt만 사용
+    // ========================================
+    if (correctionPrompt) {
+      console.log('');
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('🔄 재변환 모드 (Vision 스킵)');
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log(`📝 수정 요청: ${correctionPrompt}`);
+      console.log('');
+      
+      // 재변환 프롬프트: 기존 그림 수정
+      finalPrompt = 'Modify this existing artwork: ' + correctionPrompt;
+      
+      // FLUX API 호출
+      const response = await fetch(
+        'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'wait'
+          },
+          body: JSON.stringify({
+            input: {
+              control_image: image,
+              prompt: finalPrompt,
+              num_inference_steps: 24,
+              guidance: 12,
+              control_strength: 0.80,  // 재변환은 구조 유지 강하게
+              output_format: 'jpg',
+              output_quality: 90
+            }
+          })
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('FLUX Depth error (retransform):', response.status, errorText);
+        return res.status(response.status).json({ 
+          error: `FLUX API error: ${response.status}`,
+          details: errorText
+        });
+      }
+
+      const data = await response.json();
+      const endTime = Date.now();
+      const duration = ((endTime - startTime) / 1000).toFixed(1);
+      
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log(`✅ 재변환 완료 (${duration}초)`);
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('');
+      
+      return res.status(200).json({
+        success: true,
+        resultUrl: data.output,
+        isRetransform: true
+      });
+    }
+    
+    // ========================================
+    // 1차 변환 모드 (기존 로직)
+    // ========================================
+    
     // 🎨 풍경/정물/동물일 때 control_strength 높여서 원본 구도 유지
     // (나중에 visionAnalysis 확인 후 조정됨)
     let landscapeStrengthBoost = false;
@@ -4121,14 +4189,6 @@ export default async function handler(req, res) {
     console.log('📜 FLUX 프롬프트 (처음 500자):');
     console.log(`   ${finalPrompt.substring(0, 500)}...`);
     console.log('');
-    
-    // v68: 거장 AI 대화 보정 프롬프트 적용
-    if (correctionPrompt) {
-      finalPrompt = finalPrompt + '. MODIFICATION REQUEST: ' + correctionPrompt;
-      console.log('🎨 [AI 대화] 보정 프롬프트 적용:');
-      console.log(`   ${correctionPrompt}`);
-      console.log('');
-    }
     
     // FLUX Depth Dev 변환 (v63: Pro 테스트 포기, Dev 유지)
     // console.log('📦 [v63] black-forest-labs/flux-depth-dev');

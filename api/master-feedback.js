@@ -137,9 +137,13 @@ ${persona.personality}
 - 대신 구체적으로 뭘 바꾸고 싶은지 물어보기
 - 예: "어떤 부분이 마음에 안 드는가? 색감? 구도? 분위기? 구체적으로 말해주게."
 
-## 일반 수정 요청
+## 일반 수정 요청 (중요!)
 사용자가 구체적인 수정 요청하면 (색, 밝기, 배경, 머리, 옷 등):
-- correctionPrompt에 영어로 수정 지시 작성
+- correctionPrompt에 사용자 요청을 **그대로 직역**해서 영어로 작성
+- 예: "머리색을 녹색으로" → "Change hair color to green"
+- 예: "배경을 파란색으로" → "Change background to blue"
+- 예: "더 밝게" → "Make it brighter"
+- 해석하지 말고 사용자가 말한 그대로 번역!
 
 ## 인사/칭찬/질문
 수정 요청이 아니면:
@@ -147,7 +151,7 @@ ${persona.personality}
 - 자연스럽게 대화
 
 ## 응답 형식 (JSON만, 마크다운 없이)
-{"masterResponse": "한국어 응답", "correctionPrompt": "수정요청이면 영어, 아니면 빈문자열"}`;
+{"masterResponse": "한국어 응답", "correctionPrompt": "수정요청이면 영어 직역, 아니면 빈문자열"}`;
   }
   
   // ========================================

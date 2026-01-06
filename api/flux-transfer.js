@@ -3296,6 +3296,23 @@ export default async function handler(req, res) {
           }
         }
         
+        // ========================================
+        // v65: 리히텐슈타인 말풍선 추가
+        // ========================================
+        if (selectedArtist.toUpperCase().trim().includes('LICHTENSTEIN') || 
+            selectedArtist.includes('리히텐슈타인')) {
+          console.log('🎯 Lichtenstein detected - adding speech bubble...');
+          
+          // 말풍선 텍스트 선택 (사진 분석 결과 기반)
+          const speechText = selectSpeechBubbleText(visionAnalysis);
+          console.log(`💬 Speech bubble text: "${speechText}"`);
+          
+          // 프롬프트에 말풍선 + 스타일 강화 추가
+          if (!finalPrompt.includes('speech bubble')) {
+            finalPrompt = finalPrompt + `, WHITE SPEECH BUBBLE with THICK BLACK OUTLINE containing ONLY text "${speechText}" in BOLD COMIC FONT, EXTREMELY LARGE Ben-Day dots 15mm+ halftone pattern on ALL skin and surfaces, ULTRA THICK BLACK OUTLINES 20mm+, COMIC PANEL FRAME with THICK BLACK BORDER around entire image`;
+          }
+        }
+        
       } else {
         // AI 실패 → Fallback
         // console.log('⚠️ AI failed, using fallback');

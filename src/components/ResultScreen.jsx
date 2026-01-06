@@ -184,7 +184,8 @@ const ResultScreen = ({
       
       // URL을 Blob으로 변환 (processStyleTransfer는 File/Blob을 기대)
       let imageToModify;
-      if (currentImageUrl && typeof currentImageUrl === 'string' && currentImageUrl.startsWith('http')) {
+      if (currentImageUrl && typeof currentImageUrl === 'string' && 
+          (currentImageUrl.startsWith('http') || currentImageUrl.startsWith('blob:'))) {
         // URL인 경우 fetch해서 Blob으로 변환
         const response = await fetch(currentImageUrl);
         const blob = await response.blob();

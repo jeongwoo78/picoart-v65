@@ -77,23 +77,39 @@ const MasterChat = ({
   }, [messages]);
 
   // 거장별 고정 첫 인사
-  const MASTER_GREETINGS = {
-    'VAN GOGH': '자네가 나에게 작품을 의뢰한 사람인가! 시간을 거슬러 만나다니! 자네의 모습을 내 붓터치로 담아보았네. 어떤가, 마음에 드는가? 바꾸고 싶은 부분이 있으면 말해주게.',
-    'KLIMT': '그대가 나에게 작품을 의뢰한 분이군요. 시간을 넘어 만나게 되다니 영광이에요. 황금빛으로 표현해보았지요. 어떠세요, 마음에 드시나요? 바꾸고 싶은 부분이 있으면 말씀해주세요.',
-    'MUNCH': '자네가 나에게 작품을 의뢰했군. 과거의 내가 자네를 만났네. 내 붓끝에 자네의 내면을 담아보았어. 어떤가, 마음에 드는가? 바꾸고 싶은 부분이 있으면 말해주게.',
-    'PICASSO': '자네가 나에게 작품을 맡긴 사람이군! 시공을 초월해 만나다니 흥미롭군. 여러 시점에서 해체해보았어! 어떤가, 마음에 드는가? 바꾸고 싶은 부분이 있으면 말해주게.',
-    'MATISSE': '자네가 나에게 작품을 의뢰했군! 시간을 뛰어넘어 만나다니 신이 나는군! 밝은 색채로 담아보았네! 어떤가, 마음에 드는가? 바꾸고 싶은 부분이 있으면 말해주게.',
-    'FRIDA': '당신이 나에게 작품을 맡긴 사람이군요. 시간을 넘어 만나게 되다니. 내 영혼을 담아 표현해봤어요. 어때요, 마음에 들어요? 바꾸고 싶은 부분이 있으면 말해줘요.',
-    'LICHTENSTEIN': '헤이! 당신이 나한테 작품을 맡긴 사람이군! 시간을 뛰어넘다니 쿨하네. 만화처럼 팝하게 표현해봤어. 어때, 마음에 들어? 바꾸고 싶은 부분 있으면 말해줘.'
-  };
-
-  // 첫 인사 로드 (고정 문장 사용)
-  const loadGreeting = () => {
-    const greeting = MASTER_GREETINGS[masterKey] || '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.';
-    setMessages([{
-      role: 'master',
-      content: greeting
-    }]);
+  // 첫 인사 로드 (API 호출)
+  const loadGreeting = async () => {
+    try {
+      const response = await fetch('/api/master-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          masterName: masterKey,
+          conversationType: 'greeting'
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success && data.masterResponse) {
+        setMessages([{
+          role: 'master',
+          content: data.masterResponse
+        }]);
+      } else {
+        // API 실패 시 기본 인사
+        setMessages([{
+          role: 'master',
+          content: '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.'
+        }]);
+      }
+    } catch (error) {
+      console.error('Greeting API error:', error);
+      setMessages([{
+        role: 'master',
+        content: '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.'
+      }]);
+    }
   };
 
   // 메시지 전송

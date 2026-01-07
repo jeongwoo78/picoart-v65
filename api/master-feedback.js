@@ -406,7 +406,7 @@ function safeParseResponse(response, persona) {
     // v70: "버튼" 멘트 있는데 correctionPrompt 비어있으면 자동 생성
     if (parsed.masterResponse && 
         parsed.masterResponse.includes('버튼') && 
-        !parsed.correctionPrompt) {
+        (!parsed.correctionPrompt || !parsed.correctionPrompt.trim())) {
       console.log('🔧 버튼 멘트 감지, correctionPrompt 자동 생성 시도');
       const extracted = extractCorrectionPrompt(parsed.masterResponse);
       if (extracted) {
@@ -414,10 +414,19 @@ function safeParseResponse(response, persona) {
       }
     }
     
+    // 디버그: 버튼 감지 결과 확인
+    const debugInfo = {
+      hasButton: parsed.masterResponse?.includes('버튼') || false,
+      originalCorrection: parsed.correctionPrompt,
+      extracted: parsed.correctionPrompt
+    };
+    console.log('🔍 디버그:', JSON.stringify(debugInfo));
+    
     return {
       success: true,
       masterResponse: parsed.masterResponse || response,
-      correctionPrompt: parsed.correctionPrompt || ''
+      correctionPrompt: parsed.correctionPrompt || '',
+      _debug: debugInfo  // 임시 디버그용
     };
   } catch (parseError) {
     console.log('⚠️ JSON 파싱 실패, 안전 처리');
@@ -448,10 +457,18 @@ function safeParseResponse(response, persona) {
       };
     }
     
+    // v70: 순수 텍스트일 때도 버튼 멘트 감지
+    let correctionPrompt = '';
+    if (response.includes('버튼')) {
+      console.log('🔧 순수 텍스트에서 버튼 멘트 감지');
+      const extracted = extractCorrectionPrompt(response);
+      if (extracted) correctionPrompt = extracted;
+    }
+    
     return {
       success: true,
       masterResponse: response,
-      correctionPrompt: ''
+      correctionPrompt: correctionPrompt
     };
   }
 }

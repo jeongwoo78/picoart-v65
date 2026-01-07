@@ -224,6 +224,9 @@ const ResultScreen = ({
     
     // 완료 플래그 먼저 설정 (MasterChat이 메시지 추가하도록)
     if (success) {
+      // v70: 2초 딜레이 추가 (거장이 정성들여 수정하는 느낌)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
       updateMasterChatData(masterKey, {
         ...masterChatData[masterKey],
         retransformCompleted: true  // 완료 플래그

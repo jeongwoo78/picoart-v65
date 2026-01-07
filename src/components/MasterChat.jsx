@@ -318,11 +318,11 @@ const MasterChat = ({
         {isRetransforming ? (
           <>
             <span className="spinner-small"></span>
-            {masterNameKo}가 작업 중...
+            {masterNameKo}가 그림을 수정 중입니다.
           </>
         ) : (
           <>
-            ✨ {masterNameKo}(AI) 스타일로 재변환 (₩{retransformCost})
+            ✨ 수정 요청 (₩{retransformCost})
           </>
         )}
       </button>

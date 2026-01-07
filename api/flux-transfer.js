@@ -2653,6 +2653,9 @@ export default async function handler(req, res) {
       console.log('🔄 재변환 모드 (FLUX Kontext Pro) v70');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`📝 수정 요청: ${correctionPrompt}`);
+      console.log(`🖼️ 입력 이미지: ${typeof image === 'string' ? image.substring(0, 100) + '...' : 'base64 data'}`);
+      console.log(`📐 이미지 타입: ${typeof image}, 길이: ${image?.length || 'N/A'}`);
+      
       
       // v70: 거장 키 → artistStyles 키 매핑
       const MASTER_TO_ARTIST_KEY = {
@@ -2672,6 +2675,23 @@ export default async function handler(req, res) {
       masterKey = masterKey.replace('-MASTER', '');
       const artistKey = MASTER_TO_ARTIST_KEY[masterKey];
       
+      // v70.1: 요청 내용 분석해서 동적으로 보존 항목 결정 (충돌 방지)
+      const lowerPrompt = correctionPrompt.toLowerCase();
+      const hasColorChange = /color|colour|blue|red|yellow|green|orange|purple|pink|gold|silver|bright|dark|light|warm|cool|tone/i.test(correctionPrompt);
+      const hasBackgroundChange = /background/i.test(correctionPrompt);
+      const hasFaceChange = /face|expression|eye|nose|mouth|smile|frown/i.test(correctionPrompt);
+      const hasPoseChange = /pose|position|body|arm|leg|hand/i.test(correctionPrompt);
+      
+      let keepUnchanged = [];
+      if (!hasColorChange) keepUnchanged.push('overall colors and tones');
+      if (!hasBackgroundChange) keepUnchanged.push('background');
+      if (!hasFaceChange) keepUnchanged.push('face identity');
+      if (!hasPoseChange) keepUnchanged.push('body pose');
+      keepUnchanged.push('composition');
+      
+      const keepUnchangedStr = keepUnchanged.join(', ');
+      console.log(`🔒 보존 항목: ${keepUnchangedStr}`);
+      
       let kontextPrompt;
       
       if (artistKey && ARTIST_STYLES[artistKey]) {
@@ -2680,14 +2700,14 @@ export default async function handler(req, res) {
         // "NOT photograph" 이전까지만 추출 (핵심 화풍 특징)
         const styleFeatures = fullStyle.split('. NOT')[0];
         
-        // v70: MODIFY ONLY → PRESERVE → 금지 순서 (샌드위치)
-        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. PRESERVE: ${styleFeatures}. Keep face likeness, body pose unchanged. NOT photorealistic, must look PAINTED.`;
+        // v70.1: MODIFY ONLY → KEEP UNCHANGED (동적) → PRESERVE → 금지 순서
+        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. KEEP UNCHANGED: ${keepUnchangedStr}. PRESERVE: ${styleFeatures}. NOT photorealistic, must look PAINTED.`;
         
         console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
         console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
       } else {
         // 거장 매칭 안 되면 기본 프롬프트
-        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. Keep same artistic style, face likeness, body pose. NOT photorealistic, must look PAINTED.`;
+        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. KEEP UNCHANGED: ${keepUnchangedStr}. Keep same artistic style. NOT photorealistic, must look PAINTED.`;
         console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
       }
       

@@ -2657,6 +2657,7 @@ export default async function handler(req, res) {
       // v70: 거장 키 → artistStyles 키 매핑
       const MASTER_TO_ARTIST_KEY = {
         'VAN GOGH': 'vangogh',
+        'VANGOGH': 'vangogh',
         'KLIMT': 'klimt',
         'MUNCH': 'munch',
         'PICASSO': 'picasso',
@@ -2666,7 +2667,9 @@ export default async function handler(req, res) {
       };
       
       // 거장 키 추출 (selectedStyle.id 또는 name에서)
-      const masterKey = selectedStyle.id?.toUpperCase() || selectedStyle.name?.toUpperCase() || '';
+      let masterKey = selectedStyle.id?.toUpperCase() || selectedStyle.name?.toUpperCase() || '';
+      // v70.1: '-MASTER' 접미사 제거
+      masterKey = masterKey.replace('-MASTER', '');
       const artistKey = MASTER_TO_ARTIST_KEY[masterKey];
       
       let kontextPrompt;

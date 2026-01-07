@@ -17,8 +17,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 아를의 반 고흐일세. AI를 통해 다시 부활했다네. 자네의 그림을 내 화풍으로 완성했네, 마음에 안 드는 부분이 있으면 말해주게.',
     feedbackExamples: [
       { user: '배경 색을 바꿔주세요', response: '배경 색을 바꾸고 싶은 거군. 어떤 색으로 바꿔볼까? 따뜻한 노란색이나 깊은 파란색은 어떻겠나?' },
-      { user: '노란색으로요', response: '좋네! 배경을 노란색으로 바꾸면 되겠군. 다른 수정할 부분은 없나?' },
-      { user: '없어요', response: '좋네, 정리하면 배경을 노란색으로 바꾸면 되겠군. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
+      { user: '노란색으로요', response: '배경을 노란색으로 바꾸면 되겠군. 다른 수정할 부분은 없나?' },
+      { user: '없어요', response: '배경을 노란색으로 바꾸면 되겠군. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
     ],
     resultExample: '자네가 원한 대로 수정했네. 마음에 안 드는 부분이 있으면 또 말해주게.'
   },
@@ -32,8 +32,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 빈의 클림트라 하오. AI를 통해 다시 부활했소. 그대의 그림을 내 화풍으로 완성했소, 느낌이 어떠하오?',
     feedbackExamples: [
       { user: '금박을 더 추가해주세요', response: '금박을 더 원하시오? 어느 부분에 더하면 좋겠소? 배경이오, 아니면 인물 주변이오?' },
-      { user: '인물 주변이요', response: '좋소, 인물 주변에 금박을 더하면 되겠소. 다른 수정할 부분은 없소?' },
-      { user: '그게 다예요', response: '좋소, 정리하면 인물 주변에 금박 장식을 더하면 되겠소. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주시오.', hasCorrectionPrompt: true }
+      { user: '인물 주변이요', response: '인물 주변에 금박을 더하면 되겠소. 다른 수정할 부분은 없소?' },
+      { user: '그게 다예요', response: '인물 주변에 금박 장식을 더하면 되겠소. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주시오.', hasCorrectionPrompt: true }
     ],
     resultExample: '그대가 원한 대로 수정했소. 마음에 안 드는 부분이 있으면 또 말해주시오.'
   },
@@ -47,8 +47,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 오슬로의 뭉크일세. AI를 통해 다시 부활했다네. 자네의 그림을 내 화풍으로 완성했네, 느낌이 어떤가?',
     feedbackExamples: [
       { user: '표정을 더 슬프게 해주세요', response: '더 슬픈 표정을 원하는군. 눈가에 그림자를 더하고 입꼬리를 내릴까, 아니면 전체적인 색조를 어둡게 할까?' },
-      { user: '눈가에 그림자요', response: '좋네, 눈가에 그림자를 더해 슬픔을 표현하겠네. 다른 수정할 부분은 없나?' },
-      { user: '없습니다', response: '좋네, 정리하면 눈가에 그림자를 더해 슬픈 느낌을 주면 되겠네. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
+      { user: '눈가에 그림자요', response: '눈가에 그림자를 더해 슬픔을 표현하겠네. 다른 수정할 부분은 없나?' },
+      { user: '없습니다', response: '눈가에 그림자를 더해 슬픈 느낌을 주면 되겠네. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
     ],
     resultExample: '자네가 원한 대로 수정했네. 마음에 안 드는 부분이 있으면 또 말해주게.'
   },
@@ -62,8 +62,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 파리의 피카소다. AI를 통해 다시 부활했지. 자네의 그림을 내 방식으로 완성했다, 마음에 안 드는 부분이 있으면 말해보게.',
     feedbackExamples: [
       { user: '얼굴을 더 분해해주세요', response: '얼굴을 더 분해하고 싶다고? 좋은 안목이군! 눈, 코, 입을 다중 시점으로 더 과감하게 해체할까, 아니면 기하학적 조각으로 나눌까?' },
-      { user: '다중 시점으로요', response: '좋다, 다중 시점으로 얼굴을 해체하겠다. 다른 수정할 부분은 없나?' },
-      { user: '없어요', response: '좋다, 정리하면 얼굴을 다중 시점으로 더 과감하게 해체하면 되겠군. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러보게.', hasCorrectionPrompt: true }
+      { user: '다중 시점으로요', response: '다중 시점으로 얼굴을 해체하겠다. 다른 수정할 부분은 없나?' },
+      { user: '없어요', response: '얼굴을 다중 시점으로 더 과감하게 해체하면 되겠군. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러보게.', hasCorrectionPrompt: true }
     ],
     resultExample: '자네가 원한 대로 수정했다. 마음에 안 드는 부분이 있으면 또 말해보게.'
   },
@@ -77,8 +77,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 니스의 마티스라네. AI를 통해 다시 부활했지. 자네의 그림을 내 화풍으로 완성했네, 느낌이 어떤가?',
     feedbackExamples: [
       { user: '색을 더 밝게 해주세요', response: '색을 더 밝게 하고 싶군! 전체적으로 밝게 할까, 아니면 특정 부분만 밝게 할까? 배경이나 인물 옷 색은 어떻게 할까?' },
-      { user: '전체적으로요', response: '좋네, 전체적으로 더 밝고 화사하게 바꾸겠네. 다른 수정할 부분은 없나?' },
-      { user: '그것만요', response: '좋네, 정리하면 전체적인 색을 더 밝고 화사하게 바꾸면 되겠네. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
+      { user: '전체적으로요', response: '전체적으로 더 밝고 화사하게 바꾸겠네. 다른 수정할 부분은 없나?' },
+      { user: '그것만요', response: '전체적인 색을 더 밝고 화사하게 바꾸면 되겠네. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러주게.', hasCorrectionPrompt: true }
     ],
     resultExample: '자네가 원한 대로 수정했네. 마음에 안 드는 부분이 있으면 또 말해주게.'
   },
@@ -92,8 +92,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 멕시코의 프리다야. AI를 통해 다시 부활했어. 네 그림을 내 화풍으로 완성했어, 느낌이 어때?',
     feedbackExamples: [
       { user: '꽃을 더 추가해주세요', response: '꽃을 더 원해? 머리 위에 화관처럼 추가할까, 아니면 배경에 꽃을 뿌릴까?' },
-      { user: '머리 위에요', response: '좋아, 머리 위에 화관처럼 꽃을 추가할게. 다른 수정할 부분은 없어?' },
-      { user: '없어요', response: '좋아, 정리하면 머리 위에 꽃 화관을 추가하면 되겠어. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러줘.', hasCorrectionPrompt: true }
+      { user: '머리 위에요', response: '머리 위에 화관처럼 꽃을 추가할게. 다른 수정할 부분은 없어?' },
+      { user: '없어요', response: '머리 위에 꽃 화관을 추가하면 되겠어. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러줘.', hasCorrectionPrompt: true }
     ],
     resultExample: '네가 원한 대로 수정했어. 마음에 안 드는 부분이 있으면 또 말해줘.'
   },
@@ -107,8 +107,8 @@ const MASTER_PERSONAS = {
     greetingExample: '난 뉴욕의 리히텐슈타인이야. AI를 통해 다시 부활했지. 네 그림을 내 화풍으로 완성했어, 느낌이 어때?',
     feedbackExamples: [
       { user: '도트를 더 크게 해주세요', response: '도트를 더 키우고 싶어? 전체적으로 키울까, 아니면 특정 부분만 키울까?' },
-      { user: '전체적으로요', response: '좋아, 전체적으로 도트를 더 크게 할게. 다른 수정할 부분은 없어?' },
-      { user: '없어', response: '좋아, 정리하면 전체적으로 벤데이 도트를 더 크게 하면 되겠어. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러줘.', hasCorrectionPrompt: true }
+      { user: '전체적으로요', response: '전체적으로 도트를 더 크게 할게. 다른 수정할 부분은 없어?' },
+      { user: '없어', response: '전체적으로 벤데이 도트를 더 크게 하면 되겠어. 내가 정확하게 이해했다면 아래 \'수정 요청\' 버튼을 눌러줘.', hasCorrectionPrompt: true }
     ],
     resultExample: '네가 원한 대로 수정했어. 마음에 안 드는 부분이 있으면 또 말해줘.'
   }
@@ -213,13 +213,15 @@ function buildSystemPrompt(masterKey, conversationType) {
 → "다른 수정할 부분은 없나?" 물어보기
 → correctionPrompt: "" (빈 문자열)
 
-### 3단계: 추가 요청 없음 → 정리 + 버튼 유도
+### 3단계: 추가 요청 없음 → 버튼 유도
 사용자: "없어요" / "그게 다야" / "네"
-→ 수정 사항 정리 + 확인 + 버튼 클릭 유도
+→ 수정 사항 확인 + 버튼 클릭 유도
 → correctionPrompt: 영어로 수정 내용 작성
 
-## 정리 멘트 형식 (3단계에서만!)
-"좋${persona.speakingStyle.includes('다') ? '다' : '네'}, 정리하면 [수정내용]하면 되겠${persona.speakingStyle.includes('다') ? '다' : '네'}. 내가 정확하게 이해했다면 아래 '수정 요청' 버튼을 눌러${persona.speakingStyle.includes('줘') ? '줘' : '주게'}."
+## 버튼 유도 멘트 형식 (3단계에서만!)
+"[수정내용]하면 되겠${persona.speakingStyle.includes('다') ? '다' : '네'}. 내가 정확하게 이해했다면 아래 '수정 요청' 버튼을 눌러${persona.speakingStyle.includes('줘') ? '줘' : '주게'}."
+- "좋다", "좋아", "정리하면" 등 불필요한 표현 넣지 말 것
+- 바로 수정 내용으로 시작
 
 ## 대화 예시
 
@@ -274,6 +276,116 @@ function buildSystemPrompt(masterKey, conversationType) {
 // ========================================
 // 후처리: JSON 파싱 안전 처리
 // ========================================
+
+// v70: masterResponse에서 수정 내용 추출 → 영어로 변환
+function extractCorrectionPrompt(masterResponse) {
+  // "버튼" 앞의 수정 내용 추출 (여러 패턴 시도)
+  let koreanContent = null;
+  
+  // 패턴 1: "~하면 되겠" ~ "버튼" 사이
+  let match = masterResponse.match(/(.+?)\s*(하면\s*되겠|되겠).+버튼/);
+  if (match) {
+    koreanContent = match[1];
+  }
+  
+  // 패턴 2: 문장 시작 ~ "내가 정확하게" 사이
+  if (!koreanContent) {
+    match = masterResponse.match(/^(.+?)\s*내가\s*정확하게/);
+    if (match) {
+      koreanContent = match[1];
+    }
+  }
+  
+  // 패턴 3: 전체 문장에서 버튼 관련 부분 제외
+  if (!koreanContent) {
+    koreanContent = masterResponse
+      .replace(/내가\s*정확하게.+버튼.+/g, '')
+      .replace(/아래.+버튼.+/g, '')
+      .trim();
+  }
+  
+  if (!koreanContent || koreanContent.length < 5) {
+    console.log('⚠️ 수정 내용 추출 실패');
+    return null;
+  }
+  
+  console.log('📝 추출된 수정 내용:', koreanContent);
+  
+  // 간단한 키워드 매핑 (한국어 → 영어)
+  let english = koreanContent
+    // 대상
+    .replace(/얼굴/g, 'face')
+    .replace(/눈/g, 'eyes')
+    .replace(/코/g, 'nose')
+    .replace(/입/g, 'mouth')
+    .replace(/머리/g, 'hair')
+    .replace(/배경/g, 'background')
+    .replace(/인물/g, 'figure')
+    .replace(/전체/g, 'overall')
+    .replace(/금박/g, 'gold leaf')
+    .replace(/도트/g, 'dots')
+    .replace(/꽃/g, 'flowers')
+    .replace(/화관/g, 'flower crown')
+    .replace(/그림자/g, 'shadow')
+    // 동작
+    .replace(/추가하고/g, 'add')
+    .replace(/추가/g, 'add')
+    .replace(/바꾸고/g, 'change to')
+    .replace(/바꾸/g, 'change to')
+    .replace(/해체하고/g, 'deconstruct')
+    .replace(/해체/g, 'deconstruct')
+    .replace(/분해하고/g, 'fragment')
+    .replace(/분해/g, 'fragment')
+    .replace(/크게/g, 'larger')
+    .replace(/작게/g, 'smaller')
+    // 형용사/부사
+    .replace(/기하학적/g, 'geometric')
+    .replace(/형태를/g, 'shapes')
+    .replace(/형태/g, 'shapes')
+    .replace(/다중 시점으로/g, 'with multiple viewpoints')
+    .replace(/다중 시점/g, 'multiple viewpoints')
+    .replace(/과감하게/g, 'boldly')
+    .replace(/더/g, 'more')
+    .replace(/슬픈/g, 'sad')
+    .replace(/밝고/g, 'bright')
+    .replace(/화사하게/g, 'vivid')
+    // 색상
+    .replace(/파란색/g, 'blue')
+    .replace(/빨간색/g, 'red')
+    .replace(/노란색/g, 'yellow')
+    .replace(/녹색/g, 'green')
+    .replace(/금색/g, 'gold')
+    .replace(/은색/g, 'silver')
+    .replace(/밝게/g, 'brighter')
+    .replace(/어둡게/g, 'darker')
+    // 조사 제거
+    .replace(/으로/g, '')
+    .replace(/을/g, '')
+    .replace(/를/g, '')
+    .replace(/에/g, '')
+    .replace(/와/g, ' and ')
+    .replace(/,/g, ',');
+  
+  // 남은 한글이 50% 이상이면 기본 템플릿
+  const koreanChars = (english.match(/[가-힣]/g) || []).length;
+  const totalChars = english.replace(/\s/g, '').length;
+  
+  if (totalChars > 0 && koreanChars / totalChars > 0.3) {
+    console.log('⚠️ 한글 비율 높음, 기본 템플릿 사용');
+    return 'Apply the requested modifications';
+  }
+  
+  // 남은 한글 제거 및 정리
+  english = english.replace(/[가-힣]/g, '').replace(/\s+/g, ' ').trim();
+  
+  if (english.length < 5) {
+    return 'Apply the requested modifications';
+  }
+  
+  console.log('✅ 변환된 correctionPrompt:', english);
+  return english;
+}
+
 function safeParseResponse(response, persona) {
   try {
     let cleanResponse = response.trim();
@@ -289,6 +401,17 @@ function safeParseResponse(response, persona) {
     if (parsed.correctionPrompt && /[가-힣]/.test(parsed.correctionPrompt)) {
       console.log('⚠️ correctionPrompt에 한글 감지, 제거:', parsed.correctionPrompt);
       parsed.correctionPrompt = '';
+    }
+    
+    // v70: "버튼" 멘트 있는데 correctionPrompt 비어있으면 자동 생성
+    if (parsed.masterResponse && 
+        parsed.masterResponse.includes('버튼') && 
+        !parsed.correctionPrompt) {
+      console.log('🔧 버튼 멘트 감지, correctionPrompt 자동 생성 시도');
+      const extracted = extractCorrectionPrompt(parsed.masterResponse);
+      if (extracted) {
+        parsed.correctionPrompt = extracted;
+      }
     }
     
     return {
@@ -311,10 +434,17 @@ function safeParseResponse(response, persona) {
     // JSON 형태가 보이면 masterResponse만 추출 시도
     const match = response.match(/"masterResponse"\s*:\s*"([^"]+)"/);
     if (match) {
+      // v70: 여기서도 버튼 멘트 감지
+      let correctionPrompt = '';
+      if (match[1].includes('버튼')) {
+        const extracted = extractCorrectionPrompt(match[1]);
+        if (extracted) correctionPrompt = extracted;
+      }
+      
       return {
         success: true,
         masterResponse: match[1],
-        correctionPrompt: ''
+        correctionPrompt: correctionPrompt
       };
     }
     

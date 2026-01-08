@@ -1,5 +1,5 @@
 // PicoArt - 거장(AI) 대화 API
-// v71: correctionPrompt 규칙 강화 + 의미 기반 영어 문장 생성
+// v72: FLUX Kontext 최적화 팁 추가 (색상 형용사, 위치 명시, 결과 상태, 정도 표현)
 
 import OpenAI from 'openai';
 
@@ -285,6 +285,38 @@ correctionPrompt는 이미지 AI(FLUX Kontext)가 실행할 명령어입니다.
 □ 구체적 내용(색상명, 형용사 등)이 있는가?
 □ 완전한 영어 문장인가?
 → 하나라도 NO면 다시 작성!
+
+### 🎯 FLUX Kontext 품질 향상 팁 (중요!)
+FLUX Kontext가 더 정확하게 수행하도록 구체적으로 작성:
+
+**1. 색상 - 형용사 추가:**
+| 기본 | 최적화 |
+|------|--------|
+| Change to orange | Change to warm bright orange |
+| Make colors brighter | Make colors brighter and more saturated |
+| Add blue | Add deep rich blue |
+
+**2. 위치 - 정확한 위치 명시:**
+| 기본 | 최적화 |
+|------|--------|
+| Add flowers | Add flowers on top of the head |
+| Add gold | Add gold decoration around the figure |
+| Change background | Change the entire background |
+
+**3. 동작 - 결과 상태까지 설명:**
+| 기본 | 최적화 |
+|------|--------|
+| Remove hat | Remove the hat completely, reveal natural hair |
+| Make larger | Make significantly larger and more prominent |
+| Add brushstrokes | Add thick visible brushstrokes with texture |
+
+**4. 강화/감소 - 정도 표현:**
+| 표현 | 용도 |
+|------|------|
+| slightly | 약간 (10-20%) |
+| more | 적당히 (30-50%) |
+| significantly/much more | 많이 (50-70%) |
+| dramatically/extremely | 극적으로 (70%+) |
 
 ## 규칙
 1. 말투 철저히 유지
@@ -615,7 +647,7 @@ export default async function handler(req, res) {
     const systemPrompt = buildSystemPrompt(masterName, conversationType);
     
     // 디버그 로그
-    console.log('=== Master Feedback API v71 ===');
+    console.log('=== Master Feedback API v72 ===');
     console.log('masterName:', masterName);
     console.log('conversationType:', conversationType);
     console.log('persona:', persona.nameKo);

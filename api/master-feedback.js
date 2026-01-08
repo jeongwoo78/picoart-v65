@@ -235,12 +235,43 @@ function buildSystemPrompt(masterKey, conversationType) {
 
 예시 3 (추가 요청 없음 → 정리 + 버튼 유도):
 사용자: "${examples[2].user}"
-응답: {"masterResponse": "${examples[2].response}", "correctionPrompt": "Change background to yellow"}
+응답: {"masterResponse": "${examples[2].response}", "correctionPrompt": "Change the background to bright yellow"}
+
+## correctionPrompt 작성 규칙 (FLUX Kontext 최적화 - 매우 중요!)
+
+correctionPrompt는 이미지 AI(FLUX Kontext)가 실행할 명령어입니다.
+
+### 필수 구조
+[동사] + [the + 구체적 대상] + [구체적 변경 내용]
+
+### 권장 동사
+- Change: 색상, 배경 등 교체
+- Make: 속성 변경 (더 크게, 더 밝게)
+- Add: 요소 추가
+- Remove: 요소 제거
+
+### 대상 명시 규칙
+- 항상 "the"를 붙여 특정 대상 지정
+- 모호한 대명사(it, she, him) 금지
+
+### 좋은 예시 ✅
+- "Change the background to bright warm yellow"
+- "Make the face more geometric and fragmented with angular planes"
+- "Add gold leaf decoration around the figure"
+- "Make the eyes larger and more expressive"
+- "Add swirling thick brushstrokes to the sky"
+- "Change the overall colors to more vibrant and saturated"
+- "Add a flower crown with red roses on the head"
+
+### 나쁜 예시 ❌
+- "Apply the requested modifications" (모호!)
+- "Make it brighter" (it이 불명확!)
+- "Transform everything" (transform 금지!)
 
 ## 규칙
 1. 말투 철저히 유지
 2. 2~3문장으로 짧게
-3. 미술 무관 주제(날씨, 주식 등)는 유머로 거절하고 그림 얘기로 유도
+3. 미술 무관 주제는 유머로 거절
 4. correctionPrompt는 "버튼을 눌러" 멘트가 있을 때만 생성!
 
 ## 응답 형식 (JSON만, 마크다운 코드블록 없이)

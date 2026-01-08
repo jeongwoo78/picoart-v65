@@ -1,13 +1,12 @@
-// PicoArt v70 - 거장 AI 재변환 명령어 개선
+// PicoArt v74 - Kontext 프롬프트 최소화
+// v74: "ONLY ${correctionPrompt}." 만 사용
+//      - 불필요한 보존 명령어 제거
+//      - Kontext가 자동으로 나머지 유지 (이미지 편집 모델 특성)
+//
 // v70: 재변환 시 artistStyles.js 화풍 연동
-//      - MODIFY → PRESERVE → 금지 순서 (샌드위치)
-//      - 거장별 화풍 프롬프트 자동 적용
-//      - 스타일 보존력 강화
 //
 // v64: 자연어 문장형 프롬프트 적용
-//      - 대전제, 샌드위치, paintingEnforcement 자연어 문장형으로 변환
 //      - "by [Artist], [Artist] art style" 패턴 적용
-//      - FLUX 효율적 전달 방식 적용 (연구 결과 기반)
 //      - 핵심 내용 유지하면서 더 명확한 전달
 //
 // v63: 대전제 v2 + 화가별 프롬프트 개선
@@ -2650,7 +2649,7 @@ export default async function handler(req, res) {
     if (correctionPrompt) {
       console.log('');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('🔄 재변환 모드 (FLUX Kontext Pro) v70');
+      console.log('🔄 재변환 모드 (FLUX Kontext Pro) v74');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`📝 수정 요청: ${correctionPrompt}`);
       console.log(`🖼️ 입력 이미지: ${typeof image === 'string' ? image.substring(0, 100) + '...' : 'base64 data'}`);
@@ -2692,36 +2691,17 @@ export default async function handler(req, res) {
       const keepUnchangedStr = keepUnchanged.join(', ');
       console.log(`🔒 보존 항목: ${keepUnchangedStr}`);
       
+      // v74: FLUX Kontext 프롬프트 최소화
+      // 핵심: "ONLY" + 수정 요청만
+      // 나머지는 Kontext가 자동 유지 (이미지 편집 모델 특성)
+      
       let kontextPrompt;
       
-      // v72: FLUX Kontext 공식 가이드 기반 프롬프트 패턴
-      // 핵심: "Change X while maintaining/preserving Y" 패턴 사용
-      // "Transform" 대신 "Change" 동사 사용 (transform은 전체 변경으로 해석됨)
-      
-      // 보존할 요소들 구성
-      let preserveList = [];
-      if (!hasBackgroundChange) preserveList.push('the exact same background');
-      if (!hasColorChange) preserveList.push('the same colors and tones');
-      if (!hasFaceChange) preserveList.push('the exact same facial features');
-      if (!hasPoseChange) preserveList.push('the same position, scale, and pose');
-      preserveList.push('the painting style');
-      
-      const preserveStr = preserveList.join(', ');
-      
       if (artistKey && ARTIST_STYLES[artistKey]) {
-        // v72: artistStyles.js에서 화풍 가져오기
-        const fullStyle = ARTIST_STYLES[artistKey];
-        // "NOT photograph" 이전까지만 추출 (핵심 화풍 특징)
-        const styleFeatures = fullStyle.split('. NOT')[0];
-        
-        // v72: 공식 가이드 패턴 - "Change X while maintaining Y"
-        kontextPrompt = `${correctionPrompt} while maintaining ${preserveStr}. Keep the ${styleFeatures}. Must remain a painting, not photorealistic.`;
-        
+        kontextPrompt = `ONLY ${correctionPrompt}.`;
         console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
-        console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
       } else {
-        // 거장 매칭 안 되면 기본 프롬프트
-        kontextPrompt = `${correctionPrompt} while maintaining ${preserveStr}. Keep the same artistic style. Must remain a painting, not photorealistic.`;
+        kontextPrompt = `ONLY ${correctionPrompt}.`;
         console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
       }
       

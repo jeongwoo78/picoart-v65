@@ -2649,7 +2649,7 @@ export default async function handler(req, res) {
     if (correctionPrompt) {
       console.log('');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.log('🔄 재변환 모드 (FLUX Kontext Pro) v74');
+      console.log('🔄 재변환 모드 (FLUX Kontext Pro) v75');
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log(`📝 수정 요청: ${correctionPrompt}`);
       console.log(`🖼️ 입력 이미지: ${typeof image === 'string' ? image.substring(0, 100) + '...' : 'base64 data'}`);
@@ -2691,15 +2691,19 @@ export default async function handler(req, res) {
       const keepUnchangedStr = keepUnchanged.join(', ');
       console.log(`🔒 보존 항목: ${keepUnchangedStr}`);
       
-      // v74: FLUX Kontext 프롬프트 최소화
-      // 핵심: "ONLY" + 수정 요청만
-      // 나머지는 Kontext가 자동 유지 (이미지 편집 모델 특성)
+      // v75: FLUX Kontext 프롬프트 - 화가 스타일 전체 포함
+      // "ONLY" + 수정 요청 + 화가 스타일 (NOT 제외)
       
       let kontextPrompt;
       
       if (artistKey && ARTIST_STYLES[artistKey]) {
-        kontextPrompt = `ONLY ${correctionPrompt}.`;
+        // artistStyles.js에서 화풍 가져오기 (NOT 이전까지 전체)
+        const fullStyle = ARTIST_STYLES[artistKey];
+        const styleFeatures = fullStyle.split('. NOT')[0];
+        
+        kontextPrompt = `ONLY ${correctionPrompt}. ${styleFeatures}.`;
         console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
+        console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
       } else {
         kontextPrompt = `ONLY ${correctionPrompt}.`;
         console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);

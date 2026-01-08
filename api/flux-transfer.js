@@ -2694,20 +2694,34 @@ export default async function handler(req, res) {
       
       let kontextPrompt;
       
+      // v72: FLUX Kontext 공식 가이드 기반 프롬프트 패턴
+      // 핵심: "Change X while maintaining/preserving Y" 패턴 사용
+      // "Transform" 대신 "Change" 동사 사용 (transform은 전체 변경으로 해석됨)
+      
+      // 보존할 요소들 구성
+      let preserveList = [];
+      if (!hasBackgroundChange) preserveList.push('the exact same background');
+      if (!hasColorChange) preserveList.push('the same colors and tones');
+      if (!hasFaceChange) preserveList.push('the exact same facial features');
+      if (!hasPoseChange) preserveList.push('the same position, scale, and pose');
+      preserveList.push('the painting style');
+      
+      const preserveStr = preserveList.join(', ');
+      
       if (artistKey && ARTIST_STYLES[artistKey]) {
-        // v70: artistStyles.js에서 화풍 가져오기
+        // v72: artistStyles.js에서 화풍 가져오기
         const fullStyle = ARTIST_STYLES[artistKey];
         // "NOT photograph" 이전까지만 추출 (핵심 화풍 특징)
         const styleFeatures = fullStyle.split('. NOT')[0];
         
-        // v70.1: MODIFY ONLY → KEEP UNCHANGED (동적) → PRESERVE → 금지 순서
-        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. KEEP UNCHANGED: ${keepUnchangedStr}. PRESERVE: ${styleFeatures}. NOT photorealistic, must look PAINTED.`;
+        // v72: 공식 가이드 패턴 - "Change X while maintaining Y"
+        kontextPrompt = `${correctionPrompt} while maintaining ${preserveStr}. Keep the ${styleFeatures}. Must remain a painting, not photorealistic.`;
         
         console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
         console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
       } else {
         // 거장 매칭 안 되면 기본 프롬프트
-        kontextPrompt = `MODIFY ONLY: ${correctionPrompt}. KEEP UNCHANGED: ${keepUnchangedStr}. Keep same artistic style. NOT photorealistic, must look PAINTED.`;
+        kontextPrompt = `${correctionPrompt} while maintaining ${preserveStr}. Keep the same artistic style. Must remain a painting, not photorealistic.`;
         console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
       }
       

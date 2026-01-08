@@ -118,6 +118,10 @@ const callFluxWithAI = async (photoBase64, selectedStyle, onProgress, correction
   // v68: 거장 AI 대화 보정 프롬프트 추가
   if (correctionPrompt) {
     requestBody.correctionPrompt = correctionPrompt;
+    console.log('🔄 [재변환 요청]');
+    console.log('   - correctionPrompt:', correctionPrompt);
+    console.log('   - selectedStyle.id:', selectedStyle?.id);
+    console.log('   - selectedStyle.category:', selectedStyle?.category);
   }
 
   const response = await fetch('/api/flux-transfer', {
@@ -185,11 +189,16 @@ export const processStyleTransfer = async (photoFile, selectedStyle, correctionP
     }
 
     let prediction;
-    if (modelConfig.model.includes('flux')) {
+    // v71: 재변환 시에는 항상 callFluxWithAI 사용 (correctionPrompt 전송 필수)
+    if (correctionPrompt) {
+      // 재변환 모드 - correctionPrompt 필수 전달
+      prediction = await callFluxWithAI(photoBase64, selectedStyle, onProgress, correctionPrompt);
+    } else if (modelConfig.model.includes('flux') && selectedStyle.prompt) {
+      // 일반 변환 + 직접 프롬프트 (미술사조/동양화 등)
       prediction = await callFluxAPI(photoBase64, selectedStyle.prompt, onProgress);
     } else {
-      // v68: 보정 프롬프트 전달
-      prediction = await callFluxWithAI(photoBase64, selectedStyle, onProgress, correctionPrompt);
+      // 일반 변환 + AI 자동 선택 (거장 모드)
+      prediction = await callFluxWithAI(photoBase64, selectedStyle, onProgress, null);
     }
 
     // ========== v30: 첫 응답에서 AI 선택 정보 저장 ==========

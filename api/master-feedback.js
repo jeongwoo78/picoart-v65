@@ -1,5 +1,5 @@
 // PicoArt - 거장(AI) 대화 API
-// v70: 프롬프트 강화 + Few-shot 예시 + 후처리 개선
+// v71: correctionPrompt 규칙 강화 + 의미 기반 영어 문장 생성
 
 import OpenAI from 'openai';
 
@@ -237,36 +237,54 @@ function buildSystemPrompt(masterKey, conversationType) {
 사용자: "${examples[2].user}"
 응답: {"masterResponse": "${examples[2].response}", "correctionPrompt": "Change the background to bright yellow"}
 
-## correctionPrompt 작성 규칙 (FLUX Kontext 최적화 - 매우 중요!)
+## correctionPrompt 작성 규칙 (FLUX Kontext 최적화 - 최우선!)
 
 correctionPrompt는 이미지 AI(FLUX Kontext)가 실행할 명령어입니다.
 
-### 필수 구조
-[동사] + [the + 구체적 대상] + [구체적 변경 내용]
+### ⚠️ 절대 규칙 - 반드시 지켜야 함!
+1. 반드시 영어로 작성
+2. 반드시 동사로 시작 (Change, Make, Add, Remove)
+3. 반드시 "the + 대상"을 포함 (the background, the face, the eyes)
+4. 반드시 구체적 내용 포함 (to yellow, more vibrant, larger)
+5. 반드시 완전한 문장으로 작성
 
-### 권장 동사
-- Change: 색상, 배경 등 교체
-- Make: 속성 변경 (더 크게, 더 밝게)
-- Add: 요소 추가
-- Remove: 요소 제거
+### 필수 구조 (이 순서 그대로!)
+[동사] + [the + 대상] + [to/more/with + 구체적 내용]
 
-### 대상 명시 규칙
-- 항상 "the"를 붙여 특정 대상 지정
-- 모호한 대명사(it, she, him) 금지
+예: "Change the background to bright orange"
+예: "Make the face more fragmented with multiple viewpoints"
+예: "Add gold decoration around the figure"
 
-### 좋은 예시 ✅
-- "Change the background to bright warm yellow"
-- "Make the face more geometric and fragmented with angular planes"
-- "Add gold leaf decoration around the figure"
-- "Make the eyes larger and more expressive"
-- "Add swirling thick brushstrokes to the sky"
-- "Change the overall colors to more vibrant and saturated"
-- "Add a flower crown with red roses on the head"
+### 권장 동사 (이것만 사용!)
+- Change: 교체 (색상, 배경) → "Change the X to Y"
+- Make: 수정 (더 크게, 더 밝게) → "Make the X more Y"
+- Add: 추가 → "Add Y to/on the X"
+- Remove: 제거 → "Remove Y from the X"
 
-### 나쁜 예시 ❌
-- "Apply the requested modifications" (모호!)
-- "Make it brighter" (it이 불명확!)
-- "Transform everything" (transform 금지!)
+### ❌ 절대 금지 - 이렇게 작성하면 안 됨!
+- "Apply the requested modifications" → 금지! (모호함)
+- "background change to" → 금지! (동사로 시작 안 함)
+- "with multiple viewpoints deconstruct" → 금지! (동사가 끝에 있음)
+- "Make it brighter" → 금지! (it 사용 금지)
+- "change" → 금지! (대상/내용 없음)
+
+### ✅ 올바른 예시 (이 형식으로만!)
+| 사용자 요청 | correctionPrompt |
+|------------|-----------------|
+| 배경을 노란색으로 | Change the background to bright warm yellow |
+| 얼굴을 더 분해해줘 | Make the face more fragmented with angular shapes |
+| 금박 추가해줘 | Add gold leaf decoration around the figure |
+| 눈을 크게 해줘 | Make the eyes larger and more expressive |
+| 색을 밝게 해줘 | Make the overall colors brighter and more vibrant |
+| 배경을 오렌지색으로 | Change the background to bright orange |
+| 머리에 꽃 추가 | Add a flower crown on the head |
+
+### 자가 검증 (작성 후 반드시 확인!)
+□ 동사(Change/Make/Add/Remove)로 시작하는가?
+□ "the + 대상"이 있는가?
+□ 구체적 내용(색상명, 형용사 등)이 있는가?
+□ 완전한 영어 문장인가?
+→ 하나라도 NO면 다시 작성!
 
 ## 규칙
 1. 말투 철저히 유지
@@ -308,7 +326,7 @@ correctionPrompt는 이미지 AI(FLUX Kontext)가 실행할 명령어입니다.
 // 후처리: JSON 파싱 안전 처리
 // ========================================
 
-// v70: masterResponse에서 수정 내용 추출 → 영어로 변환
+// v71: masterResponse에서 수정 내용 추출 → 올바른 영어 문장으로 변환
 function extractCorrectionPrompt(masterResponse) {
   // "버튼" 앞의 수정 내용 추출 (여러 패턴 시도)
   let koreanContent = null;
@@ -342,79 +360,126 @@ function extractCorrectionPrompt(masterResponse) {
   
   console.log('📝 추출된 수정 내용:', koreanContent);
   
-  // 간단한 키워드 매핑 (한국어 → 영어)
-  let english = koreanContent
-    // 대상
-    .replace(/얼굴/g, 'face')
-    .replace(/눈/g, 'eyes')
-    .replace(/코/g, 'nose')
-    .replace(/입/g, 'mouth')
-    .replace(/머리/g, 'hair')
-    .replace(/배경/g, 'background')
-    .replace(/인물/g, 'figure')
-    .replace(/전체/g, 'overall')
-    .replace(/금박/g, 'gold leaf')
-    .replace(/도트/g, 'dots')
-    .replace(/꽃/g, 'flowers')
-    .replace(/화관/g, 'flower crown')
-    .replace(/그림자/g, 'shadow')
-    // 동작
-    .replace(/추가하고/g, 'add')
-    .replace(/추가/g, 'add')
-    .replace(/바꾸고/g, 'change to')
-    .replace(/바꾸/g, 'change to')
-    .replace(/해체하고/g, 'deconstruct')
-    .replace(/해체/g, 'deconstruct')
-    .replace(/분해하고/g, 'fragment')
-    .replace(/분해/g, 'fragment')
-    .replace(/크게/g, 'larger')
-    .replace(/작게/g, 'smaller')
-    // 형용사/부사
-    .replace(/기하학적/g, 'geometric')
-    .replace(/형태를/g, 'shapes')
-    .replace(/형태/g, 'shapes')
-    .replace(/다중 시점으로/g, 'with multiple viewpoints')
-    .replace(/다중 시점/g, 'multiple viewpoints')
-    .replace(/과감하게/g, 'boldly')
-    .replace(/더/g, 'more')
-    .replace(/슬픈/g, 'sad')
-    .replace(/밝고/g, 'bright')
-    .replace(/화사하게/g, 'vivid')
-    // 색상
-    .replace(/파란색/g, 'blue')
-    .replace(/빨간색/g, 'red')
-    .replace(/노란색/g, 'yellow')
-    .replace(/녹색/g, 'green')
-    .replace(/금색/g, 'gold')
-    .replace(/은색/g, 'silver')
-    .replace(/밝게/g, 'brighter')
-    .replace(/어둡게/g, 'darker')
-    // 조사 제거
-    .replace(/으로/g, '')
-    .replace(/을/g, '')
-    .replace(/를/g, '')
-    .replace(/에/g, '')
-    .replace(/와/g, ' and ')
-    .replace(/,/g, ',');
+  // ========================================
+  // v71: 의미 기반 영어 문장 생성
+  // ========================================
   
-  // 남은 한글이 50% 이상이면 기본 템플릿
-  const koreanChars = (english.match(/[가-힣]/g) || []).length;
-  const totalChars = english.replace(/\s/g, '').length;
+  // 1단계: 핵심 요소 추출
+  const elements = {
+    action: null,    // 동사
+    target: null,    // 대상
+    detail: null     // 세부 내용
+  };
   
-  if (totalChars > 0 && koreanChars / totalChars > 0.3) {
-    console.log('⚠️ 한글 비율 높음, 기본 템플릿 사용');
-    return 'Apply the requested modifications';
+  // 동작 감지
+  if (/바꾸|변경|바꿔/.test(koreanContent)) elements.action = 'Change';
+  else if (/추가|더하|넣/.test(koreanContent)) elements.action = 'Add';
+  else if (/제거|없애|빼/.test(koreanContent)) elements.action = 'Remove';
+  else if (/크게|작게|밝게|어둡게|강하게|약하게|더/.test(koreanContent)) elements.action = 'Make';
+  else if (/분해|해체|분절/.test(koreanContent)) elements.action = 'Make';
+  else elements.action = 'Make'; // 기본값
+  
+  // 대상 감지
+  if (/배경/.test(koreanContent)) elements.target = 'the background';
+  else if (/얼굴/.test(koreanContent)) elements.target = 'the face';
+  else if (/눈/.test(koreanContent)) elements.target = 'the eyes';
+  else if (/입/.test(koreanContent)) elements.target = 'the mouth';
+  else if (/머리|머리카락/.test(koreanContent)) elements.target = 'the hair';
+  else if (/인물|사람/.test(koreanContent)) elements.target = 'the figure';
+  else if (/하늘/.test(koreanContent)) elements.target = 'the sky';
+  else if (/전체|전반/.test(koreanContent)) elements.target = 'the overall image';
+  else if (/색|색상|색채/.test(koreanContent)) elements.target = 'the colors';
+  else if (/도트/.test(koreanContent)) elements.target = 'the dots';
+  else if (/금박/.test(koreanContent)) elements.target = 'gold decoration';
+  else if (/꽃|화관/.test(koreanContent)) elements.target = 'flowers';
+  else if (/그림자/.test(koreanContent)) elements.target = 'the shadows';
+  else elements.target = 'the image';
+  
+  // 색상 감지
+  const colorMap = {
+    '노란': 'yellow', '노랑': 'yellow', '황금': 'golden',
+    '파란': 'blue', '파랑': 'blue', '하늘': 'sky blue',
+    '빨간': 'red', '빨강': 'red',
+    '녹색': 'green', '초록': 'green',
+    '주황': 'orange', '오렌지': 'orange',
+    '분홍': 'pink', '핑크': 'pink',
+    '보라': 'purple', '자주': 'purple',
+    '검은': 'black', '검정': 'black',
+    '흰': 'white', '하얀': 'white',
+    '금색': 'gold', '금': 'gold',
+    '은색': 'silver', '은': 'silver'
+  };
+  
+  let detectedColor = null;
+  for (const [kr, en] of Object.entries(colorMap)) {
+    if (koreanContent.includes(kr)) {
+      detectedColor = en;
+      break;
+    }
   }
   
-  // 남은 한글 제거 및 정리
-  english = english.replace(/[가-힣]/g, '').replace(/\s+/g, ' ').trim();
+  // 속성 감지
+  const attrMap = {
+    '크게': 'larger', '작게': 'smaller',
+    '밝게': 'brighter', '어둡게': 'darker',
+    '강하게': 'stronger', '약하게': 'softer',
+    '화사': 'more vibrant', '선명': 'more vivid',
+    '분해': 'more fragmented', '해체': 'more fragmented',
+    '다중 시점': 'with multiple viewpoints',
+    '기하학적': 'more geometric'
+  };
   
-  if (english.length < 5) {
-    return 'Apply the requested modifications';
+  let detectedAttr = null;
+  for (const [kr, en] of Object.entries(attrMap)) {
+    if (koreanContent.includes(kr)) {
+      detectedAttr = en;
+      break;
+    }
   }
   
-  console.log('✅ 변환된 correctionPrompt:', english);
-  return english;
+  // 2단계: 문장 조립
+  let result = '';
+  
+  if (elements.action === 'Change' && detectedColor) {
+    // 색상 변경: "Change the X to Y"
+    result = `Change ${elements.target} to bright ${detectedColor}`;
+  } else if (elements.action === 'Add') {
+    // 추가: "Add Y to/on the X"
+    if (elements.target === 'gold decoration') {
+      result = `Add gold leaf decoration around the figure`;
+    } else if (elements.target === 'flowers') {
+      result = `Add a flower crown on the head`;
+    } else if (detectedColor) {
+      result = `Add ${detectedColor} elements to ${elements.target}`;
+    } else {
+      result = `Add decorative elements to ${elements.target}`;
+    }
+  } else if (elements.action === 'Remove') {
+    // 제거: "Remove Y from the X"
+    result = `Remove elements from ${elements.target}`;
+  } else if (elements.action === 'Make') {
+    // 수정: "Make the X more Y"
+    if (detectedAttr) {
+      if (detectedAttr.startsWith('with ') || detectedAttr.startsWith('more ')) {
+        result = `Make ${elements.target} ${detectedAttr}`;
+      } else {
+        result = `Make ${elements.target} ${detectedAttr}`;
+      }
+    } else if (detectedColor) {
+      result = `Make ${elements.target} more ${detectedColor}`;
+    } else {
+      result = `Make ${elements.target} more prominent`;
+    }
+  }
+  
+  // 3단계: 검증 및 보완
+  if (!result || result.length < 15) {
+    console.log('⚠️ 문장 조립 실패, null 반환');
+    return null;
+  }
+  
+  console.log('✅ 생성된 correctionPrompt:', result);
+  return result;
 }
 
 function safeParseResponse(response, persona) {
@@ -434,7 +499,7 @@ function safeParseResponse(response, persona) {
       parsed.correctionPrompt = '';
     }
     
-    // v70: "버튼" 멘트 있는데 correctionPrompt 비어있으면 자동 생성
+    // v71: "버튼" 멘트 있는데 correctionPrompt 비어있으면 자동 생성
     if (parsed.masterResponse && 
         parsed.masterResponse.includes('버튼') && 
         (!parsed.correctionPrompt || !parsed.correctionPrompt.trim())) {
@@ -474,7 +539,7 @@ function safeParseResponse(response, persona) {
     // JSON 형태가 보이면 masterResponse만 추출 시도
     const match = response.match(/"masterResponse"\s*:\s*"([^"]+)"/);
     if (match) {
-      // v70: 여기서도 버튼 멘트 감지
+      // v71: 여기서도 버튼 멘트 감지
       let correctionPrompt = '';
       if (match[1].includes('버튼')) {
         const extracted = extractCorrectionPrompt(match[1]);
@@ -488,7 +553,7 @@ function safeParseResponse(response, persona) {
       };
     }
     
-    // v70: 순수 텍스트일 때도 버튼 멘트 감지
+    // v71: 순수 텍스트일 때도 버튼 멘트 감지
     let correctionPrompt = '';
     if (response.includes('버튼')) {
       console.log('🔧 순수 텍스트에서 버튼 멘트 감지');
@@ -550,7 +615,7 @@ export default async function handler(req, res) {
     const systemPrompt = buildSystemPrompt(masterName, conversationType);
     
     // 디버그 로그
-    console.log('=== Master Feedback API v70 ===');
+    console.log('=== Master Feedback API v71 ===');
     console.log('masterName:', masterName);
     console.log('conversationType:', conversationType);
     console.log('persona:', persona.nameKo);

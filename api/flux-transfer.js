@@ -1,5 +1,6 @@
 // PicoArt v74 - Kontext 프롬프트 최소화
-// v74: "ONLY ${correctionPrompt}." 만 사용
+// v76: Kontext 프롬프트 공식 권장 구조 적용
+// "ONLY ${correctionPrompt} while keeping the same painting style"
 //      - 불필요한 보존 명령어 제거
 //      - Kontext가 자동으로 나머지 유지 (이미지 편집 모델 특성)
 //
@@ -2691,26 +2692,25 @@ export default async function handler(req, res) {
       const keepUnchangedStr = keepUnchanged.join(', ');
       console.log(`🔒 보존 항목: ${keepUnchangedStr}`);
       
-      // v75: FLUX Kontext 프롬프트 - 화가 스타일 전체 포함
-      // "ONLY" + 수정 요청 + 화가 스타일 (NOT 제외)
+      // v76: FLUX Kontext 프롬프트 - 화가 이름 포함
+      // "ONLY" + 수정 요청 + "while keeping the same [화가] painting style"
       
-      let kontextPrompt;
+      // 화가 키 → 이름 변환
+      const ARTIST_DISPLAY_NAMES = {
+        'vangogh': 'Van Gogh',
+        'klimt': 'Klimt',
+        'munch': 'Munch',
+        'picasso': 'Picasso',
+        'matisse': 'Matisse',
+        'frida': 'Frida Kahlo',
+        'lichtenstein': 'Lichtenstein'
+      };
       
-      if (artistKey && ARTIST_STYLES[artistKey]) {
-        // artistStyles.js에서 화풍 가져오기 (NOT 이전까지 전체)
-        const fullStyle = ARTIST_STYLES[artistKey];
-        const styleFeatures = fullStyle.split('. NOT')[0];
-        
-        kontextPrompt = `ONLY ${correctionPrompt}. ${styleFeatures}.`;
-        console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
-        console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
-      } else {
-        kontextPrompt = `ONLY ${correctionPrompt}.`;
-        console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
-      }
+      const artistDisplayName = ARTIST_DISPLAY_NAMES[artistKey] || 'painting';
+      const kontextPrompt = `ONLY ${correctionPrompt} while keeping the same ${artistDisplayName} painting style`;
       
-      console.log('');
-      console.log(`📜 Kontext 프롬프트: ${kontextPrompt.substring(0, 150)}...`);
+      console.log(`👨‍🎨 거장: ${masterKey} → ${artistDisplayName}`);
+      console.log(`📜 Kontext 프롬프트: ${kontextPrompt}`);
       
       // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정)
       const response = await fetch(

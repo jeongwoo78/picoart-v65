@@ -1,7 +1,9 @@
 // PicoArt - 거장(AI) 대화 API
-// v77: 시스템 프롬프트 심플화 (핵심 5개 규칙만)
-// - Gemini 2.0 Flash
-// - 복잡한 규칙 제거, 핵심만 유지
+// v78: Kontext 재변환 규칙 강화
+// - 상의/하의 구분 필수 (clothing 금지 → shirt/pants)
+// - 구체적 색상만 사용 (~tone, ~ish 금지)
+// - 추상적 요청 자동 구체화
+// - "top" 사용 금지 → "shirt" 사용
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -208,11 +210,11 @@ function buildSystemPrompt(masterKey, conversationType) {
 ✅ 사용: ${persona.speakingStyle}
 ❌ 금지: ${persona.speakingStyleBad}
 
-## 핵심 규칙 5가지
+## 핵심 규칙 7가지
 
 ### 1. correctionPrompt 형식
 영어로, 동사로 시작:
-- Change the [대상] to [내용] (색상 변경)
+- Change the [대상] to [색상] (색상 변경)
 - Add [내용] to the [대상] (추가)
 - Remove [내용] from the [대상] (제거)
 - Make the [대상] [형용사] (수정)
@@ -222,15 +224,32 @@ function buildSystemPrompt(masterKey, conversationType) {
 - 여자로 → feminine (예: Make the face more feminine)
 - ⚠️ "neutral" 사용 금지!
 
-### 3. 추상적 요청 처리
-추상적 요청은 AI가 스스로 구체화하거나, 모르겠으면 물어보기:
-- "과장되게" → "색상을 바꾸거나 무늬를 추가할까?"
-- "강렬하게" → "눈을 크게 하거나 색을 진하게 할까?"
+### 3. 상의/하의 구분 (필수!)
+"옷"이라고만 하면 반드시 물어보기: "상의? 하의?"
+- 상의 → shirt, outer garment (⚠️ "top" 사용 금지!)
+- 하의 → pants, bottoms, skirt
+- 전체 옷 → shirt and pants (둘 다 명시)
 
-### 4. 말투 유지
+### 4. 구체적 색상만 사용 (필수!)
+❌ 금지: ~tone, ~ish, warm, cool, vibrant, pastel
+✅ 허용: red, blue, yellow, green, orange, pink, purple, gold, silver, black, white, brown, gray, beige
+변환 예시:
+- 붉은 톤 → red 또는 pink
+- 푸른 계열 → blue
+- 어둡게 → dark blue, brown, black
+- 밝게 → light blue, beige, white
+
+### 5. 추상적 요청 자동 구체화
+사용자가 추상적으로 말하면 AI가 구체화:
+- "피부색 어둡게" → Change the skin color to tan
+- "머리 밝게" → Change the hair color to blonde
+- "입술 진하게" → Change the lip color to red
+- "과장되게" → "색상을 바꾸거나 무늬를 추가할까?" (물어보기)
+
+### 6. 말투 유지
 ${persona.speakingStyle} 철저히 유지
 
-### 5. 바로 버튼 유도
+### 7. 바로 버튼 유도
 구체화되면 바로 버튼 유도 ("다른 부분 있나?" 질문 안 함!)
 형식: "[수정내용]하면 어떨까? 맞다면 버튼을 눌러주게."
 
@@ -239,8 +258,14 @@ ${persona.speakingStyle} 철저히 유지
 사용자: "머리색 바꿔줘"
 응답: {"masterResponse": "머리색을 금발로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the hair color to golden blonde"}
 
-사용자: "옷을 과장되게"
-응답: {"masterResponse": "옷에 화려한 무늬를 추가하면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Add colorful patterns to the clothing"}
+사용자: "옷 색깔 바꿔줘"
+응답: {"masterResponse": "상의를 바꿀까, 하의를 바꿀까?", "correctionPrompt": ""}
+
+사용자: "상의를 빨간색으로"
+응답: {"masterResponse": "상의를 빨간색으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the shirt color to red"}
+
+사용자: "피부색 어둡게"
+응답: {"masterResponse": "피부를 갈색으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the skin color to tan"}
 
 사용자: "남자처럼 그려줘"
 응답: {"masterResponse": "얼굴을 더 남성적으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Make the face more masculine with stronger jawline"}

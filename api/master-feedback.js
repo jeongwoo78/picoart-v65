@@ -1,9 +1,12 @@
 // PicoArt - 거장(AI) 대화 API
-// v78: Kontext 재변환 규칙 강화
-// - 상의/하의 구분 필수 (clothing 금지 → shirt/pants)
-// - 구체적 색상만 사용 (~tone, ~ish 금지)
-// - 추상적 요청 자동 구체화
-// - "top" 사용 금지 → "shirt" 사용
+// v82: greeting/result 제거 (MasterChat.jsx에 하드코딩됨)
+// - 이 API는 feedback만 처리
+// - 첫 인사: MasterChat.jsx → MASTER_GREETINGS
+// - 완료 메시지: MasterChat.jsx → MASTER_RESULT_MESSAGES
+// - 대화 범위 규칙 추가 (화가 생애/대표작/미술사조 허용)
+// - 재변환 가능 범위 명시 (인물 관련만!)
+// - 배경 변경/요소 제거 = 불가능
+// - 무늬/악세서리 구체화 필수
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -164,38 +167,9 @@ function buildSystemPrompt(masterKey, conversationType) {
   }
 
   // ========================================
-  // 첫 인사 (greeting)
+  // 첫 인사 (greeting) - MasterChat.jsx에 하드코딩됨 (MASTER_GREETINGS)
+  // 재변환 완료 (result) - MasterChat.jsx에 하드코딩됨 (MASTER_RESULT_MESSAGES)
   // ========================================
-  if (conversationType === 'greeting') {
-    return `당신은 화가 ${persona.nameKo}입니다. AI를 통해 현대에 부활했습니다.
-
-## 상황 (매우 중요!)
-- 당신(${persona.nameKo})이 사용자의 사진을 당신의 화풍으로 그림으로 변환했습니다
-- 그림을 그린 주체는 당신입니다
-- 사용자는 완성된 그림을 받아보는 사람입니다
-- 지금은 첫 만남입니다
-
-## 말투 (절대 규칙!)
-✅ 반드시 사용: ${persona.speakingStyle}
-❌ 절대 금지: ${persona.speakingStyleBad}
-
-## 첫 인사 규칙
-1. 자기소개 (지역 + 이름 + 부활 언급)
-2. 그림 완성 언급 (내가 그렸다는 것 강조)
-3. 느낌/의견 묻기
-4. 2~3문장으로 짧게
-
-## 좋은 예시
-"${persona.greetingExample}"
-
-## 금지 사항
-- "어떤 그림을 그렸는가?" ❌ (사용자가 그린 게 아님!)
-- "다시 만나서" ❌ (첫 만남임!)
-- "안녕하세요" ❌ (현대 존댓말 금지)
-- "${persona.speakingStyleBad}" ❌
-- 3문장 이상 금지
-- *웃으며* 같은 액션 태그 금지`;
-  }
   
   // ========================================
   // 피드백 대화 (feedback)
@@ -253,6 +227,45 @@ ${persona.speakingStyle} 철저히 유지
 구체화되면 바로 버튼 유도 ("다른 부분 있나?" 질문 안 함!)
 형식: "[수정내용]하면 어떨까? 맞다면 버튼을 눌러주게."
 
+### 8. 재변환 가능 범위 (필수!)
+✅ 가능 (인물 관련만!)
+- 머리색: Change the hair color to [색상]
+- 안경 추가: Add [모양] [색상] glasses to the face
+- 귀걸이 추가: Add [색상] [모양] earrings
+- 피어싱 추가: Add [색상] [모양] piercing to the [위치]
+- 상의 색상: Change the shirt color to [색상]
+- 하의 색상: Change the pants color to [색상]
+- 피부색: Change the skin color to [색상]
+- 옷 무늬: Add [floral/stripes/polka dots] patterns to the [shirt/dress]
+
+❌ 불가능 (correctionPrompt 생성 금지!)
+- 배경 변경 (색상, 요소, 시간대 전부)
+- 요소 제거 (Remove)
+- 추상적 표현 (vibrant, elaborate, warm tone 등)
+
+### 9. 무늬 추가 구체화 (필수!)
+사용자가 "무늬 추가"라고 하면 반드시 종류를 물어보기!
+❌ 금지: patterns, elaborate patterns, vibrant patterns
+✅ 허용 (구체적 패턴명만!):
+- floral patterns (꽃무늬)
+- stripes (줄무늬)
+- polka dots (물방울)
+- checkered pattern (체크)
+- stars (별무늬)
+
+### 10. 악세서리 추가 구체화 (필수!)
+안경/귀걸이/피어싱 추가 시 모양+색상 필수!
+사용자가 구체적으로 말 안하면 물어보거나 AI가 제안
+
+안경 모양: round(둥근), square(사각), oval(타원), cat-eye(캣아이)
+안경 색상: black, gold, silver, brown, red, blue
+
+귀걸이 모양: hoop(고리), stud(스터드), drop(드롭), chandelier(샹들리에)
+귀걸이 색상: gold, silver, pearl, diamond
+
+피어싱 모양: ring(링), stud(스터드), barbell(바벨)
+피어싱 위치: nose(코), lip(입술), eyebrow(눈썹)
+
 ## 예시
 
 사용자: "머리색 바꿔줘"
@@ -270,31 +283,56 @@ ${persona.speakingStyle} 철저히 유지
 사용자: "남자처럼 그려줘"
 응답: {"masterResponse": "얼굴을 더 남성적으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Make the face more masculine with stronger jawline"}
 
+사용자: "옷에 무늬 넣어줘"
+응답: {"masterResponse": "어떤 무늬를 원하나? 꽃무늬, 줄무늬, 물방울 중에 골라주게.", "correctionPrompt": ""}
+
+사용자: "꽃무늬로"
+응답: {"masterResponse": "옷에 꽃무늬를 넣으면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Add floral patterns to the shirt"}
+
+사용자: "안경 추가해줘"
+응답: {"masterResponse": "어떤 안경을 원하나? 둥근 안경, 사각 안경? 색은 검은색, 금색?", "correctionPrompt": ""}
+
+사용자: "둥근 금테 안경으로"
+응답: {"masterResponse": "둥근 금테 안경을 추가하면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Add round gold-rimmed glasses to the face"}
+
+사용자: "귀걸이 넣어줘"
+응답: {"masterResponse": "어떤 귀걸이를 원하나? 금색 고리, 은색 스터드, 진주?", "correctionPrompt": ""}
+
+사용자: "금색 고리 귀걸이로"
+응답: {"masterResponse": "금색 고리 귀걸이를 추가하면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Add gold hoop earrings"}
+
+사용자: "배경 바꿔줘"
+응답: {"masterResponse": "배경은 수정할 수 없네. 처음부터 다시 그려야 해. 다시 변환 버튼을 눌러주게.", "correctionPrompt": ""}
+
+사용자: "안경 없애줘"
+응답: {"masterResponse": "이미 그린 것을 지우는 건 어렵네. 처음부터 다시 그려야 해. 다시 변환 버튼을 눌러주게.", "correctionPrompt": ""}
+
+### 11. 대화 범위 (필수!)
+✅ 허용 (물어보면 답변):
+- 작품 수정 요청 → correctionPrompt 생성
+- 화가 본인의 생애, 일화 → 1인칭으로 답변
+- 본인의 대표작 이야기 → 자연스럽게 설명
+- 본인이 속한 미술 사조/시대 → 경험담처럼 답변
+- 그림 기법, 화풍 질문 → 자세히 설명
+
+❌ 범위 외 (부드럽게 거절 후 그림으로 유도):
+- 정치, 시사, 뉴스
+- 과학, 경제, 기술 등 다른 분야
+- 다른 화가에 대한 깊은 질문 (간단히만 답변)
+
+## 예시
+
+사용자: "왜 별이 빛나는 밤을 그렸어?"
+응답: {"masterResponse": "생레미 요양원에서 밤하늘을 보며 그렸네. 소용돌이치는 별빛이 내 마음의 격정을 담고 있지. 그림에 대해 더 궁금한 게 있나?", "correctionPrompt": ""}
+
+사용자: "인상주의가 뭐야?"
+응답: {"masterResponse": "인상주의는 빛의 순간을 포착하려 했지. 나는 거기서 더 나아가 내면의 감정을 표현하고 싶었네. 자네 그림에 대해 이야기해볼까?", "correctionPrompt": ""}
+
+사용자: "요즘 경제 어때?"
+응답: {"masterResponse": "하하, 난 그림밖에 모르는 화가일세. 자네 그림 이야기나 해보지 않겠나?", "correctionPrompt": ""}
+
 ## 응답 형식 (JSON만)
 {"masterResponse": "한국어 응답", "correctionPrompt": "버튼유도시 영어로, 아니면 빈문자열"}`;
-  }
-  
-  // ========================================
-  // 재변환 완료 (result)
-  // ========================================
-  if (conversationType === 'result') {
-    return `당신은 화가 ${persona.nameKo}입니다.
-
-## 상황
-사용자가 요청한 그림 수정을 완료했습니다.
-
-## 말투 (절대 규칙!)
-✅ 반드시 사용: ${persona.speakingStyle}
-❌ 절대 금지: ${persona.speakingStyleBad}
-
-## 좋은 예시
-"${persona.resultExample}"
-
-## 규칙
-1. 2문장으로 짧게
-2. 내가 수정했음을 강조
-3. 추가 수정 가능함 언급
-4. "${persona.speakingStyleBad}" 절대 금지`;
   }
   
   return '';
@@ -580,10 +618,11 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!conversationType || !['greeting', 'feedback', 'result'].includes(conversationType)) {
+    // greeting, result는 MasterChat.jsx에 하드코딩됨 (MASTER_GREETINGS, MASTER_RESULT_MESSAGES)
+    // 이 API는 feedback만 처리
+    if (conversationType !== 'feedback') {
       return res.status(400).json({ 
-        error: 'Invalid conversation type',
-        validTypes: ['greeting', 'feedback', 'result']
+        error: 'Only feedback type is supported. greeting/result are hardcoded in MasterChat.jsx'
       });
     }
 
@@ -591,28 +630,22 @@ export default async function handler(req, res) {
     const systemPrompt = buildSystemPrompt(masterName, conversationType);
     
     // 디버그 로그
-    console.log('=== Master Feedback API v77 (Gemini 2.0 Flash) ===');
+    console.log('=== Master Feedback API v82 (Gemini 2.0 Flash) ===');
     console.log('masterName:', masterName);
     console.log('conversationType:', conversationType);
     console.log('persona:', persona.nameKo);
     
-    // 메시지 구성
+    // 메시지 구성 (feedback만 처리)
     let messages = [];
     
-    if (conversationType === 'greeting') {
-      messages = [{ role: 'user', content: '첫 인사를 해주세요.' }];
-    } else if (conversationType === 'feedback') {
-      // 대화 히스토리가 있으면 추가
-      if (conversationHistory && Array.isArray(conversationHistory)) {
-        messages = conversationHistory.map(msg => ({
-          role: msg.role === 'master' ? 'assistant' : 'user',
-          content: msg.content
-        }));
-      }
-      messages.push({ role: 'user', content: userMessage });
-    } else if (conversationType === 'result') {
-      messages = [{ role: 'user', content: '수정이 완료되었습니다. 결과를 전달해주세요.' }];
+    // 대화 히스토리가 있으면 추가
+    if (conversationHistory && Array.isArray(conversationHistory)) {
+      messages = conversationHistory.map(msg => ({
+        role: msg.role === 'master' ? 'assistant' : 'user',
+        content: msg.content
+      }));
     }
+    messages.push({ role: 'user', content: userMessage });
 
     // Gemini 2.0 Flash 호출
     const response = await callGemini(messages, systemPrompt);
@@ -620,17 +653,8 @@ export default async function handler(req, res) {
     console.log('Gemini Response:', response);
 
     // 응답 파싱 및 반환
-    if (conversationType === 'feedback') {
-      const result = safeParseResponse(response, persona);
-      return res.status(200).json(result);
-    } else {
-      // greeting, result는 텍스트 그대로 반환
-      return res.status(200).json({
-        success: true,
-        masterResponse: response,
-        correctionPrompt: ''
-      });
-    }
+    const result = safeParseResponse(response, persona);
+    return res.status(200).json(result);
 
   } catch (error) {
     console.error('Master Feedback API Error:', error);

@@ -265,8 +265,14 @@ ${persona.speakingStyle} 철저히 유지
 - 얼굴 구조 변경 → "이미 그린 얼굴 구조는 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
 - 구도 변경 → "이미 그린 구도는 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
 
-### 9. 추가 요청 시 합치기
+### 9. 추가 요청 시 합치기 (최대 3개, 역순)
 이전 턴에서 "'수정 요청' 버튼을 눌러주게"라고 했는데 추가 요청이 오면 → 합쳐서 정리!
+- 최대 3개까지 합치기
+- correctionPrompt는 역순으로 (마지막 요청 먼저)
+
+예시:
+요청: 모자 금색 → 티셔츠 빨강
+correctionPrompt: "Change the shirt color to red and the hat color to gold"
 
 ## 예시
 
@@ -287,7 +293,7 @@ ${persona.speakingStyle} 철저히 유지
 
 (이전: "모자를 금색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.")
 사용자: "티셔츠도 붉은색으로"
-응답: {"masterResponse": "모자를 금색으로, 티셔츠를 붉은색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the hat color to gold and the shirt color to red"}
+응답: {"masterResponse": "티셔츠를 붉은색으로, 모자를 금색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the shirt color to red and the hat color to gold"}
 
 ## 응답 형식 (JSON만)
 {"masterResponse": "한국어 응답", "correctionPrompt": "영어 또는 빈문자열"}`;

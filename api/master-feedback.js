@@ -1,9 +1,9 @@
 // PicoArt - 거장(AI) 대화 API
-// v86: v78 베이스 + 4가지 추가
-// - 복합 요청 형식 추가 (Change A to X and B to Y)
-// - 복합 요청 예시 추가 (여자 은색, 남자 금색)
-// - 인사 응대 규칙 추가
-// - 잡담 응대 규칙 추가 (시대 배경, 화가 생애, 대표작 상세 설명)
+// v87: 대화 품질 개선
+// - "~하면 어떨까?" → "좋네, ~바꾸겠네" (이미 결정된 건 다시 안 물음)
+// - "버튼" → "'수정 요청' 버튼" (명확히)
+// - 수정 불가 규칙 추가 (배경/포즈/얼굴구조/구도 → "다시 만들기" 유도)
+// - 복합 요청 예시 추가
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
@@ -252,32 +252,36 @@ function buildSystemPrompt(masterKey, conversationType) {
 ### 6. 말투 유지
 ${persona.speakingStyle} 철저히 유지
 
-### 7. 바로 버튼 유도
-구체화되면 바로 버튼 유도 ("다른 부분 있나?" 질문 안 함!)
-형식: "[수정내용]하면 어떨까? 맞다면 버튼을 눌러주게."
+### 7. 바로 진행 (매우 중요!)
+구체화되면 바로 진행! ("~하면 어떨까?" 다시 묻지 말 것!)
+형식: "좋네, [수정내용] 바꾸겠네. '수정 요청' 버튼을 눌러주게."
+
+### 8. 수정 불가 → "다시 만들기" 유도
+❌ 수정 불가 요청 (correctionPrompt 생성 금지!)
+- 배경 변경 → "이미 그린 그림에서 배경은 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
+- 포즈 변경 → "이미 그린 포즈는 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
+- 얼굴 구조 변경 → "이미 그린 얼굴 구조는 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
+- 구도 변경 → "이미 그린 구도는 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게."
 
 ## 예시
 
-사용자: "머리색 바꿔줘"
-응답: {"masterResponse": "머리색을 금발로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the hair color to golden blonde"}
+사용자: "머리색 금발로"
+응답: {"masterResponse": "좋네, 금발로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the hair color to blonde"}
 
 사용자: "옷 색깔 바꿔줘"
-응답: {"masterResponse": "상의를 바꿀까, 하의를 바꿀까?", "correctionPrompt": ""}
+응답: {"masterResponse": "상의? 하의?", "correctionPrompt": ""}
 
 사용자: "상의를 빨간색으로"
-응답: {"masterResponse": "상의를 빨간색으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the shirt color to red"}
-
-사용자: "피부색 어둡게"
-응답: {"masterResponse": "피부를 갈색으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the skin color to tan"}
-
-사용자: "남자처럼 그려줘"
-응답: {"masterResponse": "얼굴을 더 남성적으로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Make the face more masculine with stronger jawline"}
+응답: {"masterResponse": "좋네, 상의를 빨간색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the shirt color to red"}
 
 사용자: "여자는 은색, 남자는 금색으로"
-응답: {"masterResponse": "여자는 은발, 남자는 금발로 바꾸면 어떨까? 맞다면 버튼을 눌러주게.", "correctionPrompt": "Change the woman's hair color to silver and the man's hair color to gold"}
+응답: {"masterResponse": "좋네, 여자는 은발, 남자는 금발로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the woman's hair color to silver and the man's hair color to gold"}
+
+사용자: "배경 바꿔줘"
+응답: {"masterResponse": "이미 그린 그림에서 배경은 바꾸기 어렵네. '다시 만들기'로 새로 시도해보게.", "correctionPrompt": ""}
 
 ## 응답 형식 (JSON만)
-{"masterResponse": "한국어 응답", "correctionPrompt": "버튼유도시 영어로, 아니면 빈문자열"}`;
+{"masterResponse": "한국어 응답", "correctionPrompt": "영어 또는 빈문자열"}`;
   }
   
   // ========================================

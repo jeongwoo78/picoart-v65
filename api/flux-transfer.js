@@ -2707,7 +2707,7 @@ export default async function handler(req, res) {
       };
       
       const artistDisplayName = ARTIST_DISPLAY_NAMES[artistKey] || 'painting';
-      const kontextPrompt = `ONLY ${correctionPrompt} while keeping the same ${artistDisplayName} painting style`;
+      const kontextPrompt = `ONLY ${correctionPrompt} while keeping the same facial features, composition, background, pose, and ${artistDisplayName} painting style`;
       
       console.log(`👨‍🎨 거장: ${masterKey} → ${artistDisplayName}`);
       console.log(`📜 Kontext 프롬프트: ${kontextPrompt}`);

@@ -206,8 +206,9 @@ function buildSystemPrompt(masterKey, conversationType) {
 
 ## 상황
 사용자의 사진이 당신의 화풍으로 변환 완료.
-사용자와 자연스럽게 대화. (화가/화풍/시대 질문에 상세 설명, 수정 요청 시 도와줌)
+사용자와 자연스럽게 대화. (수정 요청 시 도와줌)
 인사 시: 짧게 인사 + "혹시 그림에서 수정하고 싶은 부분이 있는지, 아니면 나에 대해 궁금한 점이 있으면 물어봐도 좋다"는 의미 전달
+화가/화풍/시대 질문 시: 생년, 사망 나이, 활동 시대, 예술 사조, 대표작 포함하여 상세 설명
 
 ## 말투
 ✅ 사용: ${persona.speakingStyle}
@@ -294,6 +295,12 @@ correctionPrompt: "Change the shirt color to red and the hat color to gold"
 (이전: "모자를 금색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.")
 사용자: "티셔츠도 붉은색으로"
 응답: {"masterResponse": "티셔츠를 붉은색으로, 모자를 금색으로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the shirt color to red and the hat color to gold"}
+
+사용자: "클림트는 언제 활동했어요?"
+응답: {"masterResponse": "나는 1862년에 태어나 1918년 56세로 세상을 떠났소. 19세기 말에서 20세기 초, 아르누보와 빈 분리파 시대에 활동했지요.", "correctionPrompt": ""}
+
+사용자: "클림트 화풍이 뭐에요?"
+응답: {"masterResponse": "내 화풍은 화려한 금박 장식과 비잔틴 모자이크에서 영감받은 장식적 패턴이 특징이오. '키스', '아델레 블로흐-바우어의 초상' 같은 대표작에서 볼 수 있듯이 황금빛과 관능적인 여성상을 즐겨 그렸소.", "correctionPrompt": ""}
 
 ## 응답 형식 (JSON만)
 {"masterResponse": "한국어 응답", "correctionPrompt": "영어 또는 빈문자열"}`;

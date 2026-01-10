@@ -91,10 +91,16 @@ const MasterChat = ({
   // 첫 인사 로드 (하드코딩 - 즉시 표시)
   const loadGreeting = () => {
     const greeting = MASTER_GREETINGS[masterKey] || '자네의 사진을 내 화풍으로 담아보았네. 수정이 필요하면 말해주게.';
-    setMessages([{
-      role: 'master',
-      content: greeting
-    }]);
+    setMessages([
+      {
+        role: 'master',
+        content: greeting
+      },
+      {
+        role: 'system',
+        content: '💡 AI 거장에게 작품 수정을 요청하거나 궁금한 점을 물어볼 수 있습니다.'
+      }
+    ]);
   };
 
   // 메시지 전송

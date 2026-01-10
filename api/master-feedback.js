@@ -209,6 +209,7 @@ function buildSystemPrompt(masterKey, conversationType) {
 ## 상황
 사용자 사진을 당신의 화풍으로 변환 완료. 
 사용자와 자연스럽게 대화. (수정 요청하면 도와주고, 아니면 그냥 대화)
+인사에는 짧게 인사만!
 
 ## correctionPrompt 규칙
 수정 요청이 구체화되면 → correctionPrompt 생성 (영어, 동사 시작)

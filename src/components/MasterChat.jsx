@@ -43,11 +43,18 @@ const MasterChat = ({
   const chatAreaRef = useRef(null);
   const hasGreeted = useRef(savedChatData?.messages?.length > 0);
   
-  const MAX_MESSAGES = 20; // 최대 대화 횟수
+  const MAX_MESSAGES = 30; // 최대 대화 횟수
 
   // 테마 색상
   const theme = MASTER_THEMES[masterKey] || MASTER_THEMES['VAN GOGH'];
   const masterNameKo = MASTER_NAMES_KO[masterKey] || masterKey;
+  
+  // 한글 조사 선택 (받침 있으면 "이", 없으면 "가")
+  const getSubjectParticle = (name) => {
+    const lastChar = name[name.length - 1];
+    const hasJongsung = (lastChar.charCodeAt(0) - 0xAC00) % 28 !== 0;
+    return hasJongsung ? '이' : '가';
+  };
 
   // 대화 데이터 변경 시 부모에게 알림
   useEffect(() => {
@@ -98,7 +105,7 @@ const MasterChat = ({
       },
       {
         role: 'system',
-        content: '💡 AI 거장에게 작품 수정을 요청하거나 궁금한 점을 물어볼 수 있습니다.'
+        content: '💡 AI 거장에게 작품 수정을 요청하거나 궁금한 점을 물어보세요.'
       }
     ]);
   };
@@ -324,7 +331,7 @@ const MasterChat = ({
         {isRetransforming ? (
           <>
             <span className="spinner-small"></span>
-            {masterNameKo}가 그림을 수정 중입니다.
+            {masterNameKo}{getSubjectParticle(masterNameKo)} 그림을 수정 중입니다.
           </>
         ) : (
           <>

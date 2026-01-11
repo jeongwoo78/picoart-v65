@@ -2715,30 +2715,58 @@ export default async function handler(req, res) {
       console.log(`👨‍🎨 거장: ${masterKey} → ${artistDisplayName}`);
       console.log(`📜 Kontext 프롬프트: ${kontextPrompt}`);
       
-      // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정)
-      const response = await fetch(
-        'https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions',
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'wait'
-          },
-          body: JSON.stringify({
-            input: {
-              input_image: image,
-              prompt: kontextPrompt
+      // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정) - 재시도 로직 포함
+      const MAX_RETRIES = 3;
+      let response;
+      let lastError;
+      
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          response = await fetch(
+            'https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions',
+            {
+              method: 'POST',
+              headers: {
+                'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'wait'
+              },
+              body: JSON.stringify({
+                input: {
+                  input_image: image,
+                  prompt: kontextPrompt
+                }
+              })
             }
-          })
+          );
+          
+          // 502/503 에러 시 재시도
+          if (response.status === 502 || response.status === 503) {
+            console.log(`🔄 FLUX Kontext 재시도 (${attempt}/${MAX_RETRIES})... ${response.status} 에러`);
+            if (attempt < MAX_RETRIES) {
+              await new Promise(r => setTimeout(r, 2000 * attempt)); // 2초, 4초 대기
+              continue;
+            }
+          }
+          
+          // 성공 또는 다른 에러면 루프 탈출
+          break;
+        } catch (err) {
+          lastError = err;
+          console.log(`🔄 FLUX Kontext 재시도 (${attempt}/${MAX_RETRIES})... 네트워크 에러`);
+          if (attempt < MAX_RETRIES) {
+            await new Promise(r => setTimeout(r, 2000 * attempt));
+            continue;
+          }
         }
-      );
+      }
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('FLUX Kontext error (retransform):', response.status, errorText);
-        return res.status(response.status).json({ 
-          error: `FLUX Kontext API error: ${response.status}`,
+      if (!response || !response.ok) {
+        const errorText = response ? await response.text() : 'No response';
+        const statusCode = response ? response.status : 500;
+        console.error('FLUX Kontext error (retransform):', statusCode, errorText);
+        return res.status(statusCode).json({ 
+          error: `FLUX Kontext API error: ${statusCode}`,
           details: errorText
         });
       }
@@ -3720,33 +3748,58 @@ export default async function handler(req, res) {
     console.log(`   ${finalPrompt.substring(0, 500)}...`);
     console.log('');
     
-    // FLUX Depth Dev 변환 (v63: Pro 테스트 포기, Dev 유지)
-    // console.log('📦 [v63] black-forest-labs/flux-depth-dev');
+    // FLUX Depth Dev 변환 - 재시도 로직 포함
+    const MAX_RETRIES = 3;
+    let response;
+    let lastError;
     
-    const response = await fetch(
-      'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'wait'
-        },
-        body: JSON.stringify({
-          input: {
-            control_image: image,
-            prompt: finalPrompt,
-            num_inference_steps: 24,
-            guidance: 12,
-            control_strength: controlStrength,
-            output_format: 'jpg',
-            output_quality: 90
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        response = await fetch(
+          'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'wait'
+            },
+            body: JSON.stringify({
+              input: {
+                control_image: image,
+                prompt: finalPrompt,
+                num_inference_steps: 24,
+                guidance: 12,
+                control_strength: controlStrength,
+                output_format: 'jpg',
+                output_quality: 90
+              }
+            })
           }
-        })
+        );
+        
+        // 502/503 에러 시 재시도
+        if (response.status === 502 || response.status === 503) {
+          console.log(`🔄 FLUX Depth 재시도 (${attempt}/${MAX_RETRIES})... ${response.status} 에러`);
+          if (attempt < MAX_RETRIES) {
+            await new Promise(r => setTimeout(r, 2000 * attempt)); // 2초, 4초 대기
+            continue;
+          }
+        }
+        
+        // 성공 또는 다른 에러면 루프 탈출
+        break;
+      } catch (err) {
+        lastError = err;
+        console.log(`🔄 FLUX Depth 재시도 (${attempt}/${MAX_RETRIES})... 네트워크 에러`);
+        if (attempt < MAX_RETRIES) {
+          await new Promise(r => setTimeout(r, 2000 * attempt));
+          continue;
+        }
       }
-    );
+    }
 
-    if (!response.ok) {
+    if (!response || !response.ok) {
       const errorText = await response.text();
       console.error('FLUX Depth error:', response.status, errorText);
       return res.status(response.status).json({ 

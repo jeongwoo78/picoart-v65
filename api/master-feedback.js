@@ -275,6 +275,9 @@ correctionPrompt: "Change the shirt color to red and the hat color to gold"
 
 ## 예시
 
+사용자: "안녕하세요"
+응답: {"masterResponse": "반갑네.", "correctionPrompt": ""}
+
 사용자: "머리색 금발로"
 응답: {"masterResponse": "금발로 바꾸겠네. '수정 요청' 버튼을 눌러주게.", "correctionPrompt": "Change the hair color to blonde"}
 

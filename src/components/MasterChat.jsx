@@ -145,11 +145,13 @@ const MasterChat = ({
     
     setIsLoading(true);
     try {
-      // 대화 히스토리 구성 (Claude API 형식)
-      const conversationHistory = messages.map(msg => ({
-        role: msg.role === 'master' ? 'assistant' : 'user',
-        content: msg.content
-      }));
+      // 대화 히스토리 구성 (Claude API 형식) - 시스템 메시지 제외
+      const conversationHistory = messages
+        .filter(msg => msg.role !== 'system')
+        .map(msg => ({
+          role: msg.role === 'master' ? 'assistant' : 'user',
+          content: msg.content
+        }));
 
       const response = await fetch('/api/master-feedback', {
         method: 'POST',

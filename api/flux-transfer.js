@@ -2707,7 +2707,10 @@ export default async function handler(req, res) {
       };
       
       const artistDisplayName = ARTIST_DISPLAY_NAMES[artistKey] || 'painting';
-      const kontextPrompt = `ONLY ${correctionPrompt} while keeping the same facial features, composition, background, pose, and ${artistDisplayName} painting style`;
+      
+      // pants → lower garment 치환 (FLUX가 다리 피부와 혼동 방지)
+      const sanitizedPrompt = correctionPrompt.replace(/pants/gi, 'lower garment');
+      const kontextPrompt = `ONLY ${sanitizedPrompt} while keeping the same facial features, composition, background, pose, and ${artistDisplayName} painting style`;
       
       console.log(`👨‍🎨 거장: ${masterKey} → ${artistDisplayName}`);
       console.log(`📜 Kontext 프롬프트: ${kontextPrompt}`);

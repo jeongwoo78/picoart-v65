@@ -134,6 +134,7 @@ const ResultScreen = ({
     if (name.includes('VAN GOGH') || name.includes('GOGH') || name.includes('고흐')) return 'VAN GOGH';
     if (name.includes('KLIMT') || name.includes('클림트')) return 'KLIMT';
     if (name.includes('MUNCH') || name.includes('뭉크')) return 'MUNCH';
+    if (name.includes('CHAGALL') || name.includes('샤갈')) return 'CHAGALL';
     if (name.includes('PICASSO') || name.includes('피카소')) return 'PICASSO';
     if (name.includes('MATISSE') || name.includes('마티스')) return 'MATISSE';
     if (name.includes('FRIDA') || name.includes('KAHLO') || name.includes('프리다') || name.includes('칼로')) return 'FRIDA';

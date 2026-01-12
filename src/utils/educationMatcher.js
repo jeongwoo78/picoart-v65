@@ -99,7 +99,24 @@ const MASTERS_WORK_MAP = {
   '원숭이와 자화상': 'frida-monkeys',
   'Monkeys': 'frida-monkeys',
   'Diego and I': 'frida-diegoandi',
-  '디에고와 나': 'frida-diegoandi'
+  '디에고와 나': 'frida-diegoandi',
+  
+  // 리히텐슈타인 (5작품) - v70 추가
+  'In the Car': 'lichtenstein-inthecar',
+  '차 안에서': 'lichtenstein-inthecar',
+  'In Car': 'lichtenstein-inthecar',
+  'M-Maybe': 'lichtenstein-mmaybe',
+  '아마도': 'lichtenstein-mmaybe',
+  'Maybe': 'lichtenstein-mmaybe',
+  'Forget It!': 'lichtenstein-forgetit',
+  'Forget It': 'lichtenstein-forgetit',
+  '날 잊어': 'lichtenstein-forgetit',
+  'Ohhh...Alright...': 'lichtenstein-ohhhalright',
+  'Ohhh Alright': 'lichtenstein-ohhhalright',
+  '오 알았어': 'lichtenstein-ohhhalright',
+  'Still Life with Crystal Bowl': 'lichtenstein-stilllife',
+  'Still Life': 'lichtenstein-stilllife',
+  '정물화': 'lichtenstein-stilllife'
 };
 
 // 화가 이름으로 화가 ID fallback (v62 - 화가별 키로 변경)
@@ -534,13 +551,20 @@ const WORK_TO_ARTIST_KEY = {
   'matisse-redroom': 'matisse',
   'matisse-womanhat': 'matisse',
   'matisse-greenstripe': 'matisse',
+  'chagall-lovers': 'chagall',
+  'chagall-labranche': 'chagall',
   'picasso-demoiselles': 'picasso',
   'picasso-guernica': 'picasso',
   'frida-parrots': 'frida',
   'frida-brokencolumn': 'frida',
   'frida-thornnecklace': 'frida',
   'frida-monkeys': 'frida',
-  'frida-diegoandi': 'frida'
+  'frida-diegoandi': 'frida',
+  'lichtenstein-inthecar': 'lichtenstein',
+  'lichtenstein-mmaybe': 'lichtenstein',
+  'lichtenstein-forgetit': 'lichtenstein',
+  'lichtenstein-ohhhalright': 'lichtenstein',
+  'lichtenstein-stilllife': 'lichtenstein'
 };
 
 // ========== 교육자료 내용 가져오기 ==========

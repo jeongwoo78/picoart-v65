@@ -138,7 +138,7 @@ export const ARTIST_STYLES = {
   
   'miro': 'by Joan Miró, Miró art style, playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines. Hand-painted artwork.',
   
-  'chagall': 'by Marc Chagall, Chagall art style, SOFT FLOWING BRUSHSTROKES with visible texture, DREAMY PASTEL PALETTE with soft pink coral blue green, romantic poetic nostalgic atmosphere. Hand-painted artwork.',
+  'chagall': 'by Marc Chagall, Chagall art style, dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers. NOT photograph, NOT digital.',
   
   'lichtenstein': 'by Roy Lichtenstein, COMIC BOOK POP ART style, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing surrounding ALL shapes faces and figures, FLAT primary colors ONLY (red blue yellow white black), halftone printing effect, THICK BLACK CONTOUR LINES on every edge. Bold comic book print artwork.',
 

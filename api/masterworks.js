@@ -45,9 +45,6 @@ export const masterworkNameMapping = {
   'self-portrait with thorn necklace': 'frida-thornnecklace', '가시 목걸이': 'frida-thornnecklace',
   'self-portrait with monkeys': 'frida-monkeys', '원숭이와 자화상': 'frida-monkeys',
   
-  // 모딜리아니
-  'woman with blue eyes': 'modigliani-blueeyes', '푸른 눈의 여인': 'modigliani-blueeyes',
-  
   // 로마 모자이크
   'alexander mosaic': 'mosaic-alexander', '알렉산더 모자이크': 'mosaic-alexander',
   'cave canem': 'mosaic-cave-canem', '카베 카넴': 'mosaic-cave-canem',
@@ -90,6 +87,7 @@ export const masterworkNameMapping = {
   
   // 로코코
   'pilgrimage to cythera': 'watteau-cythera', 'pierrot': 'watteau-pierrot',
+  'the pleasures of the ball': 'watteau-fete', '사랑의 축제': 'watteau-fete',
   'madame de pompadour': 'boucher-pompadour', '퐁파두르 부인': 'boucher-pompadour',
   'le dejeuner': 'boucher-breakfast', '아침 식사': 'boucher-breakfast',
   
@@ -130,7 +128,9 @@ export const masterworkNameMapping = {
   
   // 표현주의
   'bride of the wind': 'kokoschka-bride', 'self-portrait of a degenerate artist': 'kokoschka-degenerate',
+  'double portrait': 'kokoschka-double', '이중 초상': 'kokoschka-double',
   'berlin street scene': 'kirchner-berlin', 'self-portrait as a soldier': 'kirchner-soldier',
+  'three old women': 'kirchner-oldwomen', '세 명의 노부인들': 'kirchner-oldwomen',
   
   // 모더니즘
   'the son of man': 'magritte-sonofman', 'golconda': 'magritte-golconda',
@@ -1107,37 +1107,37 @@ export const miroMasterworks = {
 };
 
 // ========================================
-// 42. 샤갈 (3개)
+// 42. 샤갈 (5개) - v70: 2개 추가
 // ========================================
 export const chagallMasterworks = {
   'chagall-iandvillage': {
     name: '나와 마을',
     nameEn: 'I and the Village',
-    prompt: 'Marc Chagall "I and the Village" (1911), SOFT FLOWING BRUSHSTROKES, dreamlike overlapping imagery, green-toned faces, circular composition, DREAMY PASTEL PALETTE emerald ruby deep blue, romantic poetic atmosphere.',
+    prompt: 'Marc Chagall "I and the Village" (1911), overlapping dreamlike green-faced man cow gazing each other, circular composition transparent overlays, emerald ruby deep blue, soft pastel colors.',
     feature: '동물, 얼굴, 중첩'
   },
   'chagall-birthday': {
     name: '생일',
     nameEn: 'Birthday',
-    prompt: 'Marc Chagall "Birthday" (1915), SOFT FLOWING BRUSHSTROKES, lovers kissing, man bending backward, DREAMY PASTEL PALETTE dusty rose pale blue sage, tilted room, romantic poetic atmosphere.',
+    prompt: 'Marc Chagall "Birthday" (1915), floating lovers defying gravity, man bends impossibly backward kiss woman, soft muted pastels dusty rose pale blue sage, tilted room.',
     feature: '커플, 키스'
   },
   'chagall-overtown': {
     name: '마을 위에서',
     nameEn: 'Over the Town',
-    prompt: 'Marc Chagall "Over the Town" (1918), SOFT FLOWING BRUSHSTROKES, embracing lovers above village, colorful tilted houses below, DREAMY PASTEL PALETTE lavender blue rose, romantic poetic atmosphere.',
+    prompt: 'Marc Chagall "Over the Town" (1918), couple floating high above village, embracing lovers soaring over tilted colorful houses, muted dreamy pastels lavender blue rose.',
     feature: '커플, 마을'
   },
   'chagall-lovers': {
     name: '사랑하는 연인들과 꽃',
     nameEn: 'Lovers with Flowers',
-    prompt: 'Marc Chagall "Lovers with Flowers" (1927), SOFT FLOWING BRUSHSTROKES, embracing couple surrounded by vibrant flowers, DREAMY PASTEL PALETTE with warm coral pink blue green, romantic poetic atmosphere.',
+    prompt: 'Marc Chagall "Lovers with Flowers" (1927), embracing couple surrounded by vibrant flowers, soft pastel colors with warm coral pink blue green, romantic poetic atmosphere.',
     feature: '커플, 꽃다발'
   },
   'chagall-labranche': {
     name: '나뭇가지',
     nameEn: 'La Branche',
-    prompt: 'Marc Chagall "La Branche" (1976), SOFT FLOWING BRUSHSTROKES, lovers among flowering branches, WARM PASTEL PALETTE rich red pink coral, romantic poetic nostalgic atmosphere.',
+    prompt: 'Marc Chagall "La Branche" (1976), lovers among flowering branches, warm pastel palette rich red pink coral, romantic poetic nostalgic atmosphere.',
     feature: '커플, 자연'
   }
 };
@@ -1149,44 +1149,32 @@ export const lichtensteinMasterworks = {
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 클로즈업'
   },
   'lichtenstein-forgetit': {
     name: '날 잊어',
     nameEn: 'Forget It! Forget Me!',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '커플, 드라마틱'
   },
   'lichtenstein-ohhhalright': {
     name: '오 알았어',
     nameEn: 'Ohhh...Alright...',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '여성, 전화'
   },
   'lichtenstein-stilllife': {
     name: '정물화',
     nameEn: 'Still Life with Palette',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
     feature: '정물, 오브제'
-  }
-};
-
-// ========================================
-// 44. 모딜리아니 (3개)
-// ========================================
-export const modiglianiMasterworks = {
-  'modigliani-blueeyes': {
-    name: '푸른 눈의 여인',
-    nameEn: 'Woman with Blue Eyes',
-    prompt: 'Amedeo Modigliani "Woman with Blue Eyes" (1918), EXTREMELY LONG SWAN NECK stretched 2x normal length, VERY TALL NARROW OVAL FACE stretched 1.5x vertically, SOLID BLUE ALMOND EYES filled with single flat blue color without any pupils or iris, simplified smooth forms, melancholic serene expression, muted background.',
-    feature: '여성, 푸른 눈'
   }
 };
 
@@ -1234,8 +1222,7 @@ export const allMovementMasterworks = {
   ...magritteMasterworks,
   ...miroMasterworks,
   ...chagallMasterworks,
-  ...lichtensteinMasterworks,
-  ...modiglianiMasterworks
+  ...lichtensteinMasterworks
 };
 
 /**
@@ -1293,8 +1280,7 @@ export function getArtistMasterworkList(artistKey) {
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-iandvillage', 'chagall-birthday', 'chagall-overtown', 'chagall-lovers', 'chagall-labranche'],
-    'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife'],
-    'modigliani': ['modigliani-blueeyes']
+    'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife']
   };
   
   return artistMasterworks[normalized] || [];
@@ -1482,14 +1468,14 @@ DIEGO VELAZQUEZ - SELECT ONE:
 ANTOINE WATTEAU - SELECT ONE:
 1. "Pilgrimage to Cythera" (시테르섬의 순례) → COUPLE or GROUP, romantic, outdoor | Style: dreamy pastoral setting, elegant couples departing, soft golden light, melancholic atmosphere
 2. "Pierrot" (피에로) → SINGLE portrait, melancholic, theatrical | Style: white costume standing alone, wistful expression, commedia dell'arte character
-3. "Fête Galante" (귀족의 연회) → GROUP, celebration, garden party | Style: elegant aristocrats in garden, musical instruments, soft feathery brushwork
+3. "The Pleasures of the Ball" (사랑의 축제) → GROUP, celebration, garden party | Style: elegant aristocrats in garden, musical instruments, soft feathery brushwork
 
 ⚠️ Watteau style: Delicate feathery brushwork, soft dreamy pastoral scenes, romantic melancholic atmosphere.`,
 
   'boucher': `
 FRANÇOIS BOUCHER - SELECT ONE:
 1. "Madame de Pompadour" (퐁파두르 부인) → FEMALE portrait, elegant, aristocratic | Style: luxurious dress with ribbons and roses, books and artistic objects, soft rosy flesh tones
-2. "Le Déjeuner" (아침 식사) → interior, domestic, family scene | Style: intimate bourgeois interior, mother and children, warm pastel palette
+2. "Le Dejeuner" (아침 식사) → interior, domestic, family scene | Style: intimate bourgeois interior, mother and children, warm pastel palette
 
 ⚠️ Boucher style: Soft rosy flesh tones, light pastel palette, playful decorative elegance.`,
 
@@ -1514,7 +1500,7 @@ JEAN-AUGUSTE-DOMINIQUE INGRES - SELECT ONE:
   'turner': `
 J.M.W. TURNER - SELECT ONE:
 1. "Rain, Steam and Speed" (비, 증기, 속도) → train, motion, atmospheric | Style: locomotive emerging from mist, diagonal composition, golden atmospheric haze
-2. "The Fighting Temeraire" (전함 테메레르) → ship, sunset, nostalgic | Style: ghost-like ship towed by tugboat, blazing orange sunset, reflections on water
+2. "Fighting Temeraire" (전함 테메레르) → ship, sunset, nostalgic | Style: ghost-like ship towed by tugboat, blazing orange sunset, reflections on water
 3. "Slave Ship" (노예선) → dramatic, stormy sea, sunset | Style: turbulent waves, blood-red sunset, dramatic atmospheric chaos
 
 ⚠️ Turner style: Atmospheric sublime light, swirling mist dissolving forms, luminous golden glow.`,
@@ -1537,7 +1523,7 @@ GUSTAVE COURBET - SELECT ONE:
 
   'manet': `
 ÉDOUARD MANET - SELECT ONE:
-1. "A Bar at the Folies-Bergère" (폴리베르제르의 바) → FEMALE portrait, interior, mirror | Style: barmaid facing viewer, mirror reflection behind, bottles and oranges, modern urban life
+1. "Bar at the Folies-Bergère" (폴리베르제르의 바) → FEMALE portrait, interior, mirror | Style: barmaid facing viewer, mirror reflection behind, bottles and oranges, modern urban life
 2. "The Fifer" (피리 부는 소년) → MALE portrait, young, simple background | Style: young boy in military uniform playing fife, flat grey background, bold silhouette
 
 ⚠️ For FEMALE: Bar at Folies-Bergère. For MALE: The Fifer. Manet style: Bold flat composition, striking light-dark contrast, loose confident brushwork.`,
@@ -1651,14 +1637,14 @@ EDVARD MUNCH - SELECT ONE:
 ERNST LUDWIG KIRCHNER - SELECT ONE:
 1. "Berlin Street Scene" (베를린 거리 풍경) → urban, GROUP, city life | Style: angular jagged figures, garish clashing colors, elongated distorted forms, modern city tension
 2. "Self-Portrait as a Soldier" (군인으로서의 자화상) → MALE portrait, psychological | Style: severed hand motif, anxious expression, harsh angular forms, war trauma
-3. "Two Women in the Street" (거리의 두 여인) → FEMALE pair, urban | Style: elongated figures, mask-like faces, acidic green and pink, urban alienation
+3. "Three Old Women" (세 명의 노부인들) → FEMALE group, outdoor | Style: three angular figures in black clothing, green mountainous landscape, mask-like faces
 
 ⚠️ For MALE: Self-Portrait as Soldier. For FEMALE: Two Women. Kirchner style: Sharp angular jagged forms, extreme bold clashing colors, elongated mask-like faces.`,
 
   'kokoschka': `
 OSKAR KOKOSCHKA - SELECT ONE:
 1. "Bride of the Wind" (바람의 신부) → COUPLE, dramatic, emotional | Style: two intertwined figures in swirling storm, turbulent slashing brushwork, intense emotional turmoil
-2. "The Degenerate Art" (퇴폐 미술) → portrait, psychological | Style: penetrating psychological intensity, harsh feverish colors, raw emotional exposure
+2. "Self-Portrait of a Degenerate Artist" (퇴폐 미술가 자화상) → portrait, psychological | Style: penetrating psychological intensity, harsh feverish colors, raw emotional exposure
 3. "Double Portrait" (이중 초상) → COUPLE portrait | Style: two figures with psychological tension, distorted features, emotional undercurrents
 
 ⚠️ For COUPLE: Bride of the Wind. Kokoschka style: Violent turbulent slashing brushwork, harsh acidic feverish colors, deeply distorted psychological tension.`,
@@ -1687,30 +1673,29 @@ RENÉ MAGRITTE - SELECT ONE:
   'miro': `
 JOAN MIRÓ - SELECT ONE:
 1. "The Catalan Landscape" (카탈루냐 풍경) → landscape, playful, abstract | Style: biomorphic shapes floating, yellow ochre background, whimsical symbols
-2. "Constellation" (별자리) → abstract, cosmic, night | Style: starfield of symbols, interconnected lines, black background with colorful shapes
-3. "Blue Star" (푸른 별) → simple, iconic, blue | Style: large blue shape on light background, minimal childlike composition
+2. "Constellations" (별자리) → abstract, cosmic, night | Style: starfield of symbols, interconnected lines, black background with colorful shapes
+3. "Woman in Front of the Sun" (태양 앞의 여인) → simple, iconic, figure | Style: large biomorphic shape on light background, minimal childlike composition
 
 ⚠️ Miró style: Playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines.`,
 
   'chagall': `
 MARC CHAGALL - SELECT ONE:
-1. "I and the Village" (나와 마을, 1911) → SINGLE PERSON, surreal, nostalgic | Style: overlapping dreamlike imagery, green-toned faces, circular composition, emerald ruby deep blue
-2. "Birthday" (생일, 1915) → COUPLE, romantic, indoor | Style: lovers kissing, tilted room, soft pastel dusty rose pale blue sage
-3. "Over the Town" (마을 위에서, 1918) → COUPLE, romantic, village | Style: embracing lovers, colorful tilted houses below, lavender blue rose pastels
-4. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
-5. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
+1. "Birthday" (생일, 1915) → COUPLE, romantic, indoor | Style: lovers kissing, tilted room, soft pastel dusty rose pale blue sage
+2. "Over the Town" (마을 위에서, 1918) → COUPLE, romantic, village | Style: embracing lovers, colorful tilted houses below, lavender blue rose pastels
+3. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
+4. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
 
-⚠️ CHAGALL STYLE RULES: SOFT FLOWING BRUSHSTROKES with visible texture, DREAMY PASTEL PALETTE, romantic poetic nostalgic atmosphere.`,
+⚠️ Chagall style: Dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers.`,
 
   'lichtenstein': `
 ROY LICHTENSTEIN - SELECT ONE:
 1. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile
-2. "Forget It! Forget Me!" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman
+2. "Forget It" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman
 3. "M-Maybe" (아마도) → FEMALE portrait, thoughtful | Style: blonde woman close-up face looking sideways
-4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
+4. "Ohhh Alright" (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
 5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects
 
-⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, flat colors, bold thick lines.`,
+⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, NOT realistic, NOT thin lines.`,
 
   // ========================================
   // 거장 (추가)
@@ -1729,18 +1714,7 @@ FRIDA KAHLO - SELECT ONE:
 2. "Self-Portrait with Thorn Necklace" (가시 목걸이 자화상) → portrait with nature/animals, symbolic | Style: THORNY VINE NECKLACE with dead hummingbird pendant, black cat and monkey companions, large tropical leaves background, intense direct gaze
 3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression
 
-⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`,
-
-  'modigliani': `
-AMEDEO MODIGLIANI - USE THIS MASTERWORK:
-1. "Woman with Blue Eyes" (푸른 눈의 여인, 1918) → FEMALE portrait, blank blue eyes | Style: EXTREMELY LONG SWAN NECK 2x length, SOLID BLUE EYES without pupils, melancholic serene expression
-
-⚠️ CRITICAL MODIGLIANI RULES: 
-- NECK must be stretched to 2x normal length (like giraffe)
-- FACE must be vertically elongated 1.5x (very tall narrow oval)
-- EYES must be SOLID BLUE ALMOND-SHAPED filled with single flat blue color, NO pupils, NO iris details
-- Simplified smooth forms, melancholic elegant atmosphere
-- ONLY for 1-person portraits (Modigliani rarely painted groups)`
+⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`
 };
 
 /**
@@ -1769,7 +1743,6 @@ export function getArtistMasterworkGuide(artistKey) {
     'picasso': 'PABLO PICASSO',
     'frida': 'FRIDA KAHLO',
     'lichtenstein': 'ROY LICHTENSTEIN',
-    'modigliani': 'AMEDEO MODIGLIANI',
     'renoir': 'PIERRE-AUGUSTE RENOIR',
     'monet': 'CLAUDE MONET',
     'degas': 'EDGAR DEGAS',

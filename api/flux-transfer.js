@@ -233,13 +233,13 @@ const ARTIST_CONFIG = {
   'picasso':             { control: 0.10, brush: '75mm' },
   'magritte':            { control: 0.40, brush: '75mm' },
   'miro':                { control: 0.40, brush: '75mm' },
-  'chagall':             { control: 0.10, brush: '75mm' },
+  'chagall':             { control: 0.40, brush: '75mm' },
   'lichtenstein':        { control: 0.30, brush: null },      // 벤데이 점, 스타일 강화
   
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
   'frida':               { control: 0.80, brush: '25mm' },    // 세밀 상징
-  'modigliani':          { control: 0.10, brush: '75mm' },    // 긴 목/얼굴 변형 필요
+  'modigliani':          { control: 0.30, brush: '50mm' },    // 긴 목/얼굴 변형 필요
   
   // === 동양화 ===
   'korean':              { control: 0.75, brush: null },      // 먹선 별도
@@ -2588,8 +2588,8 @@ export default async function handler(req, res) {
     const startTime = Date.now();
     const { image, selectedStyle, correctionPrompt } = req.body;
     
-    // v68.3: 변수 초기화 (스코프 문제 해결)
-    let coreRulesPrefix = 'Preserve identity, gender, ethnicity exactly. Do not add people or elements not in photo. NOT photograph, NOT 3D, NOT digital. No text, no signatures, no watermarks. ';
+    // v68.3: 변수 초기화 (스코프 문제 해결) - v69: 긍정 표현 + 노출 제한
+    let coreRulesPrefix = 'Preserve identity, gender, ethnicity exactly. Paint only subjects visible in original photo. Nipples and genitals must be covered. Hand-painted artwork style. Clean image without text or signatures. ';
     let genderPrefixCommon = '';
 
     // v66: 구조화된 로그 수집 객체

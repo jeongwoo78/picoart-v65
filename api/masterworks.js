@@ -1139,31 +1139,31 @@ export const lichtensteinMasterworks = {
   'lichtenstein-inthecar': {
     name: '차 안에서',
     nameEn: 'In the Car',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "In the Car" (1963), glamorous couple close-up, woman with ribbon hair man in profile, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY red blue yellow, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
     feature: '커플, 리본머리'
   },
   'lichtenstein-mmaybe': {
     name: '아마도',
     nameEn: 'M-Maybe',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "M-Maybe" (1965), blonde woman close-up face looking sideways, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
     feature: '여성, 클로즈업'
   },
   'lichtenstein-forgetit': {
     name: '날 잊어',
     nameEn: 'Forget It! Forget Me!',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Forget It! Forget Me!" (1962), dramatic couple scene man with black hair woman with blonde hair, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
     feature: '커플, 드라마틱'
   },
   'lichtenstein-ohhhalright': {
     name: '오 알았어',
     nameEn: 'Ohhh...Alright...',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Ohhh...Alright..." (1964), woman on telephone with expressive face, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL skin and background, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
     feature: '여성, 전화'
   },
   'lichtenstein-stilllife': {
     name: '정물화',
     nameEn: 'Still Life with Palette',
-    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, NO gradients, NOT thin lines, NOT realistic.',
+    prompt: 'COMIC PANEL FRAME with THICK BLACK BORDER around entire image, Roy Lichtenstein "Still Life with Palette" (1972), bottles flowers brushes household objects on table, EXTREMELY LARGE Ben-Day dots 15mm+ covering ALL surfaces, ULTRA THICK BLACK INK OUTLINES 20mm+ like bold comic book printing, FLAT primary colors ONLY yellow red blue, HEAVY BLACK CONTOUR LINES on EVERY edge, flat solid colors throughout, bold thick lines only.',
     feature: '정물, 오브제'
   }
 };
@@ -1175,19 +1175,19 @@ export const modiglianiMasterworks = {
   'modigliani-jeanne': {
     name: '잔 에뷔테른',
     nameEn: 'Jeanne Hébuterne',
-    prompt: 'Amedeo Modigliani "Jeanne Hébuterne" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with NO PUPILS or very faint pupils, simplified smooth forms, melancholic elegant beauty, warm ochre terracotta background, seated pose with tilted head.',
+    prompt: 'Amedeo Modigliani "Jeanne Hébuterne" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with faint or absent pupils, simplified smooth forms, melancholic elegant beauty, warm ochre terracotta background, seated pose with tilted head.',
     feature: '여성, 긴 목'
   },
   'modigliani-lunia': {
     name: '루니아 체호프스카',
     nameEn: 'Lunia Czechowska',
-    prompt: 'Amedeo Modigliani "Lunia Czechowska" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES gazing sideways with NO PUPILS, graceful serene expression, simplified elegant forms, muted blue-grey background.',
+    prompt: 'Amedeo Modigliani "Lunia Czechowska" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES gazing sideways with faint or absent pupils, graceful serene expression, simplified elegant forms, muted blue-grey background.',
     feature: '여성, 우아'
   },
   'modigliani-paul': {
     name: '폴 기욤',
     nameEn: 'Portrait of Paul Guillaume',
-    prompt: 'Amedeo Modigliani "Portrait of Paul Guillaume" (1916), EXTREME ELONGATED NECK AND FACE stretched vertically, BLANK ALMOND-SHAPED EYES with NO PUPILS, man in dark suit and hat, confident sophisticated pose, warm brown ochre background, stylized simplified masculine features.',
+    prompt: 'Amedeo Modigliani "Portrait of Paul Guillaume" (1916), EXTREME ELONGATED NECK AND FACE stretched vertically, BLANK ALMOND-SHAPED EYES with faint or absent pupils, man in dark suit and hat, confident sophisticated pose, warm brown ochre background, stylized simplified masculine features.',
     feature: '남성, 신사'
   }
 };
@@ -1710,7 +1710,7 @@ ROY LICHTENSTEIN - SELECT ONE:
 4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
 5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects
 
-⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, NOT realistic, NOT thin lines.`,
+⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, flat colors, bold thick lines.`,
 
   // ========================================
   // 거장 (추가)
@@ -1733,14 +1733,14 @@ FRIDA KAHLO - SELECT ONE:
 
   'modigliani': `
 AMEDEO MODIGLIANI - SELECT ONE:
-1. "Jeanne Hébuterne" (잔 에뷔테른) → FEMALE portrait, most iconic, melancholic beauty | Style: EXTREME ELONGATED SWAN-LIKE NECK 1.8x length, BLANK ALMOND EYES NO PUPILS, tilted head, warm ochre background
+1. "Jeanne Hébuterne" (잔 에뷔테른) → FEMALE portrait, most iconic, melancholic beauty | Style: EXTREME ELONGATED SWAN-LIKE NECK 1.8x length, BLANK ALMOND EYES faint or absent pupils, tilted head, warm ochre background
 2. "Lunia Czechowska" (루니아 체호프스카) → FEMALE portrait, elegant, serene | Style: EXTREME ELONGATED NECK, BLANK ALMOND EYES gazing sideways, graceful expression, muted blue-grey background
-3. "Portrait of Paul Guillaume" (폴 기욤) → MALE portrait, sophisticated gentleman | Style: ELONGATED NECK AND FACE, BLANK ALMOND EYES NO PUPILS, dark suit and hat, confident pose, warm brown ochre background
+3. "Portrait of Paul Guillaume" (폴 기욤) → MALE portrait, sophisticated gentleman | Style: ELONGATED NECK AND FACE, BLANK ALMOND EYES faint or absent pupils, dark suit and hat, confident pose, warm brown ochre background
 
 ⚠️ CRITICAL MODIGLIANI RULES: 
 - NECK must be stretched to 1.8x normal length (swan-like)
 - FACE must be vertically elongated 1.5x (oval egg shape)
-- EYES must be BLANK ALMOND-SHAPED with NO PUPILS or very faint
+- EYES must be BLANK ALMOND-SHAPED with faint or absent pupils or very faint
 - Simplified smooth forms, melancholic elegant atmosphere
 - ONLY for 1-person portraits (Modigliani rarely painted groups)`
 };

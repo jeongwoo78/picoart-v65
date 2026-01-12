@@ -26,145 +26,145 @@ export const ARTIST_STYLES = {
   // ========================================
   // 🏛️ 고대 (특수 질감)
   // ========================================
-  'classical-sculpture': 'Ancient Greek-Roman marble sculpture style. Pure white Carrara marble with smooth polished surface, carved stone texture..',
+  'classical-sculpture': 'Ancient Greek-Roman marble sculpture style. Pure white Carrara marble with smooth polished surface, carved stone texture.',
   
-  'roman-mosaic': 'Roman floor mosaic style. Large visible tesserae tiles 50mm, thick black grout lines, earth tone palette..',
+  'roman-mosaic': 'Roman floor mosaic style. Large visible tesserae tiles 50mm, thick black grout lines, earth tone palette.',
 
   // ========================================
   // ⛪ 중세 
   // ========================================
-  'byzantine': 'Byzantine sacred icon style. Brilliant gold leaf background, flat frontal pose, large solemn eyes, rich jewel colors..',
+  'byzantine': 'Byzantine sacred icon style. Brilliant gold leaf background, flat frontal pose, large solemn eyes, rich jewel colors.',
   
-  'gothic': 'Gothic stained glass style. Bold black lead lines, luminous jewel-tone translucent colors, light streaming through..',
+  'gothic': 'Gothic stained glass style. Bold black lead lines, luminous jewel-tone translucent colors, light streaming through.',
   
-  'islamic-miniature': 'Persian miniature painting style. Exquisite intricate details, vibrant jewel colors, delicate fine brushwork..',
+  'islamic-miniature': 'Persian miniature painting style. Exquisite intricate details, vibrant jewel colors, delicate fine brushwork.',
 
   // ========================================
   // 🎨 르네상스 
   // ========================================
-  'botticelli': 'by Sandro Botticelli, Botticelli art style, elegant flowing lines, ethereal pale skin, graceful diaphanous fabrics billowing gently..',
+  'botticelli': 'by Sandro Botticelli, Botticelli art style, elegant flowing lines, ethereal pale skin, graceful diaphanous fabrics billowing gently.',
   
-  'leonardo': 'by Leonardo da Vinci, da Vinci art style, extreme sfumato technique, soft hazy edges dissolving like smoke, mysterious atmospheric depth..',
+  'leonardo': 'by Leonardo da Vinci, da Vinci art style, extreme sfumato technique, soft hazy edges dissolving like smoke, mysterious atmospheric depth.',
   
-  'titian': 'by Titian, Titian art style, warm glowing golden flesh, rich luminous Venetian colors, bold loose brushwork..',
+  'titian': 'by Titian, Titian art style, warm glowing golden flesh, rich luminous Venetian colors, bold loose brushwork.',
   
-  'michelangelo': 'by Michelangelo, Michelangelo art style, powerful heroic muscular figures, dramatic foreshortening, monumental grandeur..',
+  'michelangelo': 'by Michelangelo, Michelangelo art style, powerful heroic muscular figures, dramatic foreshortening, monumental grandeur.',
   
-  'raphael': 'by Raphael, Raphael art style, perfect harmonious beauty, serene balanced composition, gentle graceful expressions..',
+  'raphael': 'by Raphael, Raphael art style, perfect harmonious beauty, serene balanced composition, gentle graceful expressions.',
 
   // ========================================
   // 🎭 바로크 
   // ========================================
-  'caravaggio': 'by Caravaggio, Caravaggio art style, extreme tenebrism, intense spotlight from absolute black darkness, dramatic theatrical illumination..',
+  'caravaggio': 'by Caravaggio, Caravaggio art style, extreme tenebrism, intense spotlight from absolute black darkness, dramatic theatrical illumination.',
   
-  'rubens': 'by Peter Paul Rubens, Rubens art style, radiant luminous flesh, explosive swirling movement, rich passionate reds and golds..',
+  'rubens': 'by Peter Paul Rubens, Rubens art style, radiant luminous flesh, explosive swirling movement, rich passionate reds and golds.',
   
-  'rembrandt': 'by Rembrandt, Rembrandt art style, intense golden glow, deep mysterious shadows, thick impasto highlights..',
+  'rembrandt': 'by Rembrandt, Rembrandt art style, intense golden glow, deep mysterious shadows, thick impasto highlights.',
   
-  'velazquez': 'by Diego Velazquez, Velazquez art style, refined court elegance, masterful loose brushwork, subtle silver-grey palette..',
+  'velazquez': 'by Diego Velazquez, Velazquez art style, refined court elegance, masterful loose brushwork, subtle silver-grey palette.',
 
   // ========================================
   // 🌸 로코코 
   // ========================================
-  'watteau': 'by Antoine Watteau, Watteau art style, delicate feathery brushwork, soft dreamy pastoral scenes, romantic melancholic atmosphere..',
+  'watteau': 'by Antoine Watteau, Watteau art style, delicate feathery brushwork, soft dreamy pastoral scenes, romantic melancholic atmosphere.',
   
-  'boucher': 'by François Boucher, Boucher art style, soft rosy flesh tones, light pastel palette, playful decorative elegance..',
+  'boucher': 'by François Boucher, Boucher art style, soft rosy flesh tones, light pastel palette, playful decorative elegance.',
 
   // ========================================
   // 🏛️ 신고전주의 
   // ========================================
-  'david': 'by Jacques-Louis David, David art style, crisp clear outlines, heroic idealized figures, dramatic moral intensity..',
+  'david': 'by Jacques-Louis David, David art style, crisp clear outlines, heroic idealized figures, dramatic moral intensity.',
   
-  'ingres': 'by Jean-Auguste-Dominique Ingres, Ingres art style, smooth flowing contours, porcelain-smooth skin, elegant sinuous curves..',
+  'ingres': 'by Jean-Auguste-Dominique Ingres, Ingres art style, smooth flowing contours, porcelain-smooth skin, elegant sinuous curves.',
 
   // ========================================
   // 🌊 낭만주의 
   // ========================================
-  'turner': 'by J.M.W. Turner, Turner art style, atmospheric sublime light, swirling mist dissolving forms, luminous golden glow..',
+  'turner': 'by J.M.W. Turner, Turner art style, atmospheric sublime light, swirling mist dissolving forms, luminous golden glow.',
   
-  'delacroix': 'by Eugène Delacroix, Delacroix art style, passionate revolutionary energy, vivid intense colors, turbulent swirling movement..',
+  'delacroix': 'by Eugène Delacroix, Delacroix art style, passionate revolutionary energy, vivid intense colors, turbulent swirling movement.',
 
   // ========================================
   // 🌾 사실주의 
   // ========================================
-  'courbet': 'by Gustave Courbet, Courbet art style, raw unidealized realism, bold palette knife texture, dark earthy tones..',
+  'courbet': 'by Gustave Courbet, Courbet art style, raw unidealized realism, bold palette knife texture, dark earthy tones.',
   
-  'manet': 'by Édouard Manet, Manet art style, bold flat composition, striking light-dark contrast, loose confident brushwork..',
+  'manet': 'by Édouard Manet, Manet art style, bold flat composition, striking light-dark contrast, loose confident brushwork.',
 
   // ========================================
   // 🌅 인상주의 
   // ========================================
-  'renoir': 'by Pierre-Auguste Renoir, Renoir art style, warm luminous glow, soft feathery brushstrokes, rosy pink flesh tones, dappled sunlight filtering through leaves..',
+  'renoir': 'by Pierre-Auguste Renoir, Renoir art style, warm luminous glow, soft feathery brushstrokes, rosy pink flesh tones, dappled sunlight filtering through leaves.',
   
-  'monet': 'by Claude Monet, Monet art style, broken color brushstrokes, soft hazy atmospheric light, colors blending and dissolving..',
+  'monet': 'by Claude Monet, Monet art style, broken color brushstrokes, soft hazy atmospheric light, colors blending and dissolving.',
   
-  'degas': 'by Edgar Degas, Degas art style, unusual cropped angles, asymmetric composition, soft pastel chalky texture..',
+  'degas': 'by Edgar Degas, Degas art style, unusual cropped angles, asymmetric composition, soft pastel chalky texture.',
   
-  'caillebotte': 'by Gustave Caillebotte, Caillebotte art style, dramatic converging perspective, muted grey-blue tones, wet pavement reflections..',
+  'caillebotte': 'by Gustave Caillebotte, Caillebotte art style, dramatic converging perspective, muted grey-blue tones, wet pavement reflections.',
 
   // ========================================
   // 🌻 후기인상주의 
   // ========================================
-  'vangogh': 'by Vincent van Gogh, Van Gogh art style, swirling spiral brushstrokes on face skin clothing and entire subject, thick impasto texture throughout, intense cobalt blue and chrome yellow..',
+  'vangogh': 'by Vincent van Gogh, Van Gogh art style, swirling spiral brushstrokes on face skin clothing and entire subject, thick impasto texture throughout, intense cobalt blue and chrome yellow.',
   
-  'gauguin': 'by Paul Gauguin, Gauguin art style, bold black outlines, flat pure saturated colors, exotic tropical palette..',
+  'gauguin': 'by Paul Gauguin, Gauguin art style, bold black outlines, flat pure saturated colors, exotic tropical palette.',
   
-  'cezanne': 'by Paul Cézanne, Cézanne art style, geometric structural forms, visible constructive brushstrokes, muted earthy palette..',
+  'cezanne': 'by Paul Cézanne, Cézanne art style, geometric structural forms, visible constructive brushstrokes, muted earthy palette.',
 
   // ========================================
   // 🔥 야수파 
   // ========================================
-  'matisse': 'by Henri Matisse, Matisse art style, bold flat pure colors, simplified expressive forms, vibrant emotional intensity..',
+  'matisse': 'by Henri Matisse, Matisse art style, bold flat pure colors, simplified expressive forms, vibrant emotional intensity.',
   
-  'derain': 'by André Derain, Derain art style, explosive vivid colors, bold rough brushstrokes, raw fauvist energy..',
+  'derain': 'by André Derain, Derain art style, explosive vivid colors, bold rough brushstrokes, raw fauvist energy.',
   
-  'vlaminck': 'by Maurice de Vlaminck, Vlaminck art style, violent intense colors, thick aggressive brushwork, wild untamed energy..',
+  'vlaminck': 'by Maurice de Vlaminck, Vlaminck art style, violent intense colors, thick aggressive brushwork, wild untamed energy.',
 
   // ========================================
   // 😱 표현주의 
   // ========================================
-  'munch': 'by Edvard Munch, Munch art style, extreme psychological emotion, wavy distorted swirling lines throughout entire image, blood red apocalyptic sky, intense anxiety and existential dread..',
+  'munch': 'by Edvard Munch, Munch art style, extreme psychological emotion, wavy distorted swirling lines throughout entire image, blood red apocalyptic sky, intense anxiety and existential dread.',
   
-  'kirchner': 'by Ernst Ludwig Kirchner, Kirchner art style, sharp angular jagged forms, extreme bold clashing colors, elongated mask-like faces, raw primitive aggressive intensity..',
+  'kirchner': 'by Ernst Ludwig Kirchner, Kirchner art style, sharp angular jagged forms, extreme bold clashing colors, elongated mask-like faces, raw primitive aggressive intensity.',
   
-  'kokoschka': 'by Oskar Kokoschka, Kokoschka art style, violent turbulent slashing brushwork, harsh acidic feverish colors, deeply distorted psychological tension..',
+  'kokoschka': 'by Oskar Kokoschka, Kokoschka art style, violent turbulent slashing brushwork, harsh acidic feverish colors, deeply distorted psychological tension.',
 
   // ========================================
   // 🎪 모더니즘 
   // ========================================
-  'picasso': 'by Pablo Picasso, Picasso Cubist art style, geometric fragmentation on face and entire body, face broken into angular planes, nose from side profile while both eyes visible from front, jaw chin cheeks shattered into geometric segments, multiple viewpoints simultaneously..',
+  'picasso': 'by Pablo Picasso, Picasso Cubist art style, geometric fragmentation on face and entire body, face broken into angular planes, nose from side profile while both eyes visible from front, jaw chin cheeks shattered into geometric segments, multiple viewpoints simultaneously.',
   
-  'magritte': 'by René Magritte, Magritte Surrealist art style, philosophical visual paradox, mysterious object obscuring face, dreamlike impossible scenarios..',
+  'magritte': 'by René Magritte, Magritte Surrealist art style, philosophical visual paradox, mysterious object obscuring face, dreamlike impossible scenarios.',
   
-  'miro': 'by Joan Miró, Miró art style, playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines..',
+  'miro': 'by Joan Miró, Miró art style, playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines.',
   
-  'chagall': 'by Marc Chagall, Chagall art style, dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers..',
+  'chagall': 'by Marc Chagall, Chagall art style, dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers.',
   
-  'lichtenstein': 'by Roy Lichtenstein, COMIC BOOK POP ART style, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing surrounding ALL shapes faces and figures, FLAT primary colors ONLY (red blue yellow white black), halftone printing effect, THICK BLACK CONTOUR LINES on every edge, NO gradients, NO realistic shading.',
+  'lichtenstein': 'by Roy Lichtenstein, COMIC BOOK POP ART style, LARGE VISIBLE Ben-Day dots pattern covering entire surface, BOLD HEAVY BLACK INK OUTLINES 8mm+ like comic book printing surrounding ALL shapes faces and figures, FLAT primary colors ONLY (red blue yellow white black), halftone printing effect, THICK BLACK CONTOUR LINES on every edge.',
 
   // ========================================
   // ⭐ 거장 전용 
   // ========================================
-  'klimt': 'by Gustav Klimt, Klimt art style, ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures, jewel-like embedded details, geometric robes with spirals and rectangles..',
+  'klimt': 'by Gustav Klimt, Klimt art style, ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures, jewel-like embedded details, geometric robes with spirals and rectangles.',
   
-  'frida': 'by Frida Kahlo, Frida Kahlo art style, intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background, raw emotional honesty..',
+  'frida': 'by Frida Kahlo, Frida Kahlo art style, intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background, raw emotional honesty.',
 
   // ========================================
-  // 🎎 동양화 (현재 유지 - 이미 NO digital 등 포함)
+  // 🎎 동양화
   // ========================================
-  'minhwa': 'Korean folk painting (Minhwa) style from late Joseon Dynasty. MINERAL PIGMENTS on AGED YELLOWED HANJI PAPER with visible paper texture. OLD FADED WEATHERED colors like antique painting 200+ years old. Muted earthy tones - faded ochre, dusty red, weathered green, pale greyish blue. ROUGH FOLK ART brush strokes with uneven pigment. Visible hanji paper texture throughout. Primitive naive quality. Museum artifact quality with aged patina. NO bright saturated colors, NO digital rendering, NO smooth surfaces, NO Japanese elements.',
+  'minhwa': 'Korean folk painting (Minhwa) style from late Joseon Dynasty. MINERAL PIGMENTS on AGED YELLOWED HANJI PAPER with visible paper texture. OLD FADED WEATHERED colors like antique painting 200+ years old. Muted earthy tones - faded ochre, dusty red, weathered green, pale greyish blue. ROUGH FOLK ART brush strokes with uneven pigment. Visible hanji paper texture throughout. Primitive naive quality. Museum artifact quality with aged patina.',
   
-  'pungsokdo': 'Korean genre painting (Pungsokdo) style by master Kim Hongdo. SOFT WATERCOLOR WASHES on traditional Korean paper. DELICATE FLOWING BRUSH LINES for figures. Everyday life scenes of Joseon Dynasty Korea. Limited subtle color palette - soft browns, muted greens, pale blues. EMPTY SPACE as compositional element. Light loose brushwork. Traditional Korean clothing (hanbok). Gentle humorous narrative quality. NO heavy oil textures, NO Western perspective, NO Japanese ukiyo-e style.',
+  'pungsokdo': 'Korean genre painting (Pungsokdo) style by master Kim Hongdo. SOFT WATERCOLOR WASHES on traditional Korean paper. DELICATE FLOWING BRUSH LINES for figures. Everyday life scenes of Joseon Dynasty Korea. Limited subtle color palette - soft browns, muted greens, pale blues. EMPTY SPACE as compositional element. Light loose brushwork. Traditional Korean clothing (hanbok). Gentle humorous narrative quality.',
   
-  'jingyeong': 'Korean true-view landscape painting (Jingyeong Sansu) style by master Jeong Seon. BOLD EXPRESSIVE BRUSH STROKES for mountains. Korean mountain scenery with distinctive granite peaks. Strong ink work with dynamic energy. Traditional Korean landscape composition. Misty atmospheric perspective. Pine trees with characteristic Korean style. NO Chinese painting style, NO Japanese style.',
+  'jingyeong': 'Korean true-view landscape painting (Jingyeong Sansu) style by master Jeong Seon. BOLD EXPRESSIVE BRUSH STROKES for mountains. Korean mountain scenery with distinctive granite peaks. Strong ink work with dynamic energy. Traditional Korean landscape composition. Misty atmospheric perspective. Pine trees with characteristic Korean style.',
   
-  'shuimohua': 'Chinese ink wash painting (Shuimohua/水墨画) style. BLACK INK on RICE PAPER with VISIBLE PAPER GRAIN texture. MONOCHROME ink with subtle grey gradations. EMPTY NEGATIVE SPACE as key compositional element. SPONTANEOUS EXPRESSIVE brush strokes. Soft atmospheric perspective. Traditional Chinese clothing (hanfu). Misty mountain backgrounds. Poetry and philosophy in visual form. NO color, NO Western oil painting technique.',
+  'shuimohua': 'Chinese ink wash painting (Shuimohua/水墨画) style. BLACK INK on RICE PAPER with VISIBLE PAPER GRAIN texture. MONOCHROME ink with subtle grey gradations. EMPTY NEGATIVE SPACE as key compositional element. SPONTANEOUS EXPRESSIVE brush strokes. Soft atmospheric perspective. Traditional Chinese clothing (hanfu). Misty mountain backgrounds. Poetry and philosophy in visual form.',
   
   'gongbi': 'Chinese meticulous court painting (Gongbi/工筆) style. FINE DETAILED BRUSHWORK with precise outlines. MINERAL PIGMENTS on silk with subtle sheen. Rich vivid colors - vermillion, malachite green, azurite blue, gold. Tang/Song Dynasty court elegance. Elaborate patterns on robes. Idealized graceful figures. Imperial court aesthetic. Highly refined technique with no visible brushstrokes.',
   
   'huaniaohua': 'Chinese flower and bird painting (Huaniaohua/花鳥画) style. DELICATE PRECISE BRUSHWORK for petals and feathers. Natural subjects with botanical accuracy. Subtle color gradations. Silk or paper with visible texture. Elegant composition with empty space. Traditional Chinese aesthetic. Poetic naturalism.',
   
-  'ukiyoe': 'Japanese Ukiyo-e woodblock print style. FLAT COLOR AREAS with BOLD BLACK OUTLINES. LIMITED COLOR PALETTE of traditional woodblock inks. WOODGRAIN TEXTURE visible in color areas. Stylized Japanese figures with distinctive features. Dramatic compositions. Floating world aesthetic. Kabuki drama or courtesan elegance. Transform clothing to traditional kimono. NO photography, NO 3D rendering, NO gradients.'
+  'ukiyoe': 'Japanese Ukiyo-e woodblock print style. FLAT COLOR AREAS with BOLD BLACK OUTLINES. LIMITED COLOR PALETTE of traditional woodblock inks. WOODGRAIN TEXTURE visible in color areas. Stylized Japanese figures with distinctive features. Dramatic compositions. Floating world aesthetic. Kabuki drama or courtesan elegance. Transform clothing to traditional kimono.'
 };
 
 // ========================================

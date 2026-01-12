@@ -3,33 +3,36 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// 거장별 테마 색상
+// 거장별 테마 색상 - v70: 샤갈 추가
 const MASTER_THEMES = {
   'VAN GOGH': { primary: '#F5A623', gradient: 'linear-gradient(135deg, #F5A623, #e8941a)' },
   'KLIMT': { primary: '#D4AF37', gradient: 'linear-gradient(135deg, #D4AF37, #b8962e)' },
   'MUNCH': { primary: '#8B4513', gradient: 'linear-gradient(135deg, #8B4513, #6d360f)' },
+  'CHAGALL': { primary: '#E6A8D7', gradient: 'linear-gradient(135deg, #E6A8D7, #7EB6D8)' },
   'PICASSO': { primary: '#2E5090', gradient: 'linear-gradient(135deg, #2E5090, #1e3a6e)' },
   'MATISSE': { primary: '#FF6B6B', gradient: 'linear-gradient(135deg, #FF6B6B, #ee5a5a)' },
   'FRIDA': { primary: '#C41E3A', gradient: 'linear-gradient(135deg, #C41E3A, #a01830)' },
   'LICHTENSTEIN': { primary: '#FFD700', gradient: 'linear-gradient(135deg, #FFD700, #FF4500)' }
 };
 
-// 거장 한글 이름 매핑
+// 거장 한글 이름 매핑 - v70: 샤갈 추가
 const MASTER_NAMES_KO = {
   'VAN GOGH': '반 고흐',
   'KLIMT': '클림트',
   'MUNCH': '뭉크',
+  'CHAGALL': '샤갈',
   'PICASSO': '피카소',
   'MATISSE': '마티스',
   'FRIDA': '프리다 칼로',
   'LICHTENSTEIN': '리히텐슈타인'
 };
 
-// 거장별 추천 질문 (수정 요청, 개인 질문, 화풍 질문)
+// 거장별 추천 질문 (수정 요청, 개인 질문, 화풍 질문) - v70: 샤갈 추가
 const SUGGESTED_QUESTIONS = {
   'VAN GOGH': ['머리색 금발로 바꿔줘', '귀 얘기 해줘', '왜 해바라기 좋아해?'],
   'KLIMT': ['머리색 구리색으로 바꿔줘', '키스 그림 모델이 누구예요?', '왜 금색을 좋아해요?'],
   'MUNCH': ['옷 색깔 어둡게 바꿔줘', '결혼했어요?', '절규는 왜 그렸어요?'],
+  'CHAGALL': ['옷 색깔 분홍으로 바꿔줘', '사랑해 봤어요?', '동물들을 좋아해요?'],
   'PICASSO': ['옷 색깔 빨간색으로 바꿔줘', '여자친구 많았어요?', '왜 얼굴을 이상하게 그려요?'],
   'MATISSE': ['옷 색깔 밝게 바꿔줘', '소개해주세요', '왜 색이 이렇게 밝아요?'],
   'FRIDA': ['입술 색 진하게 바꿔줘', '사고 얘기 해줘', '왜 자화상을 많이 그렸어요?'],

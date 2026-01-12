@@ -42,7 +42,7 @@ const PhotoStyleScreen = ({ mainCategory, onBack, onSelect }) => {
         id: 'masters-all',
         name: '일곱 거장의 세계',
         desc: '당신의 사진 한 장이 일곱 거장의 세계를 만납니다',
-        count: 9,
+        count: 7,
         isFullTransform: true,
         category: 'masters'
       },
@@ -51,9 +51,7 @@ const PhotoStyleScreen = ({ mainCategory, onBack, onSelect }) => {
         { id: 'klimt-master', name: '클림트', icon: '✨', period: '1862-1918' },
         { id: 'munch-master', name: '뭉크', icon: '😱', period: '1863-1944' },
         { id: 'matisse-master', name: '마티스', icon: '🎭', period: '1869-1954' },
-        { id: 'picasso-master', name: '피카소', icon: '🎨', period: '1881-1973' },
-        { id: 'modigliani-master', name: '모딜리아니', icon: '🦢', period: '1884-1920' },
-        { id: 'chagall-master', name: '샤갈', icon: '🌙', period: '1887-1985' },
+        { id: 'chagall-master', name: '샤갈', icon: '🎠', period: '1887-1985' },
         { id: 'frida-master', name: '프리다 칼로', icon: '🌺', period: '1907-1954' },
         { id: 'lichtenstein-master', name: '리히텐슈타인', icon: '💥', period: '1923-1997' }
       ]

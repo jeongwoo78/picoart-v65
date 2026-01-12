@@ -442,6 +442,7 @@ const ProcessingScreen = ({ photo, selectedStyle, onComplete }) => {
   // ========== 거장 화가명 풀네임 + 화파 매핑 (v67: 새 표기 형식) ==========
   // 제목: 풀네임(영문, 생몰연도)
   // 부제: 사조(시기)
+  // v70: 샤갈 추가
   const getMasterInfo = (artistName) => {
     const masterMap = {
       '반 고흐': { fullName: '빈센트 반 고흐(Vincent van Gogh, 1853~1890)', movement: '후기인상주의' },
@@ -453,6 +454,10 @@ const ProcessingScreen = ({ photo, selectedStyle, onComplete }) => {
       'munch': { fullName: '에드바르 뭉크(Edvard Munch, 1863~1944)', movement: '표현주의' },
       '마티스': { fullName: '앙리 마티스(Henri Matisse, 1869~1954)', movement: '야수파' },
       'matisse': { fullName: '앙리 마티스(Henri Matisse, 1869~1954)', movement: '야수파' },
+      '샤갈': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      '마르크 샤갈': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      'chagall': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      'marc chagall': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
       '피카소': { fullName: '파블로 피카소(Pablo Picasso, 1881~1973)', movement: '입체주의' },
       'picasso': { fullName: '파블로 피카소(Pablo Picasso, 1881~1973)', movement: '입체주의' },
       '프리다': { fullName: '프리다 칼로(Frida Kahlo, 1907~1954)', movement: '초현실주의' },

@@ -43,14 +43,12 @@ const StyleSelection = ({ onSelect }) => {
     { id: 'expressionism', name: '표현주의', category: 'movements', icon: '😱', description: '내면의 불안과 고독' },
     { id: 'modernism', name: '20세기 모더니즘', category: 'movements', icon: '🔮', description: '입체·초현실·팝아트' },
     
-    // 거장 9명 (시간순: 출생연도) - 테스트용
+    // 거장 7명 (시간순: 출생연도) - v70: 피카소→샤갈
     { id: 'vangogh-master', name: '빈센트 반 고흐', nameEn: 'Vincent van Gogh', category: 'masters', icon: '🌻', description: '1853-1890 | 후기인상주의' },
     { id: 'klimt-master', name: '구스타프 클림트', nameEn: 'Gustav Klimt', category: 'masters', icon: '✨', description: '1862-1918 | 아르누보' },
     { id: 'munch-master', name: '에드바르 뭉크', nameEn: 'Edvard Munch', category: 'masters', icon: '😱', description: '1863-1944 | 표현주의' },
     { id: 'matisse-master', name: '앙리 마티스', nameEn: 'Henri Matisse', category: 'masters', icon: '🎭', description: '1869-1954 | 야수파' },
-    { id: 'picasso-master', name: '파블로 피카소', nameEn: 'Pablo Picasso', category: 'masters', icon: '🎨', description: '1881-1973 | 입체주의' },
-    { id: 'modigliani-master', name: '아메데오 모딜리아니', nameEn: 'Amedeo Modigliani', category: 'masters', icon: '🦢', description: '1884-1920 | 에콜 드 파리' },
-    { id: 'chagall-master', name: '마르크 샤갈', nameEn: 'Marc Chagall', category: 'masters', icon: '🌙', description: '1887-1985 | 에콜 드 파리' },
+    { id: 'chagall-master', name: '마르크 샤갈', nameEn: 'Marc Chagall', category: 'masters', icon: '🎠', description: '1887-1985 | 초현실주의' },
     { id: 'frida-master', name: '프리다 칼로', nameEn: 'Frida Kahlo', category: 'masters', icon: '🌺', description: '1907-1954 | 초현실주의' },
     { id: 'lichtenstein-master', name: '로이 리히텐슈타인', nameEn: 'Roy Lichtenstein', category: 'masters', icon: '💥', description: '1923-1997 | 팝아트' },
     

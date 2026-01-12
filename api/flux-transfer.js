@@ -14,7 +14,7 @@
 //      - 대전제: 스타일 우선 + 사진 제외어 강화
 //      - 화가: "by XY, XY art style" 패턴 적용
 //      - 기법: 구체적 묘사 추가 (impasto, palette knife 등)
-//      - 사진 제외: NOT photograph, NOT photorealistic, NOT cinematic 추가
+//      - FLUX는 부정어 미지원으로 긍정 표현만 사용
 //
 // v62.5: FLUX Pro 테스트 (반 고흐/피카소/워홀)
 //      - 결과: 비용 2배, 효과 없음 → 포기
@@ -521,7 +521,7 @@ function convertToWorkKey(artistName, workTitle) {
 //   2. 클림트 (1862-1918, 아르누보)
 //   3. 뭉크 (1863-1944, 표현주의)
 //   4. 마티스 (1869-1954, 야수파)
-//   5. 피카소 (1881-1973, 입체주의)
+//   5. 샤갈 (1887-1985, 초현실주의)
 //   6. 프리다 칼로 (1907-1954, 멕시코)
 //   7. 리히텐슈타인 (1923-1997, 팝아트)
 
@@ -593,44 +593,42 @@ function detectPhotoType(photoAnalysis) {
 // ========================================
 
 const ARTIST_WEIGHTS = {
-  // 모더니즘 (6명 - 워홀 제거)
+  // 모더니즘 (5명) - v70: 피카소↓ 샤갈↑, 키스해링 삭제, 마그리트↓
   modernism: {
     portrait: [
-      { name: 'PICASSO', weight: 35 },
       { name: 'LICHTENSTEIN', weight: 30 },
-      { name: 'MAGRITTE', weight: 25 },
-      { name: 'KEITH HARING', weight: 10 }
+      { name: 'CHAGALL', weight: 25 },
+      { name: 'PICASSO', weight: 25 },
+      { name: 'MAGRITTE', weight: 20 }
     ],
     couple: [
-      { name: 'PICASSO', weight: 30 },
+      { name: 'CHAGALL', weight: 35 },
       { name: 'LICHTENSTEIN', weight: 25 },
-      { name: 'CHAGALL', weight: 25 },
+      { name: 'PICASSO', weight: 20 },
       { name: 'MAGRITTE', weight: 20 }
     ],
     group: [
-      { name: 'PICASSO', weight: 30 },
-      { name: 'KEITH HARING', weight: 30 },
-      { name: 'LICHTENSTEIN', weight: 25 },
-      { name: 'CHAGALL', weight: 15 }
+      { name: 'CHAGALL', weight: 35 },
+      { name: 'LICHTENSTEIN', weight: 35 },
+      { name: 'PICASSO', weight: 30 }
     ],
     landscape: [
+      { name: 'CHAGALL', weight: 30 },
       { name: 'PICASSO', weight: 30 },
-      { name: 'MAGRITTE', weight: 30 },
-      { name: 'CHAGALL', weight: 20 },
+      { name: 'MAGRITTE', weight: 20 },
       { name: 'MIRÓ', weight: 20 }
     ],
     stillLife: [
-      { name: 'PICASSO', weight: 35 },
-      { name: 'MAGRITTE', weight: 25 },
-      { name: 'LICHTENSTEIN', weight: 20 },
-      { name: 'MIRÓ', weight: 20 }
+      { name: 'PICASSO', weight: 40 },
+      { name: 'LICHTENSTEIN', weight: 25 },
+      { name: 'MIRÓ', weight: 20 },
+      { name: 'MAGRITTE', weight: 15 }
     ],
     default: [
-      { name: 'PICASSO', weight: 30 },
+      { name: 'CHAGALL', weight: 30 },
       { name: 'LICHTENSTEIN', weight: 30 },
-      { name: 'MAGRITTE', weight: 20 },
-      { name: 'CHAGALL', weight: 15 },
-      { name: 'KEITH HARING', weight: 5 }
+      { name: 'PICASSO', weight: 25 },
+      { name: 'MAGRITTE', weight: 15 }
     ]
   },
   
@@ -843,24 +841,24 @@ const ARTIST_WEIGHTS = {
   // 후기인상주의 (3명) - 시냐크 삭제
   postImpressionism: {
     portrait: [
-      { name: 'VAN GOGH', weight: 60 },
-      { name: 'GAUGUIN', weight: 40 }
+      { name: 'VAN GOGH', weight: 50 },
+      { name: 'GAUGUIN', weight: 50 }
       // CÉZANNE 제외 - 정물/풍경 전문
     ],
     landscape: [
-      { name: 'VAN GOGH', weight: 40 },
-      { name: 'CÉZANNE', weight: 35 },
-      { name: 'GAUGUIN', weight: 25 }
+      { name: 'VAN GOGH', weight: 35 },
+      { name: 'GAUGUIN', weight: 35 },
+      { name: 'CÉZANNE', weight: 30 }
     ],
     stillLife: [
       { name: 'CÉZANNE', weight: 60 },
-      { name: 'VAN GOGH', weight: 25 },
-      { name: 'GAUGUIN', weight: 15 }
+      { name: 'VAN GOGH', weight: 20 },
+      { name: 'GAUGUIN', weight: 20 }
     ],
     default: [
-      { name: 'VAN GOGH', weight: 45 },
-      { name: 'GAUGUIN', weight: 30 },
-      { name: 'CÉZANNE', weight: 25 }
+      { name: 'VAN GOGH', weight: 35 },
+      { name: 'GAUGUIN', weight: 35 },
+      { name: 'CÉZANNE', weight: 30 }
     ]
   },
   
@@ -1686,42 +1684,42 @@ const fallbackPrompts = {
   
   medieval: {
     name: '중세 미술',
-    prompt: 'Medieval art style selection: 1) ANIMALS → ALWAYS ISLAMIC MINIATURE, 2) PEOPLE → ISLAMIC MINIATURE 50% OR BYZANTINE 50%, 3) STILL LIFE/OBJECTS → ISLAMIC MINIATURE, 4) LANDSCAPE/BUILDING only → GOTHIC STAINED GLASS. ISLAMIC MINIATURE: Persian Ottoman court painting, intricate delicate details, vibrant jewel colors ruby sapphire emerald gold, flat decorative composition, ornamental floral patterns, courtly elegant aesthetic, garden or hunting scenes. BYZANTINE: GOLDEN MOSAIC sacred background, shimmering gold leaf, CIRCULAR GOLDEN HALO behind head, flat hieratic frontal iconic figures, divine transcendent atmosphere. GOTHIC: CATHEDRAL STAINED GLASS jewel tones, THICK BLACK LEAD LINES dividing colored segments, vertical elongated figures, FLAT TWO-DIMENSIONAL medieval aesthetic. Medieval masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Medieval art style selection: 1) ANIMALS → ALWAYS ISLAMIC MINIATURE, 2) PEOPLE → ISLAMIC MINIATURE 50% OR BYZANTINE 50%, 3) STILL LIFE/OBJECTS → ISLAMIC MINIATURE, 4) LANDSCAPE/BUILDING only → GOTHIC STAINED GLASS. ISLAMIC MINIATURE: Persian Ottoman court painting, intricate delicate details, vibrant jewel colors ruby sapphire emerald gold, flat decorative composition, ornamental floral patterns, courtly elegant aesthetic, garden or hunting scenes. BYZANTINE: GOLDEN MOSAIC sacred background, shimmering gold leaf, CIRCULAR GOLDEN HALO behind head, flat hieratic frontal iconic figures, divine transcendent atmosphere. GOTHIC: CATHEDRAL STAINED GLASS jewel tones, THICK BLACK LEAD LINES dividing colored segments, vertical elongated figures, FLAT TWO-DIMENSIONAL medieval aesthetic. Medieval masterpiece quality'
   },
   
   renaissance: {
     name: 'Leonardo da Vinci',
-    prompt: 'Renaissance painting by Leonardo da Vinci, Leonardo art style, EXTREME sfumato technique, PRESERVE original person face and features exactly, apply Mona Lisa PAINTING TECHNIQUE ONLY sfumato haze, do NOT transform face into Mona Lisa apply Leonardo STYLE not LIKENESS, apply very strong soft atmospheric haze throughout, all edges must be completely blurred, no sharp outlines anywhere in entire painting, mysterious smoky depth with sfumato technique, every boundary softly dissolved into atmosphere, warm golden Renaissance colors, harmonious balanced composition, unified composition all figures together NOT separated, preserve facial identity, Renaissance masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Renaissance painting by Leonardo da Vinci, Leonardo art style, EXTREME sfumato technique, PRESERVE original person face and features exactly, apply Mona Lisa PAINTING TECHNIQUE ONLY sfumato haze, do NOT transform face into Mona Lisa apply Leonardo STYLE not LIKENESS, apply very strong soft atmospheric haze throughout, all edges must be completely blurred, no sharp outlines anywhere in entire painting, mysterious smoky depth with sfumato technique, every boundary softly dissolved into atmosphere, warm golden Renaissance colors, harmonious balanced composition, unified composition all figures together NOT separated, preserve facial identity, Renaissance masterpiece quality'
   },
   
   baroque: {
     name: 'Caravaggio',
-    prompt: 'Baroque painting by Caravaggio, Caravaggio art style, DRAMATIC chiaroscuro lighting with extreme light-dark contrast, theatrical spotlight effect, deep black shadows, tenebrism technique, rich deep colors, dynamic diagonal composition, theatrical emotional atmosphere, single unified composition with all figures together in one cohesive continuous scene NOT separated into multiple groups, Baroque masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Baroque painting by Caravaggio, Caravaggio art style, DRAMATIC chiaroscuro lighting with extreme light-dark contrast, theatrical spotlight effect, deep black shadows, tenebrism technique, rich deep colors, dynamic diagonal composition, theatrical emotional atmosphere, single unified composition with all figures together in one cohesive continuous scene NOT separated into multiple groups, Baroque masterpiece quality'
   },
   
   rococo: {
     name: 'Antoine Watteau',
-    prompt: 'Rococo oil painting by Watteau, Watteau art style, VISIBLE BRUSHSTROKES with oil paint texture throughout, light pastel colors, playful ornate decoration, soft delicate brushwork, romantic elegant atmosphere, graceful curved lines, whimsical charm, single unified composition with all figures together in one cohesive scene NOT separated into multiple groups, painted on canvas with VISIBLE PAINT TEXTURE, Rococo masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Rococo oil painting by Watteau, Watteau art style, VISIBLE BRUSHSTROKES with oil paint texture throughout, light pastel colors, playful ornate decoration, soft delicate brushwork, romantic elegant atmosphere, graceful curved lines, whimsical charm, single unified composition with all figures together in one cohesive scene NOT separated into multiple groups, painted on canvas with VISIBLE PAINT TEXTURE, Rococo masterpiece quality'
   },
   
   neoclassicism_vs_romanticism_vs_realism: {
     name: '신고전 vs 낭만 vs 사실주의',
-    prompt: 'Choose best style based on photo: if static balanced formal use Neoclassical style by Jacques-Louis David, David art style, with cold perfection and clear lines, if dynamic emotional landscape use Romantic style by J.M.W. Turner, Turner art style, with atmospheric sublime effects, if rural peaceful use Realist style by Gustave Courbet, Courbet art style, with honest rural reality, if urban modern use Realist style by Édouard Manet, Manet art style, with sophisticated Paris realism, masterpiece quality with single unified composition NOT separated, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Choose best style based on photo: if static balanced formal use Neoclassical style by Jacques-Louis David, David art style, with cold perfection and clear lines, if dynamic emotional landscape use Romantic style by J.M.W. Turner, Turner art style, with atmospheric sublime effects, if rural peaceful use Realist style by Gustave Courbet, Courbet art style, with honest rural reality, if urban modern use Realist style by Édouard Manet, Manet art style, with sophisticated Paris realism, masterpiece quality with single unified composition NOT separated'
   },
   
   impressionism: {
     name: 'Claude Monet',
-    prompt: 'Impressionist painting by Claude Monet, Monet art style, ROUGH VISIBLE BROKEN brushstrokes, SOFT HAZY atmospheric effects like morning mist, colors BLENDED and DISSOLVED into each other, NO sharp edges, dreamy blurred boundaries, dappled light filtering through atmosphere, Woman with a Parasol style atmospheric haze, everything slightly out of focus and impressionistic, NOT photographic clarity, Impressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Impressionist painting by Claude Monet, Monet art style, ROUGH VISIBLE BROKEN brushstrokes, SOFT HAZY atmospheric effects like morning mist, colors BLENDED and DISSOLVED into each other, NO sharp edges, dreamy blurred boundaries, dappled light filtering through atmosphere, Woman with a Parasol style atmospheric haze, everything slightly out of focus and impressionistic, Impressionist masterpiece quality'
   },
   
   postImpressionism: {
     name: 'Vincent van Gogh',
-    prompt: 'Post-Impressionist painting, Post-Impressionist art style, bold expressive colors, personal artistic vision, emotional depth and symbolic meaning, visible distinctive brushwork, Post-Impressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Post-Impressionist painting, Post-Impressionist art style, bold expressive colors, personal artistic vision, emotional depth and symbolic meaning, visible distinctive brushwork, Post-Impressionist masterpiece quality'
   },
   
   fauvism: {
     name: 'Henri Matisse',
-    prompt: 'Fauvist painting by Henri Matisse, Matisse Fauvist art style, pure bold unmixed colors, flat decorative patterns, intense color contrasts, liberation of color from reality, simplified forms, joyful energetic atmosphere, The Dance-like pure color harmony, Fauvist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Fauvist painting by Henri Matisse, Matisse Fauvist art style, pure bold unmixed colors, flat decorative patterns, intense color contrasts, liberation of color from reality, simplified forms, joyful energetic atmosphere, The Dance-like pure color harmony, Fauvist masterpiece quality'
   },
   
   expressionism: {
@@ -1747,7 +1745,7 @@ const fallbackPrompts = {
     artist: 'Vincent van Gogh (1853-1890)',
     movement: '후기인상주의 (Post-Impressionism)',
     defaultWork: 'The Starry Night',
-    prompt: 'painting by Vincent van Gogh, Van Gogh art style, THICK SWIRLING IMPASTO brushstrokes visible throughout, VIBRANT INTENSE emotional colors, cobalt blue, chrome yellow, emerald green, dynamic energetic turbulent sky and background, Starry Night style spiraling movement, passionate expressive emotional power, preserve subject identity, Van Gogh masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Vincent van Gogh, Van Gogh art style, THICK SWIRLING IMPASTO brushstrokes visible throughout, VIBRANT INTENSE emotional colors, cobalt blue, chrome yellow, emerald green, dynamic energetic turbulent sky and background, Starry Night style spiraling movement, passionate expressive emotional power, preserve subject identity, Van Gogh masterpiece quality'
   },
   
   klimt: {
@@ -1755,7 +1753,7 @@ const fallbackPrompts = {
     artist: 'Gustav Klimt (1862-1918)',
     movement: '아르누보 (Art Nouveau)',
     defaultWork: 'The Kiss',
-    prompt: 'painting by Gustav Klimt, Klimt Golden Phase art style, GOLD LEAF decorative patterns throughout background, Byzantine mosaic geometric ornaments, The Kiss style intimate sensuous atmosphere, MYSTERIOUS ALLURING EXPRESSION, femme fatale for women, homme fatale for men, jewel-like rich colors, gold, bronze, deep reds, flowing organic Art Nouveau lines, symbolic decorative elements, golden glow on skin, preserve subject identity, Klimt masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Gustav Klimt, Klimt Golden Phase art style, GOLD LEAF decorative patterns throughout background, Byzantine mosaic geometric ornaments, The Kiss style intimate sensuous atmosphere, MYSTERIOUS ALLURING EXPRESSION, femme fatale for women, homme fatale for men, jewel-like rich colors, gold, bronze, deep reds, flowing organic Art Nouveau lines, symbolic decorative elements, golden glow on skin, preserve subject identity, Klimt masterpiece quality'
   },
   
   munch: {
@@ -1763,7 +1761,7 @@ const fallbackPrompts = {
     artist: 'Edvard Munch (1863-1944)',
     movement: '표현주의 (Expressionism)',
     defaultWork: 'The Scream',
-    prompt: 'painting by Edvard Munch, Munch Expressionist art style, INTENSE PSYCHOLOGICAL emotional depth, The Scream style existential anxiety atmosphere, WAVY DISTORTED flowing lines throughout background AND on figure, haunting symbolic colors, blood red orange sky, sickly yellows, deep blues, ANXIOUS ANGUISHED EXPRESSION on face NOT happy NOT smiling, raw emotional vulnerability exposed, visible brushwork, preserve subject identity, Munch Expressionist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Edvard Munch, Munch Expressionist art style, INTENSE PSYCHOLOGICAL emotional depth, The Scream style existential anxiety atmosphere, WAVY DISTORTED flowing lines throughout background AND on figure, haunting symbolic colors, blood red orange sky, sickly yellows, deep blues, ANXIOUS ANGUISHED EXPRESSION on face, raw emotional vulnerability exposed, visible brushwork, preserve subject identity, Munch Expressionist masterpiece quality'
   },
   
   matisse: {
@@ -1771,7 +1769,7 @@ const fallbackPrompts = {
     artist: 'Henri Matisse (1869-1954)',
     movement: '야수파 (Fauvism)',
     defaultWork: 'The Dance',
-    prompt: 'painting by Henri Matisse, Matisse Fauvist art style, PURE BOLD UNMIXED COLORS in flat decorative areas, The Dance style simplified joyful forms, complete liberation of color from reality, saturated intense primary colors, red, blue, green, APPLY UNREALISTIC COLORS TO FACE AND SKIN, green purple red on face OK, simplified facial features, rhythmic flowing harmonious lines, ROUGH FAUVIST BRUSHSTROKES clearly visible throughout including on skin NOT smooth NOT blended, life-affirming energetic atmosphere, preserve subject identity, Matisse Fauvist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Henri Matisse, Matisse Fauvist art style, PURE BOLD UNMIXED COLORS in flat decorative areas, The Dance style simplified joyful forms, complete liberation of color from reality, saturated intense primary colors, red, blue, green, APPLY UNREALISTIC COLORS TO FACE AND SKIN, green purple red on face OK, simplified facial features, rhythmic flowing harmonious lines, ROUGH FAUVIST BRUSHSTROKES clearly visible throughout including on skin textured, life-affirming energetic atmosphere, preserve subject identity, Matisse Fauvist masterpiece quality'
   },
   
   picasso: {
@@ -1779,7 +1777,7 @@ const fallbackPrompts = {
     artist: 'Pablo Picasso (1881-1973)',
     movement: '입체주의 (Cubism)',
     defaultWork: 'Les Demoiselles d\'Avignon',
-    prompt: 'Cubist painting by Pablo Picasso, Picasso Cubism art style, MOST IMPORTANT THE FACE MUST BE CUBIST DECONSTRUCTED NOT REALISTIC, REQUIRED DISTORTIONS: show PROFILE NOSE side view while BOTH EYES face FORWARD on same face, FRAGMENT face into FLAT ANGULAR GEOMETRIC PLANES, break JAW FOREHEAD CHEEKS into separate angular shapes like shattered glass, Les Demoiselles d Avignon African mask angular style, Earth tones, ochre, brown, olive, grey, If the face looks normal or realistic YOU ARE DOING IT WRONG faces must look abstracted and geometrically impossible, Picasso Cubist masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Cubist painting by Pablo Picasso, Picasso Cubism art style, MOST IMPORTANT THE FACE MUST BE CUBIST DECONSTRUCTED NOT REALISTIC, REQUIRED DISTORTIONS: show PROFILE NOSE side view while BOTH EYES face FORWARD on same face, FRAGMENT face into FLAT ANGULAR GEOMETRIC PLANES, break JAW FOREHEAD CHEEKS into separate angular shapes like shattered glass, Les Demoiselles d Avignon African mask angular style, Earth tones, ochre, brown, olive, grey, If the face looks normal or realistic YOU ARE DOING IT WRONG faces must look abstracted and geometrically impossible, Picasso Cubist masterpiece quality'
   },
   
   frida: {
@@ -1787,7 +1785,7 @@ const fallbackPrompts = {
     artist: 'Frida Kahlo (1907-1954)',
     movement: '멕시코 초현실주의 (Mexican Surrealism)',
     defaultWork: 'Me and My Parrots',
-    prompt: 'painting by Frida Kahlo, Frida Kahlo art style, INTENSE DIRECT GAZE portrait style, vibrant Mexican folk art colors, symbolic personal imagery, flowers, animals, vines, hearts, emotional raw vulnerability, Mexican traditional dress and floral headpiece, lush tropical green foliage background, autobiographical symbolic elements, rich saturated colors, detailed oil painting brushwork visible, preserve subject identity, Frida Kahlo masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'painting by Frida Kahlo, Frida Kahlo art style, INTENSE DIRECT GAZE portrait style, vibrant Mexican folk art colors, symbolic personal imagery, flowers, animals, vines, hearts, emotional raw vulnerability, Mexican traditional dress and floral headpiece, lush tropical green foliage background, autobiographical symbolic elements, rich saturated colors, detailed oil painting brushwork visible, preserve subject identity, Frida Kahlo masterpiece quality'
   },
   
   // ========================================
@@ -1796,27 +1794,27 @@ const fallbackPrompts = {
   // ========================================
   korean: {
     name: '한국 전통화',
-    prompt: 'Korean traditional painting, Joseon Dynasty art style, GENDER PRESERVATION preserve exact gender and facial features from original photo, Choose appropriate Korean style: Minhwa folk art for animals and flowers with light subtle Obangsaek colors and soft gentle pigments, Pungsokdo genre painting for people with LIGHT INK WASH technique and subtle colors over ink lines in Kim Hong-do and Shin Yun-bok style, Jingyeong landscape for nature with expressive ink and minimal color, SINGLE UNIFIED COMPOSITION, VISIBLE BRUSH TEXTURE 20mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Korean traditional painting, Joseon Dynasty art style, GENDER PRESERVATION preserve exact gender and facial features from original photo, Choose appropriate Korean style: Minhwa folk art for animals and flowers with light subtle Obangsaek colors and soft gentle pigments, Pungsokdo genre painting for people with LIGHT INK WASH technique and subtle colors over ink lines in Kim Hong-do and Shin Yun-bok style, Jingyeong landscape for nature with expressive ink and minimal color, SINGLE UNIFIED COMPOSITION, VISIBLE BRUSH TEXTURE 20mm+'
   },
   
   chinese: {
     name: '중국 전통화',
-    prompt: 'Chinese traditional painting, classical Chinese art style, GENDER PRESERVATION preserve exact gender and facial features from original photo, Choose appropriate Chinese style: Shuimohua ink wash for landscapes with monochrome gradations, Gongbi meticulous painting for people with fine detailed brushwork and rich colors, Huaniao bird-and-flower for animals with precise naturalistic rendering, Chinese aesthetic principles, SINGLE UNIFIED COMPOSITION, VISIBLE INK BRUSH TEXTURE 20mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Chinese traditional painting, classical Chinese art style, GENDER PRESERVATION preserve exact gender and facial features from original photo, Choose appropriate Chinese style: Shuimohua ink wash for landscapes with monochrome gradations, Gongbi meticulous painting for people with fine detailed brushwork and rich colors, Huaniao bird-and-flower for animals with precise naturalistic rendering, Chinese aesthetic principles, SINGLE UNIFIED COMPOSITION, VISIBLE INK BRUSH TEXTURE 20mm+'
   },
   
   japanese: {
     name: '일본 우키요에',
-    prompt: 'Japanese Ukiyo-e woodblock print, Ukiyo-e art style, flat areas of bold solid colors, strong clear black outlines, completely flat two-dimensional composition, transform clothing to traditional kimono, decorative patterns, stylized simplified forms, elegant refined Japanese aesthetic, authentic Japanese ukiyo-e masterpiece quality, CRITICAL ANTI-HALLUCINATION preserve EXACT number of people from original photo, if 1 person then ONLY 1 person in result, simple scenic background ONLY Mt Fuji or cherry blossom or waves or sky, VISIBLE WOODBLOCK PRINT TEXTURE 20mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Japanese Ukiyo-e woodblock print, Ukiyo-e art style, flat areas of bold solid colors, strong clear black outlines, completely flat two-dimensional composition, transform clothing to traditional kimono, decorative patterns, stylized simplified forms, elegant refined Japanese aesthetic, authentic Japanese ukiyo-e masterpiece quality, CRITICAL ANTI-HALLUCINATION preserve EXACT number of people from original photo, if 1 person then ONLY 1 person in result, simple scenic background ONLY Mt Fuji or cherry blossom or waves or sky, VISIBLE WOODBLOCK PRINT TEXTURE 20mm+'
   },
   
   masters: {
     name: '거장 화풍',
-    prompt: 'Master artist painting, master artist art style, exceptional technical skill, distinctive artistic vision, profound emotional depth, timeless masterpiece quality, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Master artist painting, master artist art style, exceptional technical skill, distinctive artistic vision, profound emotional depth, timeless masterpiece quality'
   },
   
   oriental: {
     name: '동양화',
-    prompt: 'Traditional East Asian painting, East Asian art style, ink wash brushwork, minimalist composition, harmony with nature, philosophical contemplation, classical Oriental masterpiece quality, VISIBLE INK BRUSH TEXTURE 20mm+, NOT photograph, NOT 3D, NOT digital'
+    prompt: 'Traditional East Asian painting, East Asian art style, ink wash brushwork, minimalist composition, harmony with nature, philosophical contemplation, classical Oriental masterpiece quality, VISIBLE INK BRUSH TEXTURE 20mm+'
   }
 };
 
@@ -2036,7 +2034,7 @@ Style 2: Chinese Gongbi Meticulous Painting (工筆畫)
 - Best for: portraits, people, detailed subjects, colorful compositions
 - Characteristics: EXTREMELY FINE detailed brushwork with DELICATE HAIR-THIN brush lines, SILK SURFACE TEXTURE throughout (not paper), rich MINERAL PIGMENT colors (malachite green, azurite blue, cinnabar red), ornate decorative patterns, TRADITIONAL PAINTED FEEL not digital, imperial court quality, VISIBLE FINE BRUSHSTROKES showing meticulous hand-painted technique
 - When: Photo has people, faces, or needs detailed colorful treatment
-- CRITICAL: Must look like TRADITIONAL HAND-PAINTED silk painting, NOT smooth digital art, NOT AI-generated look
+- CRITICAL: Must look like TRADITIONAL HAND-PAINTED silk painting, VISIBLE brush texture, traditional painted quality
 
 Style 3: Chinese Huaniao Bird-and-Flower Painting (花鳥畫)
 - Best for: birds, flowers, animals (dogs, cats, rabbits), fish, insects, any natural creatures
@@ -2504,11 +2502,11 @@ const MALE_SUITABLE_ARTISTS_BY_CATEGORY = {
     { name: 'KANDINSKY', weight: 15 }
   ],
   'modernism': [
-    // 워홀 제거, 6명
-    { name: 'PICASSO', weight: 40 },
-    { name: 'MAGRITTE', weight: 25 },
-    { name: 'LICHTENSTEIN', weight: 20 },
-    { name: 'KEITH HARING', weight: 15 }
+    // v70: 키스해링 삭제, 피카소↓ 샤갈 추가
+    { name: 'CHAGALL', weight: 30 },
+    { name: 'LICHTENSTEIN', weight: 25 },
+    { name: 'PICASSO', weight: 25 },
+    { name: 'MAGRITTE', weight: 20 }
   ],
   'neoclassicism': [
     // 여성 편향 없음 (INGRES는 여성 인물 잘 그리지만 남성도 잘 그림)
@@ -2586,7 +2584,7 @@ export default async function handler(req, res) {
     const { image, selectedStyle, correctionPrompt } = req.body;
     
     // v68.3: 변수 초기화 (스코프 문제 해결) - v70: 노출 제한 추가
-    let coreRulesPrefix = 'Preserve identity, gender, ethnicity exactly. Do not add people or elements not in photo. Female nipples covered by clothing. NOT photograph, NOT 3D, NOT digital. No text, no signatures, no watermarks. ';
+    let coreRulesPrefix = 'Preserve identity, gender, ethnicity exactly. Do not add people or elements not in photo. Female nipples covered by clothing.. No text, no signatures, no watermarks. ';
     let genderPrefixCommon = '';
 
     // v66: 구조화된 로그 수집 객체
@@ -3189,19 +3187,16 @@ export default async function handler(req, res) {
           // ethnicity 제외
           CORE_RULES_BASE = 'Preserve identity, gender exactly. ' +
             'Do not add people or elements not in photo. ' +
-            'Female nipples covered by clothing. ' +
-            'NOT photograph, NOT 3D, NOT digital.';
+            'Female nipples covered by clothing.';
         } else if (allowExtraImagery) {
           // 샤갈: 환영 허용 (원본만 그리기 제외)
           CORE_RULES_BASE = 'Preserve identity, gender, ethnicity exactly. ' +
-            'Female nipples covered by clothing. ' +
-            'NOT photograph, NOT 3D, NOT digital.';
+            'Female nipples covered by clothing.';
         } else {
           // 기본값
           CORE_RULES_BASE = 'Preserve identity, gender, ethnicity exactly. ' +
             'Do not add people or elements not in photo. ' +
-            'Female nipples covered by clothing. ' +
-            'NOT photograph, NOT 3D, NOT digital.';
+            'Female nipples covered by clothing.';
         }
         
         if (isOrientalStyle) {
@@ -3252,7 +3247,7 @@ export default async function handler(req, res) {
             const artistKey = workKey.split('-')[0];
             
             // v70: 거장 7명 모두 masterworks에서 가져오기
-            if (['vangogh', 'munch', 'klimt', 'matisse', 'picasso', 'frida', 'lichtenstein'].includes(artistKey)) {
+            if (['vangogh', 'munch', 'klimt', 'matisse', 'chagall', 'frida', 'lichtenstein'].includes(artistKey)) {
               const movementMasterwork = getMovementMasterwork(workKey);
               if (movementMasterwork) {
                 console.log('');
@@ -3559,7 +3554,7 @@ export default async function handler(req, res) {
     const isPointillism = finalPrompt.toLowerCase().includes('pointillist') ||
                           finalPrompt.toLowerCase().includes('pointillism');
     
-    // v68.2: 샌드위치 삭제 - 대전제와 화풍에서 NOT photograph 이미 커버
+    // v68.2: 샌드위치 삭제 - 긍정 표현으로 충분
     
     // ========================================
     // 20세기 모더니즘: 대전제 적용 제외!

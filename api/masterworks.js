@@ -1609,9 +1609,9 @@ MAURICE DE VLAMINCK - SELECT ONE:
   // ========================================
   'munch': `
 EDVARD MUNCH - SELECT ONE:
-1. "The Scream" (절규) → emotional, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
+1. "The Scream" (절규) → ANY, emotional, anxiety, existential dread | Style: WAVY DISTORTED swirling LINES throughout, BLOOD RED and orange sky, elongated oval face with hands on ears expressing TERROR, bridge setting, PRESERVE ORIGINAL FACE while applying expressionist distortion
 2. "Madonna" (마돈나) → FEMALE, mysterious, sensual, ecstatic mood | Style: flowing dark hair like HALO, RED AURA, pale luminous skin, half-closed eyes, mystical power
-3. "The Dance of Life" (생의 춤) → romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
+3. "The Dance of Life" (생의 춤) → COUPLE, romantic, life stages | Style: COUPLES DANCING on moonlit shore, RED dress central, WHITE and BLACK figures on sides, moon reflection, emotional depth
 
 ⚠️ CRITICAL: NEVER create skull or skeleton face. PRESERVE the original person's facial features while applying expressionist style.`,
 

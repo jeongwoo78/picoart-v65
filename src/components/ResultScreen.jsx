@@ -844,6 +844,10 @@ const ResultScreen = ({
       '마티스': 'matisse-master',
       'matisse': 'matisse-master',
       'henri matisse': 'matisse-master',
+      '마르크 샤갈': 'chagall-master',
+      '샤갈': 'chagall-master',
+      'chagall': 'chagall-master',
+      'marc chagall': 'chagall-master',
       '파블로 피카소': 'picasso-master',
       '피카소': 'picasso-master',
       'picasso': 'picasso-master',
@@ -914,6 +918,12 @@ const ResultScreen = ({
       '마티스': { fullName: '앙리 마티스(Henri Matisse, 1869~1954)', movement: '야수파' },
       'matisse': { fullName: '앙리 마티스(Henri Matisse, 1869~1954)', movement: '야수파' },
       'henri matisse': { fullName: '앙리 마티스(Henri Matisse, 1869~1954)', movement: '야수파' },
+      
+      // 샤갈 (v70 추가)
+      '샤갈': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      '마르크 샤갈': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      'chagall': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
+      'marc chagall': { fullName: '마르크 샤갈(Marc Chagall, 1887~1985)', movement: '초현실주의' },
       
       // 피카소
       '피카소': { fullName: '파블로 피카소(Pablo Picasso, 1881~1973)', movement: '입체주의' },

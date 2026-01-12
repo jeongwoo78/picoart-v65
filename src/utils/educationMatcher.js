@@ -76,6 +76,14 @@ const MASTERS_WORK_MAP = {
   'Guernica': 'picasso-guernica',
   '게르니카': 'picasso-guernica',
   
+  // 샤갈 (2작품) - v70 추가
+  'Lovers with Flowers': 'chagall-lovers',
+  '꽃다발과 연인들': 'chagall-lovers',
+  'Lovers': 'chagall-lovers',
+  'La Branche': 'chagall-labranche',
+  '나뭇가지': 'chagall-labranche',
+  'The Branch': 'chagall-labranche',
+  
   // 프리다 칼로 (5작품)
   'Me and My Parrots': 'frida-parrots',
   '나와 내 앵무새들': 'frida-parrots',
@@ -122,6 +130,12 @@ const MASTERS_ARTIST_FALLBACK = {
   '피카소': 'picasso',
   'pablo': 'picasso',
   'pablo picasso': 'picasso',
+  
+  'chagall': 'chagall',
+  '샤갈': 'chagall',
+  'marc': 'chagall',
+  'marc chagall': 'chagall',
+  '마르크 샤갈': 'chagall',
   
   'frida': 'frida',
   '프리다': 'frida',

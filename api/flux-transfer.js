@@ -1625,7 +1625,7 @@ Available 20th Century Modernism Artists (6명):
 3. MIRÓ (미로) - Playful biomorphic forms, childlike symbols, primary colors (LANDSCAPE/STILL LIFE ONLY)
    - Masterworks: "Catalan Landscape", "Constellations", "Blue Star" ← SELECT ONE ONLY!
 4. CHAGALL (샤갈) - Soft dreamy floating figures, muted pastel colors
-   - Masterworks: "The Birthday", "Over the Town", "Lovers with Flowers", "La Branche" ← SELECT ONE ONLY!
+   - Masterworks: "Lovers with Flowers", "La Branche" ← SELECT ONE ONLY!
 
 === POP ART 팝아트 ===
 5. LICHTENSTEIN (리히텐슈타인) - Ben-Day dots, comic book style

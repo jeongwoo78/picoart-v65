@@ -138,7 +138,7 @@ export const masterworkNameMapping = {
   'the empire of light': 'magritte-empireoflight',
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
-  'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage', 'lovers with flowers': 'chagall-lovers', '사랑하는 연인들과 꽃': 'chagall-lovers', 'la branche': 'chagall-labranche', '나뭇가지': 'chagall-labranche',
+  'lovers with flowers': 'chagall-lovers', '사랑하는 연인들과 꽃': 'chagall-lovers', 'la branche': 'chagall-labranche', '나뭇가지': 'chagall-labranche',
   'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'ohhh alright': 'lichtenstein-ohhhalright', '오 알았어': 'lichtenstein-ohhhalright', 'still life': 'lichtenstein-stilllife', 'still life with palette': 'lichtenstein-stilllife', '정물화': 'lichtenstein-stilllife', 'forget it': 'lichtenstein-forgetit', '날 잊어': 'lichtenstein-forgetit'
 };
 
@@ -1107,27 +1107,9 @@ export const miroMasterworks = {
 };
 
 // ========================================
-// 42. 샤갈 (5개) - v70: 2개 추가
+// 42. 샤갈 (2개) - v70
 // ========================================
 export const chagallMasterworks = {
-  'chagall-iandvillage': {
-    name: '나와 마을',
-    nameEn: 'I and the Village',
-    prompt: 'Marc Chagall "I and the Village" (1911), overlapping dreamlike green-faced man cow gazing each other, circular composition transparent overlays, emerald ruby deep blue, soft pastel colors.',
-    feature: '동물, 얼굴, 중첩'
-  },
-  'chagall-birthday': {
-    name: '생일',
-    nameEn: 'Birthday',
-    prompt: 'Marc Chagall "Birthday" (1915), floating lovers defying gravity, man bends impossibly backward kiss woman, soft muted pastels dusty rose pale blue sage, tilted room.',
-    feature: '커플, 키스'
-  },
-  'chagall-overtown': {
-    name: '마을 위에서',
-    nameEn: 'Over the Town',
-    prompt: 'Marc Chagall "Over the Town" (1918), couple floating high above village, embracing lovers soaring over tilted colorful houses, muted dreamy pastels lavender blue rose.',
-    feature: '커플, 마을'
-  },
   'chagall-lovers': {
     name: '사랑하는 연인들과 꽃',
     nameEn: 'Lovers with Flowers',
@@ -1279,7 +1261,7 @@ export function getArtistMasterworkList(artistKey) {
     'frida': ['frida-parrots', 'frida-thornnecklace', 'frida-monkeys'],
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
-    'chagall': ['chagall-iandvillage', 'chagall-birthday', 'chagall-overtown', 'chagall-lovers', 'chagall-labranche'],
+    'chagall': ['chagall-lovers', 'chagall-labranche'],
     'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife']
   };
   
@@ -1680,10 +1662,8 @@ JOAN MIRÓ - SELECT ONE:
 
   'chagall': `
 MARC CHAGALL - SELECT ONE:
-1. "Birthday" (생일, 1915) → COUPLE, romantic, indoor | Style: lovers kissing, tilted room, soft pastel dusty rose pale blue sage
-2. "Over the Town" (마을 위에서, 1918) → COUPLE, romantic, village | Style: embracing lovers, colorful tilted houses below, lavender blue rose pastels
-3. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
-4. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
+1. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE/SINGLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
+2. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
 
 ⚠️ Chagall style: Dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers.`,
 

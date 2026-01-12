@@ -1,6 +1,5 @@
 // PicoArt v74 - Kontext 프롬프트 최소화
-// v76: Kontext 프롬프트 공식 권장 구조 적용
-// "ONLY ${correctionPrompt} while keeping the same painting style"
+// v74: "ONLY ${correctionPrompt}." 만 사용
 //      - 불필요한 보존 명령어 제거
 //      - Kontext가 자동으로 나머지 유지 (이미지 편집 모델 특성)
 //
@@ -240,6 +239,7 @@ const ARTIST_CONFIG = {
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
   'frida':               { control: 0.80, brush: '25mm' },    // 세밀 상징
+  'modigliani':          { control: 0.30, brush: '50mm' },    // 긴 목/얼굴 변형 필요
   
   // === 동양화 ===
   'korean':              { control: 0.75, brush: null },      // 먹선 별도
@@ -335,6 +335,9 @@ const ARTIST_NAME_MAPPING = {
   'fridakahlo': 'frida',
   '프리다': 'frida',
   '프리다칼로': 'frida',
+  'amedeomodigliani': 'modigliani',
+  '모딜리아니': 'modigliani',
+  '아메데오모딜리아니': 'modigliani',
   'antoinewatteau': 'watteau',
   '와토': 'watteau',
   'francoisboucher': 'boucher',
@@ -2692,81 +2695,51 @@ export default async function handler(req, res) {
       const keepUnchangedStr = keepUnchanged.join(', ');
       console.log(`🔒 보존 항목: ${keepUnchangedStr}`);
       
-      // v76: FLUX Kontext 프롬프트 - 화가 이름 포함
-      // "ONLY" + 수정 요청 + "while keeping the same [화가] painting style"
+      // v75: FLUX Kontext 프롬프트 - 화가 스타일 전체 포함
+      // "ONLY" + 수정 요청 + 화가 스타일 (NOT 제외)
       
-      // 화가 키 → 이름 변환
-      const ARTIST_DISPLAY_NAMES = {
-        'vangogh': 'Van Gogh',
-        'klimt': 'Klimt',
-        'munch': 'Munch',
-        'picasso': 'Picasso',
-        'matisse': 'Matisse',
-        'frida': 'Frida Kahlo',
-        'lichtenstein': 'Lichtenstein'
-      };
+      let kontextPrompt;
       
-      const artistDisplayName = ARTIST_DISPLAY_NAMES[artistKey] || 'painting';
-      
-      // pants → lower garment 치환 (FLUX가 다리 피부와 혼동 방지)
-      const sanitizedPrompt = correctionPrompt.replace(/pants/gi, 'lower garment');
-      const kontextPrompt = `ONLY ${sanitizedPrompt} while keeping the same facial features, composition, background, pose, and ${artistDisplayName} painting style`;
-      
-      console.log(`👨‍🎨 거장: ${masterKey} → ${artistDisplayName}`);
-      console.log(`📜 Kontext 프롬프트: ${kontextPrompt}`);
-      
-      // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정) - 재시도 로직 포함
-      const MAX_RETRIES = 3;
-      let response;
-      let lastError;
-      
-      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try {
-          response = await fetch(
-            'https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions',
-            {
-              method: 'POST',
-              headers: {
-                'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'wait'
-              },
-              body: JSON.stringify({
-                input: {
-                  input_image: image,
-                  prompt: kontextPrompt
-                }
-              })
-            }
-          );
-          
-          // 502/503 에러 시 재시도
-          if (response.status === 502 || response.status === 503) {
-            console.log(`🔄 FLUX Kontext 재시도 (${attempt}/${MAX_RETRIES})... ${response.status} 에러`);
-            if (attempt < MAX_RETRIES) {
-              await new Promise(r => setTimeout(r, 2000 * attempt)); // 2초, 4초 대기
-              continue;
-            }
-          }
-          
-          // 성공 또는 다른 에러면 루프 탈출
-          break;
-        } catch (err) {
-          lastError = err;
-          console.log(`🔄 FLUX Kontext 재시도 (${attempt}/${MAX_RETRIES})... 네트워크 에러`);
-          if (attempt < MAX_RETRIES) {
-            await new Promise(r => setTimeout(r, 2000 * attempt));
-            continue;
-          }
-        }
+      if (artistKey && ARTIST_STYLES[artistKey]) {
+        // artistStyles.js에서 화풍 가져오기 (NOT 이전까지 전체)
+        const fullStyle = ARTIST_STYLES[artistKey];
+        const styleFeatures = fullStyle.split('. NOT')[0];
+        
+        kontextPrompt = `ONLY ${correctionPrompt}. ${styleFeatures}.`;
+        console.log(`👨‍🎨 거장: ${masterKey} → ${artistKey}`);
+        console.log(`🎨 화풍: ${styleFeatures.substring(0, 80)}...`);
+      } else {
+        kontextPrompt = `ONLY ${correctionPrompt}.`;
+        console.log(`⚠️ 거장 매칭 안됨: ${masterKey}`);
       }
+      
+      console.log('');
+      console.log(`📜 Kontext 프롬프트: ${kontextPrompt.substring(0, 150)}...`);
+      
+      // FLUX Kontext Pro API 호출 (스타일 유지하며 부분 수정)
+      const response = await fetch(
+        'https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'wait'
+          },
+          body: JSON.stringify({
+            input: {
+              input_image: image,
+              prompt: kontextPrompt
+            }
+          })
+        }
+      );
 
-      if (!response || !response.ok) {
-        const errorText = response ? await response.text() : 'No response';
-        const statusCode = response ? response.status : 500;
-        console.error('FLUX Kontext error (retransform):', statusCode, errorText);
-        return res.status(statusCode).json({ 
-          error: `FLUX Kontext API error: ${statusCode}`,
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('FLUX Kontext error (retransform):', response.status, errorText);
+        return res.status(response.status).json({ 
+          error: `FLUX Kontext API error: ${response.status}`,
           details: errorText
         });
       }
@@ -3180,21 +3153,23 @@ export default async function handler(req, res) {
         const artistLower = (selectedArtist || '').toLowerCase();
         const skipEthnicityPreserve = skinColorTransformArtists.some(a => artistLower.includes(a));
         
-        // 공통 대전제 (텍스트 금지는 별도)
+        // 공통 대전제 (텍스트 금지는 별도) - v69: 긍정 표현으로 통일
         const CORE_RULES_BASE = skipEthnicityPreserve
           ? 'Preserve identity, gender exactly. ' +  // ethnicity 제외
-            'Do not add people or elements not in photo. ' +
-            'NOT photograph, NOT 3D, NOT digital.'
+            'Paint only subjects visible in original photo. ' +
+            'Nipples and genitals must be covered. ' +
+            'Hand-painted artwork style.'
           : 'Preserve identity, gender, ethnicity exactly. ' +  // 기본값
-            'Do not add people or elements not in photo. ' +
-            'NOT photograph, NOT 3D, NOT digital.';
+            'Paint only subjects visible in original photo. ' +
+            'Nipples and genitals must be covered. ' +
+            'Hand-painted artwork style.';
         
         if (isOrientalStyle) {
           // v68: 동양화 - 텍스트 허용 (낙관/시문)
           coreRulesPrefix = CORE_RULES_BASE + ' ';
         } else {
-          // 서양화 - 텍스트 금지
-          coreRulesPrefix = CORE_RULES_BASE + ' No text, no signatures, no watermarks. ';
+          // 서양화 - 텍스트 금지 (긍정 표현)
+          coreRulesPrefix = CORE_RULES_BASE + ' Clean image without text or signatures. ';
         }
         
         // v68: 성별 보존 프롬프트 (간소화) - 나중에 적용
@@ -3237,7 +3212,7 @@ export default async function handler(req, res) {
             const artistKey = workKey.split('-')[0];
             
             // v70: 거장 7명 모두 masterworks에서 가져오기
-            if (['vangogh', 'munch', 'klimt', 'matisse', 'picasso', 'frida', 'lichtenstein'].includes(artistKey)) {
+            if (['vangogh', 'munch', 'klimt', 'matisse', 'picasso', 'frida', 'lichtenstein', 'modigliani', 'chagall'].includes(artistKey)) {
               const movementMasterwork = getMovementMasterwork(workKey);
               if (movementMasterwork) {
                 console.log('');
@@ -3748,58 +3723,33 @@ export default async function handler(req, res) {
     console.log(`   ${finalPrompt.substring(0, 500)}...`);
     console.log('');
     
-    // FLUX Depth Dev 변환 - 재시도 로직 포함
-    const MAX_RETRIES = 3;
-    let response;
-    let lastError;
+    // FLUX Depth Dev 변환 (v63: Pro 테스트 포기, Dev 유지)
+    // console.log('📦 [v63] black-forest-labs/flux-depth-dev');
     
-    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-      try {
-        response = await fetch(
-          'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
-          {
-            method: 'POST',
-            headers: {
-              'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
-              'Content-Type': 'application/json',
-              'Prefer': 'wait'
-            },
-            body: JSON.stringify({
-              input: {
-                control_image: image,
-                prompt: finalPrompt,
-                num_inference_steps: 24,
-                guidance: 12,
-                control_strength: controlStrength,
-                output_format: 'jpg',
-                output_quality: 90
-              }
-            })
+    const response = await fetch(
+      'https://api.replicate.com/v1/models/black-forest-labs/flux-depth-dev/predictions',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Token ${process.env.REPLICATE_API_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'wait'
+        },
+        body: JSON.stringify({
+          input: {
+            control_image: image,
+            prompt: finalPrompt,
+            num_inference_steps: 24,
+            guidance: 12,
+            control_strength: controlStrength,
+            output_format: 'jpg',
+            output_quality: 90
           }
-        );
-        
-        // 502/503 에러 시 재시도
-        if (response.status === 502 || response.status === 503) {
-          console.log(`🔄 FLUX Depth 재시도 (${attempt}/${MAX_RETRIES})... ${response.status} 에러`);
-          if (attempt < MAX_RETRIES) {
-            await new Promise(r => setTimeout(r, 2000 * attempt)); // 2초, 4초 대기
-            continue;
-          }
-        }
-        
-        // 성공 또는 다른 에러면 루프 탈출
-        break;
-      } catch (err) {
-        lastError = err;
-        console.log(`🔄 FLUX Depth 재시도 (${attempt}/${MAX_RETRIES})... 네트워크 에러`);
-        if (attempt < MAX_RETRIES) {
-          await new Promise(r => setTimeout(r, 2000 * attempt));
-          continue;
-        }
+        })
       }
-    }
+    );
 
-    if (!response || !response.ok) {
+    if (!response.ok) {
       const errorText = await response.text();
       console.error('FLUX Depth error:', response.status, errorText);
       return res.status(response.status).json({ 

@@ -148,6 +148,8 @@ export const ARTIST_STYLES = {
   'klimt': 'by Gustav Klimt, Klimt art style, ornate gold leaf patterns, intricate decorative mosaic, flat Byzantine-inspired figures, jewel-like embedded details, geometric robes with spirals and rectangles. NOT photograph, NOT digital.',
   
   'frida': 'by Frida Kahlo, Frida Kahlo art style, intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background, raw emotional honesty. NOT photograph, NOT digital.',
+  
+  'modigliani': 'by Amedeo Modigliani, Modigliani art style, EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with NO PUPILS or very faint pupils, simplified smooth elegant forms, melancholic serene beauty, warm ochre terracotta palette. NOT photograph, NOT digital.',
 
   // ========================================
   // 🎎 동양화 (현재 유지 - 이미 NO digital 등 포함)
@@ -264,6 +266,7 @@ export function getArtistStyleByName(artistName) {
     // 거장 전용
     'KLIMT': 'klimt', '클림트': 'klimt', 'GUSTAV KLIMT': 'klimt',
     'FRIDA': 'frida', 'KAHLO': 'frida', '프리다': 'frida', '칼로': 'frida', 'FRIDA KAHLO': 'frida',
+    'MODIGLIANI': 'modigliani', '모딜리아니': 'modigliani', 'AMEDEO MODIGLIANI': 'modigliani',
     
     // 동양화
     'MINHWA': 'minhwa', '민화': 'minhwa', 'KOREAN FOLK': 'minhwa',

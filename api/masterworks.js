@@ -45,6 +45,11 @@ export const masterworkNameMapping = {
   'self-portrait with thorn necklace': 'frida-thornnecklace', '가시 목걸이': 'frida-thornnecklace',
   'self-portrait with monkeys': 'frida-monkeys', '원숭이와 자화상': 'frida-monkeys',
   
+  // 모딜리아니
+  'jeanne hébuterne': 'modigliani-jeanne', 'jeanne hebuterne': 'modigliani-jeanne', '잔 에뷔테른': 'modigliani-jeanne',
+  'lunia czechowska': 'modigliani-lunia', '루니아 체호프스카': 'modigliani-lunia',
+  'portrait of paul guillaume': 'modigliani-paul', 'paul guillaume': 'modigliani-paul', '폴 기욤': 'modigliani-paul',
+  
   // 로마 모자이크
   'alexander mosaic': 'mosaic-alexander', '알렉산더 모자이크': 'mosaic-alexander',
   'cave canem': 'mosaic-cave-canem', '카베 카넴': 'mosaic-cave-canem',
@@ -87,7 +92,6 @@ export const masterworkNameMapping = {
   
   // 로코코
   'pilgrimage to cythera': 'watteau-cythera', 'pierrot': 'watteau-pierrot',
-  'the pleasures of the ball': 'watteau-fete', '사랑의 축제': 'watteau-fete',
   'madame de pompadour': 'boucher-pompadour', '퐁파두르 부인': 'boucher-pompadour',
   'le dejeuner': 'boucher-breakfast', '아침 식사': 'boucher-breakfast',
   
@@ -128,9 +132,7 @@ export const masterworkNameMapping = {
   
   // 표현주의
   'bride of the wind': 'kokoschka-bride', 'self-portrait of a degenerate artist': 'kokoschka-degenerate',
-  'double portrait': 'kokoschka-double', '이중 초상': 'kokoschka-double',
   'berlin street scene': 'kirchner-berlin', 'self-portrait as a soldier': 'kirchner-soldier',
-  'three old women': 'kirchner-oldwomen', '세 명의 노부인들': 'kirchner-oldwomen',
   
   // 모더니즘
   'the son of man': 'magritte-sonofman', 'golconda': 'magritte-golconda',
@@ -1167,6 +1169,30 @@ export const lichtensteinMasterworks = {
 };
 
 // ========================================
+// 44. 모딜리아니 (3개)
+// ========================================
+export const modiglianiMasterworks = {
+  'modigliani-jeanne': {
+    name: '잔 에뷔테른',
+    nameEn: 'Jeanne Hébuterne',
+    prompt: 'Amedeo Modigliani "Jeanne Hébuterne" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with NO PUPILS or very faint pupils, simplified smooth forms, melancholic elegant beauty, warm ochre terracotta background, seated pose with tilted head.',
+    feature: '여성, 긴 목'
+  },
+  'modigliani-lunia': {
+    name: '루니아 체호프스카',
+    nameEn: 'Lunia Czechowska',
+    prompt: 'Amedeo Modigliani "Lunia Czechowska" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES gazing sideways with NO PUPILS, graceful serene expression, simplified elegant forms, muted blue-grey background.',
+    feature: '여성, 우아'
+  },
+  'modigliani-paul': {
+    name: '폴 기욤',
+    nameEn: 'Portrait of Paul Guillaume',
+    prompt: 'Amedeo Modigliani "Portrait of Paul Guillaume" (1916), EXTREME ELONGATED NECK AND FACE stretched vertically, BLANK ALMOND-SHAPED EYES with NO PUPILS, man in dark suit and hat, confident sophisticated pose, warm brown ochre background, stylized simplified masculine features.',
+    feature: '남성, 신사'
+  }
+};
+
+// ========================================
 // 통합 대표작
 // ========================================
 export const allMovementMasterworks = {
@@ -1210,7 +1236,8 @@ export const allMovementMasterworks = {
   ...magritteMasterworks,
   ...miroMasterworks,
   ...chagallMasterworks,
-  ...lichtensteinMasterworks
+  ...lichtensteinMasterworks,
+  ...modiglianiMasterworks
 };
 
 /**
@@ -1268,7 +1295,8 @@ export function getArtistMasterworkList(artistKey) {
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
-    'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife']
+    'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife'],
+    'modigliani': ['modigliani-jeanne', 'modigliani-lunia', 'modigliani-paul']
   };
   
   return artistMasterworks[normalized] || [];
@@ -1456,14 +1484,14 @@ DIEGO VELAZQUEZ - SELECT ONE:
 ANTOINE WATTEAU - SELECT ONE:
 1. "Pilgrimage to Cythera" (시테르섬의 순례) → COUPLE or GROUP, romantic, outdoor | Style: dreamy pastoral setting, elegant couples departing, soft golden light, melancholic atmosphere
 2. "Pierrot" (피에로) → SINGLE portrait, melancholic, theatrical | Style: white costume standing alone, wistful expression, commedia dell'arte character
-3. "The Pleasures of the Ball" (사랑의 축제) → GROUP, celebration, garden party | Style: elegant aristocrats in garden, musical instruments, soft feathery brushwork
+3. "Fête Galante" (귀족의 연회) → GROUP, celebration, garden party | Style: elegant aristocrats in garden, musical instruments, soft feathery brushwork
 
 ⚠️ Watteau style: Delicate feathery brushwork, soft dreamy pastoral scenes, romantic melancholic atmosphere.`,
 
   'boucher': `
 FRANÇOIS BOUCHER - SELECT ONE:
 1. "Madame de Pompadour" (퐁파두르 부인) → FEMALE portrait, elegant, aristocratic | Style: luxurious dress with ribbons and roses, books and artistic objects, soft rosy flesh tones
-2. "Le Dejeuner" (아침 식사) → interior, domestic, family scene | Style: intimate bourgeois interior, mother and children, warm pastel palette
+2. "Le Déjeuner" (아침 식사) → interior, domestic, family scene | Style: intimate bourgeois interior, mother and children, warm pastel palette
 
 ⚠️ Boucher style: Soft rosy flesh tones, light pastel palette, playful decorative elegance.`,
 
@@ -1488,7 +1516,7 @@ JEAN-AUGUSTE-DOMINIQUE INGRES - SELECT ONE:
   'turner': `
 J.M.W. TURNER - SELECT ONE:
 1. "Rain, Steam and Speed" (비, 증기, 속도) → train, motion, atmospheric | Style: locomotive emerging from mist, diagonal composition, golden atmospheric haze
-2. "Fighting Temeraire" (전함 테메레르) → ship, sunset, nostalgic | Style: ghost-like ship towed by tugboat, blazing orange sunset, reflections on water
+2. "The Fighting Temeraire" (전함 테메레르) → ship, sunset, nostalgic | Style: ghost-like ship towed by tugboat, blazing orange sunset, reflections on water
 3. "Slave Ship" (노예선) → dramatic, stormy sea, sunset | Style: turbulent waves, blood-red sunset, dramatic atmospheric chaos
 
 ⚠️ Turner style: Atmospheric sublime light, swirling mist dissolving forms, luminous golden glow.`,
@@ -1511,7 +1539,7 @@ GUSTAVE COURBET - SELECT ONE:
 
   'manet': `
 ÉDOUARD MANET - SELECT ONE:
-1. "Bar at the Folies-Bergère" (폴리베르제르의 바) → FEMALE portrait, interior, mirror | Style: barmaid facing viewer, mirror reflection behind, bottles and oranges, modern urban life
+1. "A Bar at the Folies-Bergère" (폴리베르제르의 바) → FEMALE portrait, interior, mirror | Style: barmaid facing viewer, mirror reflection behind, bottles and oranges, modern urban life
 2. "The Fifer" (피리 부는 소년) → MALE portrait, young, simple background | Style: young boy in military uniform playing fife, flat grey background, bold silhouette
 
 ⚠️ For FEMALE: Bar at Folies-Bergère. For MALE: The Fifer. Manet style: Bold flat composition, striking light-dark contrast, loose confident brushwork.`,
@@ -1625,14 +1653,14 @@ EDVARD MUNCH - SELECT ONE:
 ERNST LUDWIG KIRCHNER - SELECT ONE:
 1. "Berlin Street Scene" (베를린 거리 풍경) → urban, GROUP, city life | Style: angular jagged figures, garish clashing colors, elongated distorted forms, modern city tension
 2. "Self-Portrait as a Soldier" (군인으로서의 자화상) → MALE portrait, psychological | Style: severed hand motif, anxious expression, harsh angular forms, war trauma
-3. "Three Old Women" (세 명의 노부인들) → FEMALE group, outdoor | Style: three angular figures in black clothing, green mountainous landscape, mask-like faces
+3. "Two Women in the Street" (거리의 두 여인) → FEMALE pair, urban | Style: elongated figures, mask-like faces, acidic green and pink, urban alienation
 
 ⚠️ For MALE: Self-Portrait as Soldier. For FEMALE: Two Women. Kirchner style: Sharp angular jagged forms, extreme bold clashing colors, elongated mask-like faces.`,
 
   'kokoschka': `
 OSKAR KOKOSCHKA - SELECT ONE:
 1. "Bride of the Wind" (바람의 신부) → COUPLE, dramatic, emotional | Style: two intertwined figures in swirling storm, turbulent slashing brushwork, intense emotional turmoil
-2. "Self-Portrait of a Degenerate Artist" (퇴폐 미술가 자화상) → portrait, psychological | Style: penetrating psychological intensity, harsh feverish colors, raw emotional exposure
+2. "The Degenerate Art" (퇴폐 미술) → portrait, psychological | Style: penetrating psychological intensity, harsh feverish colors, raw emotional exposure
 3. "Double Portrait" (이중 초상) → COUPLE portrait | Style: two figures with psychological tension, distorted features, emotional undercurrents
 
 ⚠️ For COUPLE: Bride of the Wind. Kokoschka style: Violent turbulent slashing brushwork, harsh acidic feverish colors, deeply distorted psychological tension.`,
@@ -1661,8 +1689,8 @@ RENÉ MAGRITTE - SELECT ONE:
   'miro': `
 JOAN MIRÓ - SELECT ONE:
 1. "The Catalan Landscape" (카탈루냐 풍경) → landscape, playful, abstract | Style: biomorphic shapes floating, yellow ochre background, whimsical symbols
-2. "Constellations" (별자리) → abstract, cosmic, night | Style: starfield of symbols, interconnected lines, black background with colorful shapes
-3. "Woman in Front of the Sun" (태양 앞의 여인) → simple, iconic, figure | Style: large biomorphic shape on light background, minimal childlike composition
+2. "Constellation" (별자리) → abstract, cosmic, night | Style: starfield of symbols, interconnected lines, black background with colorful shapes
+3. "Blue Star" (푸른 별) → simple, iconic, blue | Style: large blue shape on light background, minimal childlike composition
 
 ⚠️ Miró style: Playful biomorphic shapes, childlike symbols floating, primary colors on white background, spontaneous whimsical lines.`,
 
@@ -1677,9 +1705,9 @@ MARC CHAGALL - SELECT ONE:
   'lichtenstein': `
 ROY LICHTENSTEIN - SELECT ONE:
 1. "In the Car" (차 안에서) → COUPLE (2 people), romantic, glamorous | Style: glamorous couple close-up, woman with ribbon hair man in profile
-2. "Forget It" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman
+2. "Forget It! Forget Me!" (날 잊어) → COUPLE (2 people), dramatic, conflict | Style: dramatic couple scene, black-haired man and blonde woman
 3. "M-Maybe" (아마도) → FEMALE portrait, thoughtful | Style: blonde woman close-up face looking sideways
-4. "Ohhh Alright" (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
+4. "Ohhh...Alright..." (오 알았어) → FEMALE portrait, expressive, pleased | Style: woman on telephone with pleased expression
 5. "Still Life with Palette" (정물화) → OBJECT, still life, food, interior | Style: bottles flowers brushes household objects
 
 ⚠️ CRITICAL STYLE RULES: EXTREMELY LARGE Ben-Day dots 15mm+ on ALL surfaces, ULTRA THICK BLACK OUTLINES 20mm+, FLAT primary colors ONLY (red blue yellow), COMIC PANEL FRAME with THICK BLACK BORDER, NOT realistic, NOT thin lines.`,
@@ -1701,7 +1729,20 @@ FRIDA KAHLO - SELECT ONE:
 2. "Self-Portrait with Thorn Necklace" (가시 목걸이 자화상) → portrait with nature/animals, symbolic | Style: THORNY VINE NECKLACE with dead hummingbird pendant, black cat and monkey companions, large tropical leaves background, intense direct gaze
 3. "Self-Portrait with Monkeys" (원숭이와 자화상) → person with pets/animals, warm intimate mood | Style: MONKEYS EMBRACING from behind shoulders, dense green tropical leaves, warm protective atmosphere, tender loving expression
 
-⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`
+⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`,
+
+  'modigliani': `
+AMEDEO MODIGLIANI - SELECT ONE:
+1. "Jeanne Hébuterne" (잔 에뷔테른) → FEMALE portrait, most iconic, melancholic beauty | Style: EXTREME ELONGATED SWAN-LIKE NECK 1.8x length, BLANK ALMOND EYES NO PUPILS, tilted head, warm ochre background
+2. "Lunia Czechowska" (루니아 체호프스카) → FEMALE portrait, elegant, serene | Style: EXTREME ELONGATED NECK, BLANK ALMOND EYES gazing sideways, graceful expression, muted blue-grey background
+3. "Portrait of Paul Guillaume" (폴 기욤) → MALE portrait, sophisticated gentleman | Style: ELONGATED NECK AND FACE, BLANK ALMOND EYES NO PUPILS, dark suit and hat, confident pose, warm brown ochre background
+
+⚠️ CRITICAL MODIGLIANI RULES: 
+- NECK must be stretched to 1.8x normal length (swan-like)
+- FACE must be vertically elongated 1.5x (oval egg shape)
+- EYES must be BLANK ALMOND-SHAPED with NO PUPILS or very faint
+- Simplified smooth forms, melancholic elegant atmosphere
+- ONLY for 1-person portraits (Modigliani rarely painted groups)`
 };
 
 /**
@@ -1730,6 +1771,7 @@ export function getArtistMasterworkGuide(artistKey) {
     'picasso': 'PABLO PICASSO',
     'frida': 'FRIDA KAHLO',
     'lichtenstein': 'ROY LICHTENSTEIN',
+    'modigliani': 'AMEDEO MODIGLIANI',
     'renoir': 'PIERRE-AUGUSTE RENOIR',
     'monet': 'CLAUDE MONET',
     'degas': 'EDGAR DEGAS',

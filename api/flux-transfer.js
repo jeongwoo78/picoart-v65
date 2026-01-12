@@ -2029,12 +2029,14 @@ Style 1: Chinese Ink Wash Painting (水墨畫 Shuimohua)
 - Best for: landscapes, mountains, nature, trees, contemplative subjects, simple compositions
 - Characteristics: Monochrome black ink with gradations (deep black to light grey), soft flowing brushstrokes, minimalist composition with elegant empty space, misty atmosphere
 - When: Photo has landscapes, nature, or needs meditative serene treatment
+- CLOTHING: If people present, dress them in traditional Chinese hanfu (漢服) robes
 
 Style 2: Chinese Gongbi Meticulous Painting (工筆畫)
 - Best for: portraits, people, detailed subjects, colorful compositions
 - Characteristics: EXTREMELY FINE detailed brushwork with DELICATE HAIR-THIN brush lines, SILK SURFACE TEXTURE throughout (not paper), rich MINERAL PIGMENT colors (malachite green, azurite blue, cinnabar red), ornate decorative patterns, TRADITIONAL PAINTED FEEL not digital, imperial court quality, VISIBLE FINE BRUSHSTROKES showing meticulous hand-painted technique
 - When: Photo has people, faces, or needs detailed colorful treatment
 - CRITICAL: Must look like TRADITIONAL HAND-PAINTED silk painting, VISIBLE brush texture, traditional painted quality
+- CLOTHING: MUST dress subjects in traditional Chinese hanfu (漢服) - flowing silk robes with wide sleeves, NOT modern clothing
 
 Style 3: Chinese Huaniao Bird-and-Flower Painting (花鳥畫)
 - Best for: birds, flowers, animals (dogs, cats, rabbits), fish, insects, any natural creatures
@@ -2051,7 +2053,13 @@ CRITICAL INSTRUCTIONS FOR PROMPT GENERATION:
    - If FEMALE in photo → prompt MUST start with "CRITICAL GENDER RULE: This photo shows FEMALE person, PRESERVE FEMININE FEATURES - soft face, feminine features, female body structure, KEEP FEMALE GENDER."
    - This gender instruction MUST be the FIRST thing in your generated prompt
 
-2. CALLIGRAPHY TEXT (POSITIVE MEANING ONLY):
+2. TRADITIONAL CLOTHING (MANDATORY FOR PEOPLE):
+   - If photo has people → MUST dress them in traditional Chinese hanfu (漢服)
+   - Hanfu: flowing silk robes with wide sleeves, crossed collar (交領), sash belt
+   - NEVER keep modern clothing (hoodies, jeans, t-shirts, etc.)
+   - This is essential for authentic Chinese traditional painting aesthetic
+
+3. CALLIGRAPHY TEXT (POSITIVE MEANING ONLY):
    - Choose appropriate positive text (1-4 characters) that makes the viewer feel GOOD
    - MUST be positive, auspicious, beautiful meaning - consumer will see this!
    - USE ONLY Chinese characters (Hanzi/漢字) for Chinese art
@@ -2071,7 +2079,7 @@ Return ONLY valid JSON (no markdown):
   "selected_style": "ink_wash" or "gongbi" or "huaniao",
   "calligraphy_text": "positive text you chose (Chinese characters only)",
   "reason": "why this style fits (1 sentence)",
-  "prompt": "KEEP UNDER 150 WORDS. [Gender rule] Chinese [style] with key characteristics. Calligraphy text '[your calligraphy_text]' in Chinese characters (Hanzi) only."
+  "prompt": "KEEP UNDER 150 WORDS. [Gender rule] Chinese [style] with key characteristics. Traditional hanfu clothing. Calligraphy text '[your calligraphy_text]' in Chinese characters (Hanzi) only."
 }
 
 CRITICAL: Keep prompt field UNDER 150 WORDS to avoid truncation.`;

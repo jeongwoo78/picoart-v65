@@ -1670,6 +1670,7 @@ JOAN MIRÓ - SELECT ONE:
 MARC CHAGALL - SELECT ONE:
 1. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE/SINGLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
 2. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
+3. "La Mariée" (신부, 1950) → FEMALE/COUPLE, bride, fantasy | Style: ethereal bride in red dress, dreamlike floating figures, deep blue nocturnal background with village and moon
 
 ⚠️ Chagall style: Dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality, dreamlike imagery with horses birds butterflies flowers.`,
 

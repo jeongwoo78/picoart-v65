@@ -138,7 +138,7 @@ export const masterworkNameMapping = {
   'the empire of light': 'magritte-empireoflight',
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
-  'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage',
+  'birthday': 'chagall-birthday', 'over the town': 'chagall-overtown', 'i and the village': 'chagall-iandvillage', 'lovers with flowers': 'chagall-lovers', '사랑하는 연인들과 꽃': 'chagall-lovers', 'la branche': 'chagall-labranche', '나뭇가지': 'chagall-labranche',
   'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'ohhh alright': 'lichtenstein-ohhhalright', '오 알았어': 'lichtenstein-ohhhalright', 'still life': 'lichtenstein-stilllife', 'still life with palette': 'lichtenstein-stilllife', '정물화': 'lichtenstein-stilllife', 'forget it': 'lichtenstein-forgetit', '날 잊어': 'lichtenstein-forgetit'
 };
 
@@ -1110,23 +1110,35 @@ export const miroMasterworks = {
 // 42. 샤갈 (3개)
 // ========================================
 export const chagallMasterworks = {
+  'chagall-iandvillage': {
+    name: '나와 마을',
+    nameEn: 'I and the Village',
+    prompt: 'Marc Chagall "I and the Village" (1911), SOFT FLOWING BRUSHSTROKES, dreamlike overlapping imagery, green-toned faces, circular composition, DREAMY PASTEL PALETTE emerald ruby deep blue, romantic poetic atmosphere.',
+    feature: '동물, 얼굴, 중첩'
+  },
   'chagall-birthday': {
     name: '생일',
     nameEn: 'Birthday',
-    prompt: 'Marc Chagall "Birthday" (1915), floating lovers defying gravity, man bends impossibly backward kiss woman, soft muted pastels dusty rose pale blue sage, tilted room.',
-    feature: '부유, 키스'
+    prompt: 'Marc Chagall "Birthday" (1915), SOFT FLOWING BRUSHSTROKES, lovers kissing, man bending backward, DREAMY PASTEL PALETTE dusty rose pale blue sage, tilted room, romantic poetic atmosphere.',
+    feature: '커플, 키스'
   },
   'chagall-overtown': {
     name: '마을 위에서',
     nameEn: 'Over the Town',
-    prompt: 'Marc Chagall "Over the Town" (1918), couple floating high above village, embracing lovers soaring over tilted colorful houses, muted dreamy pastels lavender blue rose.',
-    feature: '마을, 비행'
+    prompt: 'Marc Chagall "Over the Town" (1918), SOFT FLOWING BRUSHSTROKES, embracing lovers above village, colorful tilted houses below, DREAMY PASTEL PALETTE lavender blue rose, romantic poetic atmosphere.',
+    feature: '커플, 마을'
   },
-  'chagall-iandvillage': {
-    name: '나와 마을',
-    nameEn: 'I and the Village',
-    prompt: 'Marc Chagall "I and the Village" (1911), overlapping dreamlike green-faced man cow gazing each other, circular composition transparent overlays, emerald ruby deep blue.',
-    feature: '동물, 얼굴'
+  'chagall-lovers': {
+    name: '사랑하는 연인들과 꽃',
+    nameEn: 'Lovers with Flowers',
+    prompt: 'Marc Chagall "Lovers with Flowers" (1927), SOFT FLOWING BRUSHSTROKES, embracing couple surrounded by vibrant flowers, DREAMY PASTEL PALETTE with warm coral pink blue green, romantic poetic atmosphere.',
+    feature: '커플, 꽃다발'
+  },
+  'chagall-labranche': {
+    name: '나뭇가지',
+    nameEn: 'La Branche',
+    prompt: 'Marc Chagall "La Branche" (1976), SOFT FLOWING BRUSHSTROKES, lovers among flowering branches, WARM PASTEL PALETTE rich red pink coral, romantic poetic nostalgic atmosphere.',
+    feature: '커플, 자연'
   }
 };
 
@@ -1280,7 +1292,7 @@ export function getArtistMasterworkList(artistKey) {
     'frida': ['frida-parrots', 'frida-thornnecklace', 'frida-monkeys'],
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
-    'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
+    'chagall': ['chagall-iandvillage', 'chagall-birthday', 'chagall-overtown', 'chagall-lovers', 'chagall-labranche'],
     'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife'],
     'modigliani': ['modigliani-blueeyes']
   };
@@ -1682,11 +1694,13 @@ JOAN MIRÓ - SELECT ONE:
 
   'chagall': `
 MARC CHAGALL - SELECT ONE:
-1. "Birthday" (생일) → COUPLE, floating, romantic | Style: floating figures kissing, domestic interior, dreamlike weightlessness, soft colors
-2. "Over the Town" (마을 위로) → COUPLE, flying, village | Style: two lovers floating above village rooftops, Russian village below, poetic fantasy
-3. "I and the Village" (나와 마을) → surreal, nostalgic, symbolic | Style: overlapping faces (man and animal), Russian village scenes, dreamlike juxtaposition
+1. "I and the Village" (나와 마을, 1911) → SINGLE PERSON, surreal, nostalgic | Style: overlapping dreamlike imagery, green-toned faces, circular composition, emerald ruby deep blue
+2. "Birthday" (생일, 1915) → COUPLE, romantic, indoor | Style: lovers kissing, tilted room, soft pastel dusty rose pale blue sage
+3. "Over the Town" (마을 위에서, 1918) → COUPLE, romantic, village | Style: embracing lovers, colorful tilted houses below, lavender blue rose pastels
+4. "Lovers with Flowers" (사랑하는 연인들과 꽃, 1927) → COUPLE, romantic, flowers | Style: couple surrounded by vibrant flowers, warm coral pink blue green
+5. "La Branche" (나뭇가지, 1976) → COUPLE/SINGLE, nature, romantic | Style: lovers among flowering branches, rich warm red pink coral
 
-⚠️ For COUPLE: Birthday or Over the Town. Chagall style: Dreamy floating figures, soft pastel colors, nostalgic romantic atmosphere, poetic lyrical quality.`,
+⚠️ CHAGALL STYLE RULES: SOFT FLOWING BRUSHSTROKES with visible texture, DREAMY PASTEL PALETTE, romantic poetic nostalgic atmosphere.`,
 
   'lichtenstein': `
 ROY LICHTENSTEIN - SELECT ONE:

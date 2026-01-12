@@ -3153,16 +3153,29 @@ export default async function handler(req, res) {
         const artistLower = (selectedArtist || '').toLowerCase();
         const skipEthnicityPreserve = skinColorTransformArtists.some(a => artistLower.includes(a));
         
+        // v70: 샤갈 - 환영 허용 (원본만 그리기 제외)
+        const allowExtraImagery = artistLower.includes('chagall') || artistLower.includes('샤갈');
+        
         // 공통 대전제 (텍스트 금지는 별도) - v69: 긍정 표현으로 통일
-        const CORE_RULES_BASE = skipEthnicityPreserve
-          ? 'Preserve identity, gender exactly. ' +  // ethnicity 제외
-            'Paint only subjects visible in original photo. ' +
-            'Nipples and genitals must be covered. ' +
-            'Hand-painted artwork style.'
-          : 'Preserve identity, gender, ethnicity exactly. ' +  // 기본값
+        let CORE_RULES_BASE;
+        if (skipEthnicityPreserve) {
+          // ethnicity 제외
+          CORE_RULES_BASE = 'Preserve identity, gender exactly. ' +
             'Paint only subjects visible in original photo. ' +
             'Nipples and genitals must be covered. ' +
             'Hand-painted artwork style.';
+        } else if (allowExtraImagery) {
+          // 샤갈: 환영 허용 (원본만 그리기 제외)
+          CORE_RULES_BASE = 'Preserve identity, gender, ethnicity exactly. ' +
+            'Nipples and genitals must be covered. ' +
+            'Hand-painted artwork style.';
+        } else {
+          // 기본값
+          CORE_RULES_BASE = 'Preserve identity, gender, ethnicity exactly. ' +
+            'Paint only subjects visible in original photo. ' +
+            'Nipples and genitals must be covered. ' +
+            'Hand-painted artwork style.';
+        }
         
         if (isOrientalStyle) {
           // v68: 동양화 - 텍스트 허용 (낙관/시문)

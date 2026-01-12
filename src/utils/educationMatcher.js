@@ -83,6 +83,10 @@ const MASTERS_WORK_MAP = {
   'La Branche': 'chagall-labranche',
   '나뭇가지': 'chagall-labranche',
   'The Branch': 'chagall-labranche',
+  'La Mariée': 'chagall-lamariee',
+  'La Mariee': 'chagall-lamariee',
+  '신부': 'chagall-lamariee',
+  'The Bride': 'chagall-lamariee',
   
   // 프리다 칼로 (5작품)
   'Me and My Parrots': 'frida-parrots',
@@ -553,6 +557,7 @@ const WORK_TO_ARTIST_KEY = {
   'matisse-greenstripe': 'matisse',
   'chagall-lovers': 'chagall',
   'chagall-labranche': 'chagall',
+  'chagall-lamariee': 'chagall',
   'picasso-demoiselles': 'picasso',
   'picasso-guernica': 'picasso',
   'frida-parrots': 'frida',

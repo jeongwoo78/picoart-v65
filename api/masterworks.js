@@ -138,7 +138,7 @@ export const masterworkNameMapping = {
   'the empire of light': 'magritte-empireoflight',
   'the catalan landscape': 'miro-catalan', 'constellations': 'miro-constellation',
   'woman in front of the sun': 'miro-bluestar',
-  'lovers with flowers': 'chagall-lovers', '사랑하는 연인들과 꽃': 'chagall-lovers', 'la branche': 'chagall-labranche', '나뭇가지': 'chagall-labranche',
+  'lovers with flowers': 'chagall-lovers', '사랑하는 연인들과 꽃': 'chagall-lovers', 'la branche': 'chagall-labranche', '나뭇가지': 'chagall-labranche', 'la mariée': 'chagall-lamariee', 'la mariee': 'chagall-lamariee', '신부': 'chagall-lamariee', 'the bride': 'chagall-lamariee',
   'in the car': 'lichtenstein-inthecar', 'm-maybe': 'lichtenstein-mmaybe', 'ohhh alright': 'lichtenstein-ohhhalright', '오 알았어': 'lichtenstein-ohhhalright', 'still life': 'lichtenstein-stilllife', 'still life with palette': 'lichtenstein-stilllife', '정물화': 'lichtenstein-stilllife', 'forget it': 'lichtenstein-forgetit', '날 잊어': 'lichtenstein-forgetit'
 };
 
@@ -1121,6 +1121,12 @@ export const chagallMasterworks = {
     nameEn: 'La Branche',
     prompt: 'Marc Chagall "La Branche" (1976), lovers among flowering branches, warm pastel palette rich red pink coral, romantic poetic nostalgic atmosphere.',
     feature: '커플, 자연'
+  },
+  'chagall-lamariee': {
+    name: '신부',
+    nameEn: 'La Mariée',
+    prompt: 'Marc Chagall "La Mariée" (1950), ethereal bride in flowing red dress holding bouquet, dreamlike floating figures, deep blue nocturnal background with village and moon, rich jewel tones crimson ultramarine emerald, surreal poetic fantasy.',
+    feature: '신부, 환상'
   }
 };
 
@@ -1261,7 +1267,7 @@ export function getArtistMasterworkList(artistKey) {
     'frida': ['frida-parrots', 'frida-thornnecklace', 'frida-monkeys'],
     'magritte': ['magritte-sonofman', 'magritte-golconda', 'magritte-bowlerhat', 'magritte-humancondition', 'magritte-empireoflight'],
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
-    'chagall': ['chagall-lovers', 'chagall-labranche'],
+    'chagall': ['chagall-lovers', 'chagall-labranche', 'chagall-lamariee'],
     'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife']
   };
   

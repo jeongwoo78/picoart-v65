@@ -239,7 +239,7 @@ const ARTIST_CONFIG = {
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
   'frida':               { control: 0.80, brush: '25mm' },    // 세밀 상징
-  'modigliani':          { control: 0.30, brush: '50mm' },    // 긴 목/얼굴 변형 필요
+  'modigliani':          { control: 0.00, brush: '50mm' },    // 테스트: 극단적 변형
   
   // === 동양화 ===
   'korean':              { control: 0.75, brush: null },      // 먹선 별도

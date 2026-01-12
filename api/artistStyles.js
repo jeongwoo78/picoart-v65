@@ -149,7 +149,7 @@ export const ARTIST_STYLES = {
   
   'frida': 'by Frida Kahlo, Frida Kahlo art style, intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background, raw emotional honesty. Hand-painted artwork.',
   
-  'modigliani': 'by Amedeo Modigliani, Modigliani art style, EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with faint or absent pupils, simplified smooth elegant forms, melancholic serene beauty, warm ochre terracotta palette. Hand-painted artwork.',
+  'modigliani': 'by Amedeo Modigliani, Modigliani art style, EXTREMELY LONG SWAN NECK stretched 2x normal length, VERY TALL NARROW OVAL FACE stretched 1.5x vertically, SOLID BLUE ALMOND EYES filled with single flat blue color without any pupils or iris, simplified smooth elegant forms, melancholic serene beauty, muted background. Hand-painted artwork.',
 
   // ========================================
   // 🎎 동양화 (현재 유지 - 이미 NO digital 등 포함)

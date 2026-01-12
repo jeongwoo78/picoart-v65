@@ -46,9 +46,7 @@ export const masterworkNameMapping = {
   'self-portrait with monkeys': 'frida-monkeys', '원숭이와 자화상': 'frida-monkeys',
   
   // 모딜리아니
-  'jeanne hébuterne': 'modigliani-jeanne', 'jeanne hebuterne': 'modigliani-jeanne', '잔 에뷔테른': 'modigliani-jeanne',
-  'lunia czechowska': 'modigliani-lunia', '루니아 체호프스카': 'modigliani-lunia',
-  'portrait of paul guillaume': 'modigliani-paul', 'paul guillaume': 'modigliani-paul', '폴 기욤': 'modigliani-paul',
+  'woman with blue eyes': 'modigliani-blueeyes', '푸른 눈의 여인': 'modigliani-blueeyes',
   
   // 로마 모자이크
   'alexander mosaic': 'mosaic-alexander', '알렉산더 모자이크': 'mosaic-alexander',
@@ -1172,23 +1170,11 @@ export const lichtensteinMasterworks = {
 // 44. 모딜리아니 (3개)
 // ========================================
 export const modiglianiMasterworks = {
-  'modigliani-jeanne': {
-    name: '잔 에뷔테른',
-    nameEn: 'Jeanne Hébuterne',
-    prompt: 'Amedeo Modigliani "Jeanne Hébuterne" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES with faint or absent pupils, simplified smooth forms, melancholic elegant beauty, warm ochre terracotta background, seated pose with tilted head.',
-    feature: '여성, 긴 목'
-  },
-  'modigliani-lunia': {
-    name: '루니아 체호프스카',
-    nameEn: 'Lunia Czechowska',
-    prompt: 'Amedeo Modigliani "Lunia Czechowska" (1919), EXTREME ELONGATED SWAN-LIKE NECK stretched to 1.8x normal length, VERTICALLY STRETCHED OVAL FACE 1.5x elongation, BLANK ALMOND-SHAPED EYES gazing sideways with faint or absent pupils, graceful serene expression, simplified elegant forms, muted blue-grey background.',
-    feature: '여성, 우아'
-  },
-  'modigliani-paul': {
-    name: '폴 기욤',
-    nameEn: 'Portrait of Paul Guillaume',
-    prompt: 'Amedeo Modigliani "Portrait of Paul Guillaume" (1916), EXTREME ELONGATED NECK AND FACE stretched vertically, BLANK ALMOND-SHAPED EYES with faint or absent pupils, man in dark suit and hat, confident sophisticated pose, warm brown ochre background, stylized simplified masculine features.',
-    feature: '남성, 신사'
+  'modigliani-blueeyes': {
+    name: '푸른 눈의 여인',
+    nameEn: 'Woman with Blue Eyes',
+    prompt: 'Amedeo Modigliani "Woman with Blue Eyes" (1918), EXTREMELY LONG SWAN NECK stretched 2x normal length, VERY TALL NARROW OVAL FACE stretched 1.5x vertically, SOLID BLUE ALMOND EYES filled with single flat blue color without any pupils or iris, simplified smooth forms, melancholic serene expression, muted background.',
+    feature: '여성, 푸른 눈'
   }
 };
 
@@ -1296,7 +1282,7 @@ export function getArtistMasterworkList(artistKey) {
     'miro': ['miro-catalan', 'miro-constellation', 'miro-bluestar'],
     'chagall': ['chagall-birthday', 'chagall-overtown', 'chagall-iandvillage'],
     'lichtenstein': ['lichtenstein-inthecar', 'lichtenstein-mmaybe', 'lichtenstein-forgetit', 'lichtenstein-ohhhalright', 'lichtenstein-stilllife'],
-    'modigliani': ['modigliani-jeanne', 'modigliani-lunia', 'modigliani-paul']
+    'modigliani': ['modigliani-blueeyes']
   };
   
   return artistMasterworks[normalized] || [];
@@ -1732,15 +1718,13 @@ FRIDA KAHLO - SELECT ONE:
 ⚠️ Frida style: Intense direct gaze, symbolic personal elements, vibrant Mexican folk colors, lush tropical foliage background.`,
 
   'modigliani': `
-AMEDEO MODIGLIANI - SELECT ONE:
-1. "Jeanne Hébuterne" (잔 에뷔테른) → FEMALE portrait, most iconic, melancholic beauty | Style: EXTREME ELONGATED SWAN-LIKE NECK 1.8x length, BLANK ALMOND EYES faint or absent pupils, tilted head, warm ochre background
-2. "Lunia Czechowska" (루니아 체호프스카) → FEMALE portrait, elegant, serene | Style: EXTREME ELONGATED NECK, BLANK ALMOND EYES gazing sideways, graceful expression, muted blue-grey background
-3. "Portrait of Paul Guillaume" (폴 기욤) → MALE portrait, sophisticated gentleman | Style: ELONGATED NECK AND FACE, BLANK ALMOND EYES faint or absent pupils, dark suit and hat, confident pose, warm brown ochre background
+AMEDEO MODIGLIANI - USE THIS MASTERWORK:
+1. "Woman with Blue Eyes" (푸른 눈의 여인, 1918) → FEMALE portrait, blank blue eyes | Style: EXTREMELY LONG SWAN NECK 2x length, SOLID BLUE EYES without pupils, melancholic serene expression
 
 ⚠️ CRITICAL MODIGLIANI RULES: 
-- NECK must be stretched to 1.8x normal length (swan-like)
-- FACE must be vertically elongated 1.5x (oval egg shape)
-- EYES must be BLANK ALMOND-SHAPED with faint or absent pupils or very faint
+- NECK must be stretched to 2x normal length (like giraffe)
+- FACE must be vertically elongated 1.5x (very tall narrow oval)
+- EYES must be SOLID BLUE ALMOND-SHAPED filled with single flat blue color, NO pupils, NO iris details
 - Simplified smooth forms, melancholic elegant atmosphere
 - ONLY for 1-person portraits (Modigliani rarely painted groups)`
 };

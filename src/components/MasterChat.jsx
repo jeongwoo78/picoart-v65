@@ -25,6 +25,17 @@ const MASTER_NAMES_KO = {
   'LICHTENSTEIN': '리히텐슈타인'
 };
 
+// 거장별 추천 질문 (수정 요청, 개인 질문, 화풍 질문)
+const SUGGESTED_QUESTIONS = {
+  'VAN GOGH': ['머리색 금발로 바꿔줘', '귀 얘기 해줘', '왜 해바라기 좋아해?'],
+  'KLIMT': ['머리색 구리색으로 바꿔줘', '키스 그림 모델이 누구예요?', '왜 금색을 좋아해요?'],
+  'MUNCH': ['옷 색깔 어둡게 바꿔줘', '결혼했어요?', '절규는 왜 그렸어요?'],
+  'PICASSO': ['옷 색깔 빨간색으로 바꿔줘', '여자친구 많았어요?', '왜 얼굴을 이상하게 그려요?'],
+  'MATISSE': ['옷 색깔 밝게 바꿔줘', '소개해주세요', '왜 색이 이렇게 밝아요?'],
+  'FRIDA': ['입술 색 진하게 바꿔줘', '사고 얘기 해줘', '왜 자화상을 많이 그렸어요?'],
+  'LICHTENSTEIN': ['머리색 노란색으로 바꿔줘', '소개해주세요', '왜 만화처럼 그려요?']
+};
+
 const MasterChat = ({ 
   masterKey,           // 거장 키 (예: "VAN GOGH")
   onRetransform,       // 재변환 콜백 (correctionPrompt를 전달)
@@ -269,7 +280,27 @@ const MasterChat = ({
               <div className="avatar" style={{ background: theme.gradient }}>🎨</div>
             )}
             {msg.role === 'system' ? (
-              <div className="system-message">{msg.content}</div>
+              <div className="system-message">
+                {msg.content}
+                {/* 첫 시스템 메시지에만 추천 질문 표시 */}
+                {msg.content.includes('궁금한 점을 물어보세요') && (
+                  <div className="suggested-questions">
+                    {(SUGGESTED_QUESTIONS[masterKey] || []).map((q, qIdx) => (
+                      <button
+                        key={qIdx}
+                        className="question-chip"
+                        onClick={() => setInputValue(q)}
+                        style={{ 
+                          borderColor: `${theme.primary}60`,
+                          color: theme.primary
+                        }}
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ) : (
               <div>
                 <div className="sender">{msg.role === 'master' ? `${masterNameKo}(AI)` : '나'}</div>
@@ -431,6 +462,33 @@ const MasterChat = ({
           padding: 8px 16px;
           border-radius: 20px;
           text-align: center;
+        }
+
+        .suggested-questions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          justify-content: center;
+          margin-top: 12px;
+        }
+
+        .question-chip {
+          background: white;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-radius: 16px;
+          padding: 6px 12px;
+          font-size: 12px;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .question-chip:hover {
+          background: rgba(0, 0, 0, 0.05);
+          transform: translateY(-1px);
+        }
+
+        .question-chip:active {
+          transform: translateY(0);
         }
 
         .chat-message.master .bubble {

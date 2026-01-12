@@ -233,13 +233,13 @@ const ARTIST_CONFIG = {
   'picasso':             { control: 0.10, brush: '75mm' },
   'magritte':            { control: 0.40, brush: '75mm' },
   'miro':                { control: 0.40, brush: '75mm' },
-  'chagall':             { control: 0.40, brush: '75mm' },
+  'chagall':             { control: 0.10, brush: '75mm' },
   'lichtenstein':        { control: 0.30, brush: null },      // 벤데이 점, 스타일 강화
   
   // === 거장 ===
   'klimt':               { control: 0.65, brush: '25mm' },    // 세밀 금박
   'frida':               { control: 0.80, brush: '25mm' },    // 세밀 상징
-  'modigliani':          { control: 0.30, brush: '50mm' },    // 긴 목/얼굴 변형 필요
+  'modigliani':          { control: 0.10, brush: '75mm' },    // 긴 목/얼굴 변형 필요
   
   // === 동양화 ===
   'korean':              { control: 0.75, brush: null },      // 먹선 별도

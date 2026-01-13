@@ -986,9 +986,9 @@ const ResultScreen = ({
       '아르누보': { en: 'Art Nouveau', period: '19세기 말' },
       '20세기 모더니즘': { en: 'Modernism', period: '20세기' },
       // 20세기 모더니즘 세부 사조
-      '입체주의': { en: 'Cubism', period: '1907~1920' },
-      '초현실주의': { en: 'Surrealism', period: '1920~1950' },
-      '팝아트': { en: 'Pop Art', period: '1950~1970' },
+      '입체주의': { en: 'Cubism', period: '20세기 초' },
+      '초현실주의': { en: 'Surrealism', period: '20세기 초중반' },
+      '팝아트': { en: 'Pop Art', period: '20세기 중반' },
     };
     
     // 화가별 풀네임, 생몰연도
@@ -2215,7 +2215,9 @@ const ResultScreen = ({
                     const styleName = isFullTransform ? (currentResult?.style?.name || selectedStyle.name) : selectedStyle.name;
                     
                     if (category === 'masters') {
-                      const masterInfo = getMasterInfo(displayArtist);
+                      // API 실패 시 selectedStyle.name 사용
+                      const artistForDisplay = displayArtist || (isFullTransform ? currentResult?.style?.name : selectedStyle?.name);
+                      const masterInfo = getMasterInfo(artistForDisplay);
                       return masterInfo.fullName;
                     } else if (category === 'movements') {
                       const movementInfo = getMovementDisplayInfo(styleName, displayArtist);
@@ -2238,7 +2240,9 @@ const ResultScreen = ({
                       const styleName = isFullTransform ? (currentResult?.style?.name || selectedStyle.name) : selectedStyle.name;
                       
                       if (category === 'masters') {
-                        const masterInfo = getMasterInfo(displayArtist);
+                        // API 실패 시 selectedStyle.name 사용
+                        const artistForDisplay = displayArtist || (isFullTransform ? currentResult?.style?.name : selectedStyle?.name);
+                        const masterInfo = getMasterInfo(artistForDisplay);
                         return masterInfo.movement || '거장';
                       } else if (category === 'movements') {
                         const movementInfo = getMovementDisplayInfo(styleName, displayArtist);

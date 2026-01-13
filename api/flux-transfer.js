@@ -1804,7 +1804,7 @@ const fallbackPrompts = {
   
   japanese: {
     name: '일본 우키요에',
-    prompt: 'Japanese Ukiyo-e woodblock print, Ukiyo-e art style, flat areas of bold solid colors, strong clear black outlines, completely flat two-dimensional composition, transform clothing to traditional kimono, decorative patterns, stylized simplified forms, elegant refined Japanese aesthetic, authentic Japanese ukiyo-e masterpiece quality, CRITICAL ANTI-HALLUCINATION preserve EXACT number of people from original photo, if 1 person then ONLY 1 person in result, simple scenic background ONLY Mt Fuji or cherry blossom or waves or sky, VISIBLE WOODBLOCK PRINT TEXTURE 20mm+'
+    prompt: 'Japanese Ukiyo-e woodblock print, Ukiyo-e art style, flat areas of bold solid colors, strong clear black outlines, completely flat two-dimensional composition, CLOTHING: MUST transform to traditional Japanese attire (elegant kimono for women, hakama pants with haori jacket for men), decorative patterns, stylized simplified forms, elegant refined Japanese aesthetic, authentic Japanese ukiyo-e masterpiece quality, CRITICAL ANTI-HALLUCINATION preserve EXACT number of people from original photo, if 1 person then ONLY 1 person in result, simple scenic background ONLY Mt Fuji or cherry blossom or waves or sky, VISIBLE WOODBLOCK PRINT TEXTURE 20mm+'
   },
   
   masters: {
@@ -2029,14 +2029,14 @@ Style 1: Chinese Ink Wash Painting (水墨畫 Shuimohua)
 - Best for: landscapes, mountains, nature, trees, contemplative subjects, simple compositions
 - Characteristics: Monochrome black ink with gradations (deep black to light grey), soft flowing brushstrokes, minimalist composition with elegant empty space, misty atmosphere
 - When: Photo has landscapes, nature, or needs meditative serene treatment
-- CLOTHING: If people present, dress them in traditional Chinese hanfu (漢服) robes
+- CLOTHING: If people present, MUST dress in traditional Chinese hanfu (long flowing dress with wide sleeves for women, scholar's robe with wide sleeves for men)
 
 Style 2: Chinese Gongbi Meticulous Painting (工筆畫)
 - Best for: portraits, people, detailed subjects, colorful compositions
 - Characteristics: EXTREMELY FINE detailed brushwork with DELICATE HAIR-THIN brush lines, SILK SURFACE TEXTURE throughout (not paper), rich MINERAL PIGMENT colors (malachite green, azurite blue, cinnabar red), ornate decorative patterns, TRADITIONAL PAINTED FEEL not digital, imperial court quality, VISIBLE FINE BRUSHSTROKES showing meticulous hand-painted technique
 - When: Photo has people, faces, or needs detailed colorful treatment
 - CRITICAL: Must look like TRADITIONAL HAND-PAINTED silk painting, VISIBLE brush texture, traditional painted quality
-- CLOTHING: MUST dress subjects in traditional Chinese hanfu (漢服) - flowing silk robes with wide sleeves, NOT modern clothing
+- CLOTHING: MUST dress in traditional Chinese hanfu (long flowing dress with wide sleeves for women, scholar's robe with wide sleeves for men), NOT modern clothing
 
 Style 3: Chinese Huaniao Bird-and-Flower Painting (花鳥畫)
 - Best for: birds, flowers, animals (dogs, cats, rabbits), fish, insects, any natural creatures
@@ -2054,8 +2054,9 @@ CRITICAL INSTRUCTIONS FOR PROMPT GENERATION:
    - This gender instruction MUST be the FIRST thing in your generated prompt
 
 2. TRADITIONAL CLOTHING (MANDATORY FOR PEOPLE):
-   - If photo has people → MUST dress them in traditional Chinese hanfu (漢服)
-   - Hanfu: flowing silk robes with wide sleeves, crossed collar (交領), sash belt
+   - If photo has people → MUST dress in traditional Chinese hanfu
+   - Women: long flowing dress with wide sleeves
+   - Men: scholar's robe with wide sleeves
    - NEVER keep modern clothing (hoodies, jeans, t-shirts, etc.)
    - This is essential for authentic Chinese traditional painting aesthetic
 
@@ -2102,7 +2103,7 @@ Return ONLY valid JSON (no markdown):
 {
   "analysis": "brief photo description",
   "calligraphy_text": "positive text you chose",
-  "prompt": "Japanese Ukiyo-e woodblock print style with flat bold colors, strong black outlines, traditional kimono clothing, decorative patterns, Mt Fuji or cherry blossom or waves background. Include ONLY the calligraphy text '[your calligraphy_text]' in vertical brushwork style."
+  "prompt": "Japanese Ukiyo-e woodblock print style with flat bold colors, strong black outlines, CLOTHING: traditional Japanese attire (elegant kimono for women, hakama pants with haori jacket for men), decorative patterns, Mt Fuji or cherry blossom or waves background. Include ONLY the calligraphy text '[your calligraphy_text]' in vertical brushwork style."
 }`;
       }
       
